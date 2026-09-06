@@ -19,18 +19,22 @@
     // even by accident. Run that script before every deploy.
     "directory": "./dist/",
 
-    // Serve /about.html at exactly that path, with no redirect.
+    // The site is published at clean URLs: /about, never /about.html and
+    // never /about/. Canonical tags, og:url, JSON-LD and the sitemap all use
+    // that form, so the served URL and the declared canonical agree and no
+    // internal link costs a redirect hop.
     //
-    // Cloudflare's default ("auto-trailing-slash") 301s /about.html to
-    // /about. Every canonical tag, sitemap entry and internal link on this
-    // site uses the .html form, so that default would put a redirect in front
-    // of every indexed URL and make each canonical disagree with the URL that
-    // actually serves it.
+    // "drop-trailing-slash" is what produces that: it maps "/" to index.html,
+    // strips trailing slashes, and redirects the .html form to the clean one.
     //
-    // "drop-trailing-slash" keeps the .html paths literal (verified: they
-    // return 200, not 301) while still mapping "/" to index.html. Plain
-    // "none" also keeps the paths literal but breaks the homepage — "/"
-    // returns 404 because nothing maps it to index.html.
+    // Do not use "none" — it keeps .html literal but returns 404 for "/",
+    // because nothing then maps the homepage to index.html. Verified locally.
+    //
+    // _redirects also lists the .html -> clean 301s explicitly. That is not
+    // redundant: html_handling answers 307 (temporary), which does not pass
+    // ranking signals. Those rules point the same direction as this setting,
+    // so they cannot fight it. A rule pointing the other way (/about ->
+    // /about.html) would create an infinite redirect loop.
     "html_handling": "drop-trailing-slash",
 
     // Unknown paths render 404.html with a real 404 status.

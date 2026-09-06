@@ -166,7 +166,7 @@ def build_about():
     page = {
         "file": "about.html",
         "title": "About Us | KIARIT PHARMACEUTICALS — Our Story, Mission & Quality",
-        "desc": "Learn about KIARIT PHARMACEUTICALS — a healthcare-focused pharmaceutical and cosmetic company delivering high-quality, innovative and affordable dermatology, skincare and nutraceutical products.",
+        "desc": "KIARIT PHARMACEUTICALS is a healthcare-focused company delivering quality dermatology, skincare and nutraceutical products. Read our story, mission and values.",
         "og_title": "About KIARIT PHARMACEUTICALS — Science, Quality, Responsibility",
         "schema": [org_schema(),
                    breadcrumb([("Home", ""), ("About Us", "about.html")]),
@@ -318,7 +318,7 @@ def build_contact():
     page = {
         "file": "contact.html",
         "title": "Contact Us | KIARIT PHARMACEUTICALS — Phone, WhatsApp & Email",
-        "desc": f"Contact KIARIT PHARMACEUTICALS by phone {SITE['phone_display']}, WhatsApp or email {SITE['email']}. Corporate office in New Delhi. Order support, bulk and distribution enquiries welcome.",
+        "desc": f"Contact KIARIT PHARMACEUTICALS on {SITE['phone_display']}, WhatsApp or email. New Delhi office. Order support, bulk and distribution enquiries welcome.",
         "og_title": "Contact KIARIT PHARMACEUTICALS",
         "schema": [org_schema(),
                    breadcrumb([("Home", ""), ("Contact", "contact.html")]),
@@ -502,7 +502,7 @@ def build_order():
     page = {
         "file": "order.html",
         "title": "How to Order & Pay | KIARIT PHARMACEUTICALS — UPI QR Payment",
-        "desc": "Order KIARIT products in three simple steps — message us on WhatsApp, scan our UPI QR code to pay, and share the screenshot. Free shipping above ₹999, dispatch within 24 hours.",
+        "desc": "Order KIARIT products in three steps: message us on WhatsApp, scan our UPI QR to pay, share the screenshot. Free shipping above ₹999, dispatch in 24 hours.",
         "og_title": "How to Order & Pay — KIARIT PHARMACEUTICALS",
         "schema": [org_schema(),
                    breadcrumb([("Home", ""), ("How to Order & Pay", "order.html")]),

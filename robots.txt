@@ -1,7 +1,14 @@
+# robots.txt — KIARIT PHARMACEUTICALS
 User-agent: *
 Allow: /
-
 Disallow: /tools/
-Disallow: /.venv/
+Disallow: /404.html
+
+# Courtesy crawl delay for aggressive bots
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
 
 Sitemap: https://www.kiaritpharmaceuticals.com/sitemap.xml

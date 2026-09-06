@@ -91,7 +91,9 @@ h1 em, h2 em, .poster__title em, .hero__title .l2 {
 
 /* Drop the harsh pure-black on large display type — deep ink reads richer */
 h1, h2 { color: #101216; }
-.section--dark h1, .section--dark h2, .testi h2, .ctaband h2, .poster__title { color: #fff; }
+/* .testi is a light band from stage 2 onward — it must not be forced white. */
+/* .ctaband is a light band from stage 2 onward. */
+.section--dark h1, .section--dark h2, .poster__title { color: #fff; }
 .poster--split .poster__title { color: #101216; }
 
 /* Lead paragraph gets a refined left gold rule on the overview block */
@@ -113,11 +115,11 @@ h1, h2 { color: #101216; }
 .trust {
   background:
     radial-gradient(90% 200% at 50% 50%, rgba(201,162,39,.10), transparent 65%),
-    var(--black-900);
+    linear-gradient(180deg, var(--champagne) 0%, var(--ivory-2) 100%);
 }
 .trust__item { transition: color var(--t-fast) var(--ease); }
-.trust__item:hover { color: #fff; }
-.trust__item:hover svg { color: var(--gold-300); }
+.trust__item:hover { color: var(--gold-800); }
+.trust__item:hover svg { color: var(--gold-800); }
 .trust__item svg { transition: color var(--t-fast) var(--ease); }
 
 /* ---------- 5. HERO POLISH ---------- */
@@ -192,9 +194,9 @@ h1, h2 { color: #101216; }
 .testi__person > span:not(.testi__avatar):not(.testi__verified) { min-width: 0; }
 
 .testi__card {
-  background:
-    linear-gradient(160deg, rgba(255,255,255,.075), rgba(255,255,255,.03));
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.08);
+  /* Light band from stage 2: a paper surface, not a translucent dark panel. */
+  background: linear-gradient(168deg, #ffffff 0%, var(--ivory) 100%);
+  box-shadow: var(--sh-2);
   position: relative;
 }
 /* Oversized decorative quote glyph */
@@ -206,12 +208,12 @@ h1, h2 { color: #101216; }
   font-family: var(--font-display);
   font-size: clamp(5rem, 3rem + 6vw, 9rem);
   line-height: 1;
-  color: rgba(201,162,39,.16);
+  color: rgba(201,162,39,.14);
   pointer-events: none;
   user-select: none;
 }
 .slider__slide.is-active .testi__card {
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 18px 50px rgba(0,0,0,.28);
+  box-shadow: var(--sh-3);
 }
 
 /* ---------- 9. QR / ORDER BAND POLISH ---------- */
@@ -227,7 +229,9 @@ h1, h2 { color: #101216; }
 .step__num { box-shadow: var(--sh-3); }
 
 /* ---------- 10. CTA BAND POLISH ---------- */
-.ctaband::before {
+/* Applied to the glow layer, not ::before — pages.css uses ::before/::after
+   for the band's top and bottom gold rules. */
+.ctaband__glow::after {
   content: "";
   position: absolute; inset: 0; z-index: 1;
   pointer-events: none;

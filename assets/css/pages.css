@@ -140,9 +140,11 @@
 @media (max-width: 700px) { .hero__scroll { display: none; } }
 
 /* ==================== TRUST STRIP ==================== */
+/* Trust strip — light (stage 2). A quiet champagne rail directly under the
+   hero, so the dark-to-light transition happens once and stays. */
 .trust {
-  background: var(--black-900);
-  border-block: 1px solid rgba(201,162,39,.24);
+  background: linear-gradient(180deg, var(--champagne) 0%, var(--ivory-2) 100%);
+  border-block: 1px solid var(--line-gold);
   padding-block: clamp(1.1rem, .8rem + 1vw, 1.7rem);
 }
 .trust__row {
@@ -153,7 +155,7 @@
 .trust__item {
   display: flex; align-items: center; justify-content: center;
   gap: var(--sp-3);
-  color: rgba(255,255,255,.82);
+  color: var(--ink-2);
   font-size: var(--fs-eyebrow); font-weight: 600;
   letter-spacing: .13em; text-transform: uppercase;
   text-align: center;
@@ -163,9 +165,9 @@
   content: ""; position: absolute; left: 0; top: 50%;
   transform: translateY(-50%);
   width: 1px; height: 26px;
-  background: rgba(201,162,39,.28);
+  background: var(--line-gold);
 }
-.trust__item svg { width: 21px; height: 21px; color: var(--gold-500); flex: none; }
+.trust__item svg { width: 21px; height: 21px; color: var(--gold-700); flex: none; }
 @media (max-width: 860px) {
   .trust__row { grid-template-columns: repeat(2, 1fr); gap: var(--sp-5) var(--sp-4); }
   .trust__item:nth-child(odd)::before { display: none; }
@@ -646,67 +648,115 @@
 .why__card p { font-size: var(--fs-small); line-height: 1.68; color: var(--ink-3); position: relative; z-index: 2; }
 
 /* ==================== TESTIMONIALS ==================== */
-.testi { background: var(--grad-dark); position: relative; overflow: hidden; }
-.testi h2, .testi .sec-head h2 { color: #fff; }
-.testi .sec-head p { color: rgba(255,255,255,.66); }
+/* ==================== TESTIMONIALS — LIGHT (stage 2) ====================
+   Was a 47-50% dark band. Now an ivory field with a single tinted quote
+   card, an oversized gold quotation glyph and considerably more air.
+   ======================================================================== */
+.testi {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(80% 60% at 50% 0%, var(--champagne), transparent 62%),
+    linear-gradient(180deg, var(--ivory) 0%, var(--ivory-2) 100%);
+}
 .testi::before {
-  content: ""; position: absolute;
-  width: 700px; height: 700px; left: -260px; bottom: -300px;
-  background: radial-gradient(circle, rgba(201,162,39,.11), transparent 68%);
+  content: "";
+  position: absolute;
+  width: 760px; height: 760px; left: -280px; bottom: -340px;
+  background: radial-gradient(circle, rgba(201,162,39,.10), transparent 68%);
   pointer-events: none;
 }
-.testi .slider { margin-top: clamp(2.2rem, 1.4rem + 2.6vw, 3.4rem); position: relative; z-index: 2; }
+/* Oversized quotation glyph as the section's visual anchor. */
+.testi::after {
+  content: "\201C";
+  position: absolute; z-index: 0;
+  top: clamp(150px, 20vw, 300px); left: clamp(16px, 6vw, 120px);
+  font-family: var(--font-display);
+  font-size: clamp(180px, 22vw, 360px);
+  line-height: .7;
+  color: rgba(201,162,39,.09);
+  pointer-events: none; user-select: none;
+}
+.testi .sec-head { position: relative; z-index: 2; }
+.testi .slider {
+  margin-top: clamp(2rem, 1.4rem + 2.4vw, 3.2rem);
+  position: relative; z-index: 2;
+}
 
 .testi__card {
-  background: rgba(255,255,255,.045);
-  border: 1px solid rgba(255,255,255,.10);
-  border-radius: var(--r-lg);
-  padding: clamp(1.4rem, 1rem + 2vw, 3rem);
+  background: linear-gradient(168deg, #ffffff 0%, var(--ivory) 100%);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: clamp(1.5rem, 1rem + 2vw, 3rem);
   min-width: 0;
-  backdrop-filter: blur(6px);
   height: 100%;
   display: flex; flex-direction: column;
-  transition: border-color var(--t-med) var(--ease), background-color var(--t-med) var(--ease), transform var(--t-med) var(--ease);
+  box-shadow: var(--sh-2);
+  transition: border-color var(--t-med) var(--ease), box-shadow var(--t-med) var(--ease), transform var(--t-med) var(--ease);
 }
-.slider__slide.is-active .testi__card { border-color: rgba(201,162,39,.34); background: rgba(255,255,255,.065); }
+.slider__slide.is-active .testi__card {
+  border-color: var(--line-gold);
+  box-shadow: var(--sh-3);
+}
 
 .testi__stars { display: flex; gap: var(--sp-1); margin-bottom: var(--sp-5); }
-.testi__stars svg { width: 17px; height: 17px; color: var(--gold-400); }
+.testi__stars svg { width: 17px; height: 17px; color: var(--gold-600); }
 .testi__quote {
   font-family: var(--font-display);
-  font-size: clamp(1.05rem, .92rem + .65vw, 1.38rem);
-  line-height: 1.66;
-  color: rgba(255,255,255,.93);
+  font-size: clamp(1.0625rem, .92rem + .7vw, 1.4rem);
+  line-height: 1.62;
+  color: var(--ink);
   font-style: italic;
   margin-bottom: var(--sp-6);
+  max-width: var(--measure);
   flex: 1;
 }
-.testi__person { display: flex; align-items: center; gap: var(--sp-4); padding-top: var(--sp-4); border-top: 1px solid rgba(255,255,255,.10); }
+.testi__person {
+  display: flex; align-items: center; gap: var(--sp-4);
+  padding-top: var(--sp-4);
+  border-top: 1px solid var(--line);
+}
 .testi__avatar {
   width: 50px; height: 50px; flex: none;
   border-radius: 50%;
   display: grid; place-items: center;
   background: linear-gradient(140deg, var(--gold-400), var(--gold-700));
-  color: var(--black-900);
+  color: #1a1714;
   font-family: var(--font-body);
   font-size: var(--fs-small); font-weight: 700;
   letter-spacing: .04em;
   border: 1px solid var(--gold-300);
 }
-.testi__person strong { display: block; color: #fff; font-size: var(--fs-body); font-weight: 600; }
-.testi__person span { display: block; font-size: var(--fs-eyebrow); color: rgba(255,255,255,.55); margin-top: .12rem; }
+.testi__person strong { display: block; color: var(--ink); font-size: var(--fs-body); font-weight: 600; }
+.testi__person span { display: block; font-size: var(--fs-eyebrow); color: var(--ink-3); margin-top: .12rem; }
 .testi__verified {
   margin-left: auto;
   display: inline-flex; align-items: center; gap: var(--sp-1);
   font-size: var(--fs-eyebrow); letter-spacing: .1em; text-transform: uppercase;
-  color: var(--gold-400);
-  border: 1px solid rgba(201,162,39,.3);
+  color: var(--gold-800);
+  background: var(--gold-100);
+  border: 1px solid var(--line-gold);
   border-radius: var(--r-full);
   padding: .3rem .7rem;
   white-space: nowrap;
 }
 .testi__verified svg { width: 12px; height: 12px; }
 @media (max-width: 560px) { .testi__verified { display: none; } }
+
+/* Slider chrome has to invert now that the band is light. */
+.testi .slider__dot::before { background: rgba(26,23,20,.22); }
+.testi .slider__dot:hover::before { background: rgba(26,23,20,.4); }
+.testi .slider__dot.is-active::before { background: var(--grad-gold); }
+.testi .slider__btn {
+  background: #fff;
+  border-color: var(--line);
+  color: var(--ink-2);
+}
+.testi .slider__btn:hover {
+  background: var(--gold-100);
+  border-color: var(--line-gold);
+  color: var(--gold-800);
+}
 
 /* ==================== ORDER / QR BAND ==================== */
 .orderband { background: var(--bg-alt); }
@@ -757,26 +807,38 @@
 .step span { font-size: var(--fs-small); color: var(--ink-3); line-height: 1.66; }
 
 /* ==================== CTA BAND ==================== */
+/* CTA band — light (stage 2). Champagne-to-ivory field with a gold rule,
+   so the page closes warm instead of dropping into another black slab. */
 .ctaband {
   position: relative;
-  background: var(--black-900);
+  background:
+    radial-gradient(70% 90% at 50% 108%, rgba(242,233,219,.9), transparent 68%),
+    linear-gradient(178deg, var(--ivory) 0%, var(--champagne) 100%);
   overflow: hidden;
   text-align: center;
   isolation: isolate;
 }
+.ctaband::before,
+.ctaband::after {
+  content: "";
+  position: absolute; left: 0; right: 0; height: 1px; z-index: 3;
+  background: linear-gradient(90deg, transparent, var(--line-gold) 24%, rgba(201,162,39,.55) 50%, var(--line-gold) 76%, transparent);
+}
+.ctaband::before { top: 0; }
+.ctaband::after  { bottom: 0; }
 .ctaband__glow {
   position: absolute; inset: 0; z-index: 0; pointer-events: none;
   background:
-    radial-gradient(58% 90% at 50% 108%, rgba(201,162,39,.30), transparent 66%),
-    radial-gradient(38% 62% at 12% -8%, rgba(201,162,39,.14), transparent 70%),
-    radial-gradient(38% 62% at 88% -8%, rgba(125,143,122,.12), transparent 70%);
+    radial-gradient(56% 86% at 50% 106%, rgba(201,162,39,.20), transparent 66%),
+    radial-gradient(38% 62% at 10% -8%, rgba(244,230,224,.75), transparent 70%),
+    radial-gradient(38% 62% at 90% -8%, rgba(234,239,231,.7), transparent 70%);
   animation: ctaGlow 8s var(--ease-io) infinite alternate;
 }
 @keyframes ctaGlow { from { opacity: .72; } to { opacity: 1; } }
 .ctaband__inner { position: relative; z-index: 2; padding-block: clamp(4rem, 2.6rem + 6vw, 7.5rem); }
-.ctaband h2 { color: #fff; margin: var(--sp-4) auto var(--sp-5); max-width: 18ch; }
+.ctaband h2 { color: var(--ink); margin: var(--sp-4) auto var(--sp-5); max-width: 18ch; }
 .ctaband h2 em { font-style: italic; background: var(--grad-gold-text); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.ctaband p { color: rgba(255,255,255,.7); margin-inline: auto; max-width: var(--measure); }
+.ctaband p { color: var(--ink-2); margin-inline: auto; max-width: var(--measure); }
 .ctaband__actions {
   display: flex; flex-wrap: wrap; gap: var(--sp-4);
   justify-content: center;
@@ -787,12 +849,176 @@
   gap: var(--gap-xl);
   margin-top: var(--sp-7);
   padding-top: var(--sp-6);
-  border-top: 1px solid rgba(255,255,255,.12);
+  border-top: 1px solid var(--line-gold);
 }
 .ctaband__contact a {
   display: inline-flex; align-items: center; gap: var(--sp-2);
-  color: rgba(255,255,255,.72); font-size: var(--fs-small);
+  color: var(--ink-2); font-size: var(--fs-small);
   transition: color var(--t-fast) var(--ease);
 }
-.ctaband__contact a:hover { color: var(--gold-300); }
-.ctaband__contact svg { width: 17px; height: 17px; color: var(--gold-500); }
+.ctaband__contact a:hover { color: var(--gold-800); }
+.ctaband__contact svg { width: 17px; height: 17px; color: var(--gold-700); }
+
+/* ==========================================================================
+   POSTER — LIGHT EDITORIAL (stage 2)
+   Replaces the dark poster band. Authority comes from oversized display type,
+   a champagne field and generous air rather than from a black background.
+   ========================================================================== */
+.poster-light {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  padding-block: var(--section-y-loose);
+  background: var(--ivory);
+}
+.poster-light__field {
+  position: absolute; inset: 0; z-index: 0;
+  background:
+    radial-gradient(90% 70% at 12% 18%, rgba(242,233,219,.95), transparent 62%),
+    radial-gradient(70% 60% at 92% 88%, rgba(244,230,224,.7), transparent 64%),
+    linear-gradient(168deg, var(--champagne) 0%, var(--ivory) 58%, var(--ivory-2) 100%);
+}
+.poster-light__field::after {
+  content: "";
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(125,92,14,.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(125,92,14,.055) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(72% 68% at 22% 42%, #000, transparent 78%);
+  -webkit-mask-image: radial-gradient(72% 68% at 22% 42%, #000, transparent 78%);
+}
+.poster-light::before,
+.poster-light::after {
+  content: "";
+  position: absolute; left: 0; right: 0; height: 1px; z-index: 4;
+  background: linear-gradient(90deg, transparent, var(--line-gold) 22%, rgba(201,162,39,.5) 50%, var(--line-gold) 78%, transparent);
+}
+.poster-light::before { top: 0; }
+.poster-light::after  { bottom: 0; }
+
+/* Rotated brand line in the right margin — an ownable editorial device. */
+.poster-light__tag {
+  position: absolute; right: 22px; top: 50%; z-index: 4;
+  transform: translateY(-50%) rotate(90deg);
+  transform-origin: right center;
+  font-size: .6875rem; font-weight: 600;
+  letter-spacing: .42em; text-transform: uppercase;
+  color: var(--gold-700);
+  opacity: .55;
+  white-space: nowrap;
+  pointer-events: none;
+}
+@media (max-width: 1200px) { .poster-light__tag { display: none; } }
+
+.poster-light__inner {
+  position: relative; z-index: 3;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  grid-template-areas:
+    "copy  media"
+    "stats media";
+  align-items: start;
+  column-gap: var(--gap-2xl);
+  row-gap: var(--gap-xl);
+}
+.poster-light__copy  { grid-area: copy; align-self: center; }
+.poster-light__media { grid-area: media; }
+.poster-light__stats { grid-area: stats; }
+
+.poster-light__title {
+  font-size: clamp(2.1rem, 1.3rem + 3.4vw, 4rem);
+  line-height: 1.02;
+  letter-spacing: -.028em;
+  margin: var(--sp-5) 0 var(--sp-5);
+  text-wrap: initial;   /* the line breaks here are authored, not balanced */
+}
+.poster-light__title em {
+  font-style: italic;
+  background: var(--grad-gold-text);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.poster-light__lead {
+  font-size: var(--fs-lead);
+  color: var(--ink-2);
+  max-width: var(--measure-narrow);
+  margin-bottom: var(--sp-6);
+}
+
+/* Image bleeds past the container on the right for an editorial edge. */
+.poster-light__media {
+  position: relative;
+  margin: 0;
+  /* Bleed to the true viewport edge, not just the gutter, so the image reads
+     as a full-bleed plate rather than a card sitting inside the grid. */
+  /* The media column is a grid item, so a negative margin alone cannot
+     escape the track. Widen the item itself to the viewport edge. */
+  width: calc(100% + max(0px, (100vw - var(--container)) / 2) + var(--gutter));
+  max-width: none;
+  border-radius: var(--r-md) 0 0 var(--r-md);
+  overflow: hidden;
+  box-shadow: var(--sh-4);
+  aspect-ratio: 4 / 5;
+  max-height: 620px;
+}
+.poster-light__media img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.poster-light__caption {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding: var(--sp-7) var(--sp-5) var(--sp-5);
+  background: linear-gradient(to top, rgba(26,23,20,.82), transparent);
+  color: #fff;
+}
+.poster-light__caption span {
+  display: block;
+  font-size: .6875rem; font-weight: 700;
+  letter-spacing: .18em; text-transform: uppercase;
+  color: var(--gold-300);
+  margin-bottom: .25rem;
+}
+.poster-light__caption strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: var(--fs-h4);
+  font-weight: 600;
+}
+
+/* Stat block sits under the copy, offset from the grid by a gold rule. */
+.poster-light__stats {
+  display: flex; flex-wrap: wrap;
+  gap: var(--gap-xl);
+  padding-top: var(--sp-6);
+  border-top: 1px solid var(--line-gold);
+}
+.poster-light__stat strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 1.5rem + 1.8vw, 2.9rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--gold-800);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+.poster-light__stat strong span { font: inherit; color: inherit; }
+.poster-light__stat > span {
+  display: block;
+  margin-top: .45rem;
+  font-size: .6875rem; font-weight: 600;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+@media (max-width: 960px) {
+  .poster-light__inner {
+    grid-template-columns: 1fr;
+    grid-template-areas: "copy" "media" "stats";
+  }
+  .poster-light__media {
+    margin-right: 0;
+    border-radius: var(--r-md);
+    aspect-ratio: 16 / 10;
+  }
+}

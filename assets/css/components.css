@@ -51,8 +51,10 @@
 .btn--outline { --btn-bg: transparent; --btn-fg: var(--ink); border-color: var(--line-strong); }
 .btn--outline:hover { --btn-fg: var(--black-900); border-color: transparent; }
 
-.btn--outline-gold { --btn-bg: transparent; --btn-fg: var(--gold-300); border-color: var(--gold-500); }
-.btn--outline-gold:hover { --btn-fg: var(--black-900); border-color: transparent; }
+.btn--outline-gold { --btn-bg: transparent; --btn-fg: var(--gold-800); border-color: var(--gold-500); }
+.btn--outline-gold:hover { --btn-fg: #1a1714; border-color: transparent; }
+.on-dark .btn--outline-gold { --btn-fg: var(--gold-300); }
+.on-dark .btn--outline-gold:hover { --btn-fg: #1a1714; }
 
 .btn--light { --btn-bg: #fff; --btn-fg: var(--black-900); box-shadow: var(--sh-1); }
 .btn--wa { --btn-bg: #1faa53; --btn-fg: #fff; }

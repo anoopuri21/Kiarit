@@ -364,7 +364,7 @@ def page_hero(eyebrow, title, sub, crumbs):
 
 def cta_band(title, text, b1=("About Us", "about.html"), b2=("Contact Us", "contact.html")):
     return f"""
-  <section class="ctaband on-dark" aria-labelledby="cta-h">
+  <section class="ctaband" aria-labelledby="cta-h">
     <div class="ctaband__glow" aria-hidden="true"></div>
     <div class="container ctaband__inner">
       <span class="eyebrow eyebrow--light eyebrow--center" data-reveal="fade">Let's Begin</span>

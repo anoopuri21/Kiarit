@@ -45,11 +45,6 @@
   margin: var(--sp-4) 0 var(--sp-5);
   text-shadow: 0 2px 40px rgba(0,0,0,.35);
 }
-.phero__title em {
-  font-style: italic;
-  background: var(--grad-gold-text);
-  -webkit-background-clip: text; background-clip: text; color: transparent;
-}
 .phero__sub {
   font-size: var(--fs-lead);
   color: rgba(255,255,255,.78);
@@ -79,23 +74,11 @@
 @media (max-width: 800px) { .mv__grid { grid-template-columns: 1fr; } }
 
 .mv__card {
-  position: relative;
   background: linear-gradient(170deg, #ffffff 0%, #fdfbf6 100%);
-  border: 1px solid var(--line);
-  border-radius: var(--r-lg);
   padding: clamp(1.7rem, 1.1rem + 1.8vw, 2.8rem);
-  overflow: hidden;
   box-shadow: var(--sh-2);
-  transition: transform var(--t-med) var(--ease), box-shadow var(--t-med) var(--ease), border-color var(--t-med) var(--ease);
 }
-.mv__card::before {
-  content: ""; position: absolute; inset: 0 0 auto 0; height: 2px;
-  background: var(--grad-gold);
-  transform: scaleX(0); transform-origin: left;
-  transition: transform .6s var(--ease);
-}
-.mv__card:hover { transform: translateY(-6px); box-shadow: var(--sh-3); border-color: var(--line-gold); }
-.mv__card:hover::before { transform: scaleX(1); }
+.mv__card:hover { transform: translateY(-6px); }
 .mv__card h3 { font-size: 1.42rem; margin: 0 0 .7rem; }
 .mv__card p { color: var(--ink-2); }
 
@@ -161,24 +144,11 @@
 @media (max-width: 900px) { .contact__grid { grid-template-columns: 1fr; } }
 
 .contact__card {
-  position: relative;
   display: flex; flex-direction: column;
   background: linear-gradient(170deg, #ffffff 0%, #fdfbf6 100%);
-  border: 1px solid var(--line);
-  border-radius: var(--r-lg);
   padding: clamp(1.6rem, 1.1rem + 1.5vw, 2.4rem);
-  overflow: hidden;
   box-shadow: var(--sh-2);
-  transition: transform var(--t-med) var(--ease), box-shadow var(--t-med) var(--ease), border-color var(--t-med) var(--ease);
 }
-.contact__card::before {
-  content: ""; position: absolute; inset: 0 0 auto 0; height: 2px;
-  background: var(--grad-gold);
-  transform: scaleX(0); transform-origin: left;
-  transition: transform .6s var(--ease);
-}
-.contact__card:hover { transform: translateY(-8px); box-shadow: var(--sh-3); border-color: var(--line-gold); }
-.contact__card:hover::before { transform: scaleX(1); }
 .contact__card h3 { font-size: 1.3rem; margin: 0 0 .5rem; }
 .contact__card p { font-size: var(--fs-small); color: var(--ink-3); margin-bottom: var(--sp-5); }
 .contact__value {
@@ -208,7 +178,6 @@
 
 .infolist { display: grid; gap: var(--sp-5); margin: var(--sp-6) 0; }
 .infolist__row { display: flex; gap: var(--sp-4); align-items: flex-start; }
-.infolist__row svg { width: 20px; height: 20px; color: var(--gold-600); flex: none; margin-top: .3rem; }
 .infolist__row strong {
   display: block; color: var(--ink);
   font-size: var(--fs-small); font-weight: 600;
@@ -490,9 +459,7 @@
   border-bottom: 1px solid var(--line-gold);
 }
 .prose h2:first-child { margin-top: 0; }
-.prose h3 { font-size: var(--fs-h4); margin: var(--sp-5) 0 var(--sp-3); }
-.prose p { margin-bottom: var(--sp-4); }
-.prose ul, .prose ol { margin: 0 0 var(--sp-4); padding-left: 1.4rem; }
+.prose p { margin-bottom: var(--sp-4); }.prose ul { margin: 0 0 var(--sp-4); padding-left: 1.4rem; }
 .prose li { margin-bottom: .55rem; color: var(--ink-2); }
 .prose li::marker { color: var(--gold-600); }
 .prose a { color: var(--accent-deep); text-decoration: underline; text-underline-offset: 3px; }
@@ -632,7 +599,6 @@
   box-shadow: var(--sh-4);
   aspect-ratio: 1 / 1;
 }
-.pdp__imgwrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .pdp__imgwrap::after {
   content: "";
   position: absolute; inset: 0;
@@ -771,15 +737,6 @@
   color: var(--gold-800);
   font-family: var(--font-display);
   font-size: var(--fs-small); font-weight: 700;
-}
-.pdp__ingredients {
-  font-size: var(--fs-small); line-height: 1.85;
-  color: var(--ink-3);
-  background: var(--ivory-2);
-  border: 1px solid var(--line);
-  border-radius: var(--r-md);
-  padding: 1.1rem 1.3rem;
-  max-width: var(--measure-narrow);
 }
 
 .pdp__benefits { position: sticky; top: calc(var(--nav-h) + 24px); }
@@ -971,11 +928,6 @@
   line-height: 1.1;
   margin: var(--sp-4) 0 var(--sp-5);
 }
-.e404__title em {
-  font-style: italic;
-  background: var(--grad-gold-text);
-  -webkit-background-clip: text; background-clip: text; color: transparent;
-}
 .e404__sub {
   font-size: var(--fs-lead);
   color: rgba(255,255,255,.74);
@@ -1034,52 +986,24 @@
     left: 50%; top: 50%;
     width: 28px; height: 28px;
     transform: translate(-50%, -50%);
-  }
-
-  .footer__links a,
-  .footer__nav a,
-  .footer a:not(.btn):not(.social__link),
-  .e404__links a {
+  }.footer__links a, .footer a:not(.btn):not(.social__link), .e404__links a {
     display: inline-block;
     padding-block: .32rem;
   }
 
   .crumbs a { padding-block: .25rem; }
-}
-
-/* Footer, topbar and inline link hit areas (WCAG 2.2 Target Size) */
-.footer nav a,
-.footer ul a,
-.footer li a,
-.footer__legal a,
-.footer__col a,
-.topbar__contact a,
-.pcard__foot a,
-.pcard a[href*="product-"] {
+}/* Footer, topbar and inline link hit areas (WCAG 2.2 Target Size) */
+.footer nav a, .footer__legal a, .topbar__contact a, .pcard__foot a, .pcard a[href*="product-"] {
   display: inline-flex;
   align-items: center;
   min-height: 24px;
 }
-.footer__legal a { padding-block: .1rem; }
-
-/* ==========================================================================
+.footer__legal a { padding-block: .1rem; }/* ==========================================================================
    MEASURE — components whose own layout rules override the global p cap
    ========================================================================== */
-.notice p,
-.timeline__item p,
-.pdp__ingredients,
-.hero__sub,
-.phero__sub,
-.sec-head p,
-.overview__lead,
-.faq__a p {
+.notice p, .timeline__item p, .hero__sub, .phero__sub, .sec-head p, .faq__a p {
   max-width: var(--measure);
-}
-.sec-head--center p { margin-inline: auto; }
-
-/* The ingredient list is reference material, not prose — it can run wider
-   but still needs a ceiling. */
-.pdp__ingredients { max-width: var(--measure) !important; }
+}/* The ingredient list is reference material { max-width: var(--measure) !important; }
 
 /* ==========================================================================
    PDP — INGREDIENT BAND, REVIEW HEAD, FAQ SPLIT (stage 3c)
@@ -1152,7 +1076,6 @@
   color: var(--gold-800);
   font-variant-numeric: lining-nums tabular-nums;
 }
-.revhead__score .stars { margin-bottom: .3rem; }
 .revhead__score span {
   display: block;
   font-size: var(--fs-eyebrow);

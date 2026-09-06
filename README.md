@@ -61,7 +61,7 @@ Supporting files: `sitemap.xml`, `robots.txt`, `site.webmanifest`, `.htaccess`.
 │   │   ├── reveal.js        scroll reveal animations
 │   │   ├── slider.js        testimonial slider
 │   │   └── filter.js        product category filter
-│   ├── fonts/               Playfair Display + Inter (woff2)
+│   ├── fonts/               Playfair Display + Inter (subset woff2)
 │   ├── img/                 logo, CEO, posters, products, QR, OG image
 │   └── video/               hero.mp4, hero.webm, hero-poster.jpg
 └── tools/                   page generator — development only, do not deploy
@@ -109,6 +109,14 @@ partial, apply the same edit to `index.html`.
 
 Requires Python 3 only — no packages. `tools/` is development tooling; it is
 excluded from crawling by `robots.txt` and blocked by `.htaccess`.
+
+Two generators are run on demand rather than on every build, because their
+output is committed and rarely needs to change:
+
+```
+python3 tools/subset_fonts.py    # re-cut assets/fonts/*.woff2 (needs fonttools, brotli)
+python3 tools/make_hero_video.py # re-render assets/video/hero.* (see its docstring)
+```
 
 ---
 
@@ -164,13 +172,19 @@ After changing `SITE`, run all three generator scripts and redeploy.
 
 ## Performance
 
-- Self-hosted variable fonts with `font-display: swap` and preloading
+- Self-hosted variable fonts with `font-display: swap` and preloading. The
+  shipped `.woff2` files are subset to the 135 characters the copy actually
+  uses, which is about a third off the full releases. There is no Inter italic
+  face at all — every italic on the site is Playfair display type. Regenerate
+  with `python tools/subset_fonts.py` after adding copy in a new script.
 - Hero video is lazy-loaded: its sources sit in `data-src` behind
   `preload="none"` and are only attached once an IntersectionObserver reports
   the hero is near the viewport. Playback pauses off-screen and on hidden
   tabs. `prefers-reduced-motion` and Save-Data skip the download entirely.
 - Lazy loading and explicit dimensions on below-the-fold images to avoid
   layout shift
+- `slider.js` is only linked by pages that contain a `[data-slider]` carousel,
+  and `filter.js` only by the products listing, so most pages parse neither
 - No third-party scripts, trackers or web fonts — the site makes no external
   requests
 - First Contentful Paint measured at ~208 ms locally, with CSS, poster and JS

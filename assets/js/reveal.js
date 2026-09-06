@@ -1,30 +1,15 @@
 /* ==========================================================================
    KIARIT — reveal.js
    Cinematic scroll system: IntersectionObserver reveals, staggering,
-   word-by-word text, parallax, counters. Zero dependencies.
+   parallax and counters. Zero dependencies.
    ========================================================================== */
 (function () {
   'use strict';
 
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---------- 1. WORD-BY-WORD TEXT SPLIT ---------- */
-  function splitWords() {
-    document.querySelectorAll('[data-split]').forEach(function (el) {
-      if (el.dataset.splitDone) return;
-      var stagger = parseInt(el.dataset.split, 10) || 60;
-      var html = '';
-      el.textContent.trim().split(/\s+/).forEach(function (w, i) {
-        html += '<span class="tw" style="--tw-delay:' + i * stagger + 'ms"><span>' + w + '</span></span> ';
-      });
-      el.innerHTML = html;
-      el.dataset.splitDone = '1';
-    });
-  }
-  splitWords();
-
-  /* ---------- 2. REVEAL OBSERVER ---------- */
-  var revealEls = document.querySelectorAll('[data-reveal], [data-split]');
+  /* ---------- 1. REVEAL OBSERVER ---------- */
+  var revealEls = document.querySelectorAll('[data-reveal]');
 
   if (reduce || !('IntersectionObserver' in window)) {
     revealEls.forEach(function (el) { el.classList.add('is-visible'); });
@@ -56,7 +41,7 @@
     revealEls.forEach(function (el) { io.observe(el); });
   }
 
-  /* ---------- 3. COUNTERS ---------- */
+  /* ---------- 2. COUNTERS ---------- */
   var counters = document.querySelectorAll('[data-count]');
   if (counters.length) {
     var cio = new IntersectionObserver(function (entries) {
@@ -82,7 +67,7 @@
     counters.forEach(function (c) { cio.observe(c); });
   }
 
-  /* ---------- 4. PARALLAX (rAF-throttled) ---------- */
+  /* ---------- 3. PARALLAX (rAF-throttled) ---------- */
   var pxEls = Array.prototype.slice.call(document.querySelectorAll('[data-parallax]'));
   if (pxEls.length && !reduce) {
     var ticking = false;
@@ -109,14 +94,11 @@
     updateParallax();
   }
 
-  /* ---------- 5. HERO KEN-BURNS TRIGGER ---------- */
+  /* ---------- 4. HERO KEN-BURNS TRIGGER ---------- */
   var hero = document.querySelector('[data-hero]');
   if (hero) {
     requestAnimationFrame(function () {
       requestAnimationFrame(function () { hero.classList.add('is-ready'); });
     });
   }
-
-  // Re-run split for dynamically added nodes if needed
-  window.KIARIT_reveal = { splitWords: splitWords };
 })();

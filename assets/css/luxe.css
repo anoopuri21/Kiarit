@@ -1,30 +1,7 @@
 /* ==========================================================================
    KIARIT — luxe.css
-   Depth & richness layer: ornaments, texture, gradients, refined details.
-   Loaded last so it can enrich the base look without touching structure.
-   ========================================================================== */
-
-/* ---------- 1. SECTION ORNAMENTS ---------- */
-
-/* Decorative gold diamond divider used above centred section headings */
-.sec-head--center .eyebrow { position: relative; }
-
-/* Soft champagne aura behind centred headings for depth */
-.section .sec-head--center::before {
-  content: "";
-  position: absolute;
-  left: 50%; top: -40px;
-  width: min(720px, 90%); height: 320px;
-  transform: translateX(-50%);
-  background: radial-gradient(closest-side, rgba(201,162,39,.075), transparent 72%);
-  pointer-events: none;
-  z-index: -1;
-}
-.section .sec-head--center { position: relative; }
-
-/* Fine gold hairline that opens each light section */
-.section--alt::before,
-.section--champagne::before {
+   Depth & richness layer: ornaments, texture, gradients { position: relative; }/* Fine gold hairline that opens each light section */
+.section--alt::before {
   content: "";
   position: absolute; top: 0; left: 50%;
   transform: translateX(-50%);
@@ -91,9 +68,6 @@ h1 em, h2 em, .poster__title em, .hero__title .l2 {
 
 /* Drop the harsh pure-black on large display type — deep ink reads richer */
 h1, h2 { color: #101216; }
-/* .testi is a light band from stage 2 onward — it must not be forced white. */
-/* .ctaband is a light band from stage 2 onward. */
-.section--dark h1, .section--dark h2, .poster__title { color: #fff; }
 .poster--split .poster__title { color: #101216; }
 
 /* Lead paragraph gets a refined left gold rule on the overview block */
@@ -141,8 +115,6 @@ h1, h2 { color: #101216; }
   background: radial-gradient(120% 100% at 70% 50%, transparent 40%, rgba(8,8,10,.55));
   pointer-events: none;
 }
-.poster__bg { position: absolute; }
-
 .poster--split .poster__panel {
   box-shadow: var(--sh-4), 0 2px 6px rgba(16,18,22,.06);
 }
@@ -160,9 +132,6 @@ h1, h2 { color: #101216; }
   background:
     radial-gradient(80% 60% at 15% 20%, rgba(255,255,255,.85), transparent 60%),
     linear-gradient(170deg, var(--ivory) 0%, var(--champagne) 100%);
-}
-.ceo__portrait-inner {
-  box-shadow: var(--sh-4);
 }
 .ceo__portrait-inner::after {
   content: "";
@@ -193,12 +162,7 @@ h1, h2 { color: #101216; }
 }
 .testi__person > span:not(.testi__avatar):not(.testi__verified) { min-width: 0; }
 
-.testi__card {
-  /* Light band from stage 2: a paper surface, not a translucent dark panel. */
-  background: linear-gradient(168deg, #ffffff 0%, var(--ivory) 100%);
-  box-shadow: var(--sh-2);
-  position: relative;
-}
+.testi__card { position: relative; }
 /* Oversized decorative quote glyph */
 .testi__card::before {
   content: "\201C";
@@ -212,10 +176,6 @@ h1, h2 { color: #101216; }
   pointer-events: none;
   user-select: none;
 }
-.slider__slide.is-active .testi__card {
-  box-shadow: var(--sh-3);
-}
-
 /* ---------- 9. QR / ORDER BAND POLISH ---------- */
 .orderband {
   background:
@@ -273,5 +233,4 @@ h1, h2 { color: #101216; }
 }
 @media (max-width: 560px) {
   .testi__card::before { display: none; }
-  .section .sec-head--center::before { display: none; }
 }

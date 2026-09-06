@@ -112,7 +112,10 @@
   white-space: nowrap;
   font-variant-numeric: lining-nums tabular-nums;
 }
-.hero__stat strong span {
+/* The counter <span> inside a stat must stay typographically invisible so the
+   number inherits the <strong>. Same job on the hero and the poster stats. */
+.hero__stat strong span,
+.poster__stat strong span {
   font: inherit; letter-spacing: inherit; text-transform: none;
   color: inherit; display: inline; margin: 0;
 }
@@ -198,6 +201,20 @@
 @media (max-width: 940px) { .overview__grid { grid-template-columns: 1fr; } }
 
 .overview__visual { position: relative; z-index: 1; isolation: isolate; }
+/* Cover images: every framed/aspect-ratio wrapper on the site fills the same
+   way, so the geometry lives in one rule and variants only set object-position. */
+.overview__img img,
+.poster__bg img,
+.poster--split .poster__panel img,
+.poster-light__media img,
+.pcard__media img,
+.ceo__portrait-inner img,
+.pdp__imgwrap img {
+  display: block;
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+
 .overview__img {
   position: relative;
   border-radius: var(--r-lg);
@@ -205,7 +222,6 @@
   aspect-ratio: 5 / 6;
   box-shadow: var(--sh-3);
 }
-.overview__img img { width: 100%; height: 100%; object-fit: cover; }
 .overview__img::after {
   content: ""; position: absolute; inset: 0;
   background: linear-gradient(200deg, transparent 55%, rgba(8,8,10,.45));
@@ -244,7 +260,8 @@
 }
 @media (max-width: 480px) { .pillars { grid-template-columns: 1fr; } }
 .pillar { display: flex; gap: var(--sp-3); align-items: flex-start; }
-.pillar svg { width: 20px; height: 20px; color: var(--gold-600); flex: none; margin-top: .3rem; }
+.pillar svg,
+.infolist__row svg { width: 20px; height: 20px; color: var(--gold-600); flex: none; margin-top: .3rem; }
 .pillar strong { display: block; color: var(--ink); font-size: var(--fs-small); font-weight: 600; }
 .pillar span { font-size: var(--fs-small); color: var(--ink-3); line-height: 1.6; }
 
@@ -258,7 +275,6 @@
   isolation: isolate;
 }
 .poster__bg { position: absolute; inset: -8% 0; z-index: 0; }
-.poster__bg img { width: 100%; height: 100%; object-fit: cover; }
 .poster::after {
   content: ""; position: absolute; inset: 0; z-index: 1;
   background: linear-gradient(92deg, rgba(8,8,10,.96) 0%, rgba(8,8,10,.85) 36%, rgba(8,8,10,.35) 68%, rgba(8,8,10,.55) 100%);
@@ -269,11 +285,6 @@
   font-size: clamp(1.95rem, 1.3rem + 2.7vw, 3.6rem);
   color: #fff; line-height: 1.04;
   margin: var(--sp-5) 0 var(--sp-5);
-}
-.poster__title em {
-  font-style: italic;
-  background: var(--grad-gold-text);
-  -webkit-background-clip: text; background-clip: text; color: transparent;
 }
 .poster p { color: rgba(255,255,255,.76); margin-bottom: var(--sp-6); }
 
@@ -336,10 +347,6 @@
   white-space: nowrap;
   font-variant-numeric: lining-nums tabular-nums;
 }
-.poster__stat strong span {
-  font: inherit; letter-spacing: inherit; text-transform: none;
-  color: inherit; display: inline; margin: 0;
-}
 .poster__stat > span {
   display: block; margin-top: .5rem;
   font-family: var(--font-body);
@@ -375,7 +382,6 @@
   aspect-ratio: 5 / 6;
   box-shadow: var(--sh-3);
 }
-.poster--split .poster__panel img { width: 100%; height: 100%; object-fit: cover; }
 .poster--split .poster__panel::after {
   content: ""; position: absolute; inset: 0;
   background: linear-gradient(180deg, transparent 45%, rgba(8,8,10,.55));
@@ -438,10 +444,7 @@
   overflow: hidden;
   background: var(--champagne);
 }
-.pcard__media img {
-  width: 100%; height: 100%; object-fit: cover;
-  transition: transform 1s var(--ease);
-}
+.pcard__media img { transition: transform 1s var(--ease); }
 .pcard:hover .pcard__media img { transform: scale(1.07); }
 .pcard__media::after {
   content: ""; position: absolute; inset: 0;
@@ -545,7 +548,7 @@
   box-shadow: var(--sh-3);
   background: var(--champagne-2);
 }
-.ceo__portrait-inner img { width: 100%; height: 100%; object-fit: cover; object-position: center 12%; }
+.ceo__portrait-inner img { object-position: center 12%; }
 .ceo__arch {
   position: absolute;
   inset: -16px -16px 30px -16px;
@@ -625,22 +628,9 @@
 @media (max-width: 520px)  { .why__grid { grid-template-columns: 1fr; } }
 
 .why__card {
-  position: relative;
   background: #fff;
-  border: 1px solid var(--line);
-  border-radius: var(--r-lg);
   padding: clamp(1.5rem, 1rem + 1.4vw, 2.2rem);
-  overflow: hidden;
-  transition: transform var(--t-med) var(--ease), box-shadow var(--t-med) var(--ease), border-color var(--t-med) var(--ease);
 }
-.why__card::before {
-  content: ""; position: absolute; inset: 0 0 auto 0; height: 2px;
-  background: var(--grad-gold);
-  transform: scaleX(0); transform-origin: left;
-  transition: transform .6s var(--ease);
-}
-.why__card:hover { transform: translateY(-8px); box-shadow: var(--sh-3); border-color: var(--line-gold); }
-.why__card:hover::before { transform: scaleX(1); }
 .why__num {
   position: absolute; right: 14px; top: 8px;
   font-family: var(--font-display);
@@ -762,16 +752,6 @@
 .testi .slider__dot::before { background: rgba(26,23,20,.22); }
 .testi .slider__dot:hover::before { background: rgba(26,23,20,.4); }
 .testi .slider__dot.is-active::before { background: var(--grad-gold); }
-.testi .slider__btn {
-  background: #fff;
-  border-color: var(--line);
-  color: var(--ink-2);
-}
-.testi .slider__btn:hover {
-  background: var(--gold-100);
-  border-color: var(--line-gold);
-  color: var(--gold-800);
-}
 
 /* ==================== ORDER / QR BAND ==================== */
 .orderband { background: var(--bg-alt); }
@@ -852,7 +832,6 @@
 @keyframes ctaGlow { from { opacity: .72; } to { opacity: 1; } }
 .ctaband__inner { position: relative; z-index: 2; padding-block: clamp(4rem, 2.6rem + 6vw, 7.5rem); }
 .ctaband h2 { color: var(--ink); margin: var(--sp-4) auto var(--sp-5); max-width: 18ch; }
-.ctaband h2 em { font-style: italic; background: var(--grad-gold-text); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .ctaband p { color: var(--ink-2); margin-inline: auto; max-width: var(--measure); }
 .ctaband__actions {
   display: flex; flex-wrap: wrap; gap: var(--sp-4);
@@ -948,11 +927,6 @@
   margin: var(--sp-5) 0 var(--sp-5);
   text-wrap: initial;   /* the line breaks here are authored, not balanced */
 }
-.poster-light__title em {
-  font-style: italic;
-  background: var(--grad-gold-text);
-  -webkit-background-clip: text; background-clip: text; color: transparent;
-}
 .poster-light__lead {
   font-size: var(--fs-lead);
   color: var(--ink-2);
@@ -975,11 +949,6 @@
   box-shadow: var(--sh-4);
   aspect-ratio: 4 / 5;
   max-height: 620px;
-}
-.poster-light__media img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  display: block;
 }
 .poster-light__caption {
   position: absolute; left: 0; right: 0; bottom: 0;
@@ -1276,7 +1245,6 @@
 [data-tint="skin"]  { --tint: var(--tint-skin);  --tint-ink: #7a4a3c; }
 [data-tint="sun"]   { --tint: var(--tint-sun);   --tint-ink: #7d5c0e; }
 [data-tint="hair"]  { --tint: var(--tint-hair);  --tint-ink: #3f5140; }
-[data-tint="nutra"] { --tint: var(--tint-nutra); --tint-ink: #8a4a24; }
 [data-tint="body"]  { --tint: var(--tint-body);  --tint-ink: #435159; }
 
 /* The media panel no longer takes the tint: the product photographs carry
@@ -1318,7 +1286,6 @@
   background: var(--gold-500);
   box-shadow: 0 0 0 4px var(--ivory);
 }
-.rule--left::after { left: 0; transform: translate(0, -50%) rotate(45deg); }
 
 /* Grain texture is now meaningful: champagne fields only, not every band. */
 .section.grain::before { opacity: 0; }

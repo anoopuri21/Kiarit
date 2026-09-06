@@ -461,11 +461,15 @@ def header_for(page):
 
 
 def render(page, body):
+    # slider.js only initialises [data-slider] roots, so pages without a
+    # carousel should not pay to download and parse it. Same idea for
+    # filter.js, which the products listing adds for itself.
+    scripts = ('\n<script src="assets/js/main.js" defer></script>\n'
+               '<script src="assets/js/reveal.js" defer></script>\n')
+    if 'data-slider' in body:
+        scripts += '<script src="assets/js/slider.js" defer></script>\n'
     return (head(page) + header_for(page) + '<main id="main">\n' + body +
-            "\n</main>\n" + FOOTER + FLOATERS +
-            '\n<script src="assets/js/main.js" defer></script>\n'
-            '<script src="assets/js/reveal.js" defer></script>\n'
-            '<script src="assets/js/slider.js" defer></script>\n'
+            "\n</main>\n" + FOOTER + FLOATERS + scripts +
             "</body>\n</html>\n")
 
 

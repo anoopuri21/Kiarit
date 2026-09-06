@@ -55,14 +55,13 @@
 .btn--outline-gold:hover { --btn-fg: #1a1714; border-color: transparent; }
 .on-dark .btn--outline-gold { --btn-fg: var(--gold-300); }
 .on-dark .btn--outline-gold:hover { --btn-fg: #1a1714; }
-
-.btn--light { --btn-bg: #fff; --btn-fg: var(--black-900); box-shadow: var(--sh-1); }
 .btn--wa { --btn-bg: #1faa53; --btn-fg: #fff; }
 .btn--wa::before { background: #157e3d; }
 .btn--sm { padding: .72em 1.5em; font-size: var(--fs-eyebrow); }
 .btn--lg { padding: 1.05em 2.4em; font-size: var(--fs-eyebrow); }
 .btn--block { width: 100%; }
-.btn svg { width: 15px; height: 15px; flex: none; }
+.btn svg,
+.link-gold svg { width: 15px; height: 15px; flex: none; }
 .btn--lg svg { width: 16px; height: 16px; }
 
 /* Text link with animated gold underline */
@@ -80,7 +79,6 @@
   color: var(--accent-deep);
   padding-bottom: 4px;
 }
-.link-gold svg { width: 15px; height: 15px; flex: none; }
 .link-gold::after {
   content: "";
   position: absolute; left: 0; bottom: 0;
@@ -389,31 +387,6 @@
   .float-tip { display: none; }
 }
 
-/* ---------- CARDS ---------- */
-.card {
-  position: relative;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--r-lg);
-  overflow: hidden;
-  transition: transform var(--t-med) var(--ease), box-shadow var(--t-med) var(--ease), border-color var(--t-med) var(--ease);
-}
-.card:hover { transform: translateY(-8px); box-shadow: var(--sh-3); border-color: var(--line-gold); }
-
-/* Gold corner-draw frame */
-.frame-gold { position: relative; }
-.frame-gold::before, .frame-gold::after {
-  content: "";
-  position: absolute;
-  width: 34px; height: 34px;
-  border: 1.5px solid var(--gold-500);
-  transition: width .5s var(--ease), height .5s var(--ease);
-  pointer-events: none;
-}
-.frame-gold::before { top: 12px; left: 12px; border-right: 0; border-bottom: 0; }
-.frame-gold::after  { bottom: 12px; right: 12px; border-left: 0; border-top: 0; }
-.frame-gold:hover::before, .frame-gold:hover::after { width: calc(100% - 24px); height: calc(100% - 24px); }
-
 /* ---------- TESTIMONIAL SLIDER ---------- */
 .slider { position: relative; }
 .slider__viewport { overflow: hidden; max-width: 100%; }
@@ -487,16 +460,13 @@
   position: relative;
 }
 @media (max-width: 980px) { .footer__grid { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 560px) { .footer__grid { grid-template-columns: 1fr; gap: var(--sp-6); } }
-
-.footer h3, .footer h4 {
+@media (max-width: 560px) { .footer__grid { grid-template-columns: 1fr; gap: var(--sp-6); } }.footer h3 {
   color: #fff; font-family: var(--font-body);
   font-size: var(--fs-eyebrow); font-weight: 700;
   letter-spacing: .18em; text-transform: uppercase;
   margin-bottom: var(--sp-5);
   position: relative; padding-bottom: .8rem;
-}
-.footer h3::after, .footer h4::after {
+}.footer h3::after {
   content: ""; position: absolute; left: 0; bottom: 0;
   width: 30px; height: 2px; background: var(--grad-gold);
 }
@@ -547,3 +517,38 @@
 }
 .footer__legal { display: flex; gap: var(--sp-5); flex-wrap: wrap; }
 .footer__legal a:hover { color: var(--gold-300); }
+
+/* ---------- LIFT CARD ---------- */
+/* Shared skeleton for the bordered cards that raise on hover and wipe a gold
+   rule across their top edge: .why__card, .mv__card, .contact__card.
+   Each of those adds only its own background, padding and type sizes. */
+.why__card,
+.mv__card,
+.contact__card {
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  transition: transform var(--t-med) var(--ease),
+              box-shadow var(--t-med) var(--ease),
+              border-color var(--t-med) var(--ease);
+}
+.why__card::before,
+.mv__card::before,
+.contact__card::before {
+  content: "";
+  position: absolute; inset: 0 0 auto 0; height: 2px;
+  background: var(--grad-gold);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .6s var(--ease);
+}
+.why__card:hover,
+.mv__card:hover,
+.contact__card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--sh-3);
+  border-color: var(--line-gold);
+}
+.why__card:hover::before,
+.mv__card:hover::before,
+.contact__card:hover::before { transform: scaleX(1); }

@@ -39,6 +39,24 @@
     }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
 
     revealEls.forEach(function (el) { io.observe(el); });
+
+    // Safety net: anything still hidden after load + 2.5s is force-revealed,
+    // so a missed intersection (clipped/transformed targets, odd layouts)
+    // can never leave real content — e.g. product images — invisible.
+    // Only elements currently inside the viewport are touched, so below-the-
+    // fold content still animates in on scroll as designed.
+    function revealStuckInView() {
+      var vh = window.innerHeight || document.documentElement.clientHeight;
+      revealEls.forEach(function (el) {
+        if (el.classList.contains('is-visible')) return;
+        var r = el.getBoundingClientRect();
+        if (r.bottom > 0 && r.top < vh) {
+          el.classList.add('is-visible');
+          io.unobserve(el);
+        }
+      });
+    }
+    window.addEventListener('load', function () { setTimeout(revealStuckInView, 2500); });
   }
 
   /* ---------- 2. COUNTERS ---------- */

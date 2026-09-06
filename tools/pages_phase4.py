@@ -34,7 +34,7 @@ def build_about():
           <h2 id="ov-h" data-reveal="up" data-delay="90">Who We <em class="gold-text serif">Are</em></h2>
           <p class="lead" data-reveal="up" data-delay="170">{SITE['overview'][:150]}</p>
           <p data-reveal="up" data-delay="230">{SITE['overview'][150:]}</p>
-          <div class="pillars" data-stagger="100">
+          <div class="pillars" data-stagger="60">
             <div class="pillar" data-reveal="up">{I['flask']}<div><strong>Dermatology</strong><span>Clinically guided skin therapy</span></div></div>
             <div class="pillar" data-reveal="up">{I['drop']}<div><strong>Skincare</strong><span>Everyday luxury rituals</span></div></div>
             <div class="pillar" data-reveal="up">{I['leaf']}<div><strong>Nutraceuticals</strong><span>Wellness from within</span></div></div>
@@ -51,7 +51,7 @@ def build_about():
         <span class="eyebrow eyebrow--center" data-reveal="fade">Purpose</span>
         <h2 id="mv-h" data-reveal="up" data-delay="90">Mission &amp; <em class="gold-text serif">Vision</em></h2>
       </div>
-      <div class="mv__grid" data-stagger="120">
+      <div class="mv__grid" data-stagger="60">
         <article class="mv__card" data-reveal="up">
           <div class="why__icon">{I['target']}</div>
           <h3>Our Mission</h3>
@@ -72,7 +72,7 @@ def build_about():
         <span class="eyebrow eyebrow--center" data-reveal="fade">What Guides Us</span>
         <h2 id="val-h" data-reveal="up" data-delay="90">Our Core <em class="gold-text serif">Values</em></h2>
       </div>
-      <div class="why__grid" data-stagger="100">
+      <div class="why__grid" data-stagger="60">
         <article class="why__card" data-reveal="up"><span class="why__num" aria-hidden="true">01</span>
           <div class="why__icon">{I['shield']}</div><h3>Quality First</h3>
           <p>Every batch is manufactured in a GMP-certified facility and tested against strict internal specifications before release.</p></article>
@@ -101,7 +101,7 @@ def build_about():
         <span class="eyebrow eyebrow--light" data-reveal="fade">Our Standards</span>
         <h2 id="qual-h" class="poster__title" data-reveal="up" data-delay="120">Quality Is Not a<br>Step — It Is the <em>Process</em></h2>
         <p data-reveal="up" data-delay="230">From raw-material sourcing to the final seal, every stage is documented, tested and signed off. We manufacture under GMP conditions and retain samples from every batch we release.</p>
-        <div class="poster__stats" data-stagger="120">
+        <div class="poster__stats" data-stagger="60">
           <div class="poster__stat" data-reveal="up"><strong><span data-count="100">100</span>%</strong><span>Batch Tested</span></div>
           <div class="poster__stat" data-reveal="up"><strong><span data-count="12">12</span></strong><span>QC Checkpoints</span></div>
           <div class="poster__stat" data-reveal="up"><strong>GMP</strong><span>Certified Facility</span></div>
@@ -116,7 +116,7 @@ def build_about():
         <span class="eyebrow eyebrow--center" data-reveal="fade">Our Journey</span>
         <h2 id="jour-h" data-reveal="up" data-delay="90">Milestones That <em class="gold-text serif">Shaped Us</em></h2>
       </div>
-      <ol class="timeline" data-stagger="110">
+      <ol class="timeline" data-stagger="60">
         <li class="timeline__item" data-reveal="up"><span class="timeline__year">2019</span>
           <div><strong>The Beginning</strong><p>KIARIT PHARMACEUTICALS is founded with a focus on dermatology and honest, accessible healthcare products.</p></div></li>
         <li class="timeline__item" data-reveal="up"><span class="timeline__year">2021</span>
@@ -201,7 +201,7 @@ def build_contact():
         <p data-reveal="up" data-delay="170">No forms, no waiting queues. Every channel below reaches our team directly during business hours.</p>
       </div>
 
-      <div class="contact__grid" data-stagger="100">
+      <div class="contact__grid" data-stagger="60">
         <a class="contact__card" href="tel:{SITE['phone_link']}" data-reveal="up">
           <div class="why__icon">{I['phone']}</div>
           <h3>Call Us</h3>
@@ -237,7 +237,7 @@ def build_contact():
           <h2 id="visit-h" data-reveal="up" data-delay="90">Visit Our <em class="gold-text serif">Corporate Office</em></h2>
           <p data-reveal="up" data-delay="170">Our corporate office handles customer support, distribution and partnership enquiries. Visits are by prior appointment.</p>
 
-          <div class="infolist" data-stagger="100">
+          <div class="infolist" data-stagger="60">
             <div class="infolist__row" data-reveal="up">
               {I['pin']}
               <div><strong>Registered Address</strong>
@@ -298,7 +298,7 @@ def build_contact():
           <span class="eyebrow" data-reveal="fade">Ready to Order</span>
           <h2 id="qr-h" data-reveal="up" data-delay="90">Ordering Is <em class="gold-text serif">Simple</em></h2>
           <p data-reveal="up" data-delay="160">Message us on WhatsApp with your product and address, scan the QR to pay, and share the screenshot. That is the whole process.</p>
-          <div class="steps" data-stagger="110">
+          <div class="steps" data-stagger="60">
             <div class="step" data-reveal="up"><span class="step__num">1</span><div><strong>Message Us</strong><span>Share the product name, quantity and delivery address.</span></div></div>
             <div class="step" data-reveal="up"><span class="step__num">2</span><div><strong>Scan &amp; Pay</strong><span>We confirm the total including shipping, then you pay via any UPI app.</span></div></div>
             <div class="step" data-reveal="up"><span class="step__num">3</span><div><strong>Send Screenshot</strong><span>We dispatch within 24 working hours and share tracking.</span></div></div>
@@ -380,7 +380,7 @@ def build_order():
         <p data-reveal="up" data-delay="170">Our ordering process is intentionally personal — a real person confirms every order before it ships.</p>
       </div>
 
-      <div class="bigsteps" data-stagger="140">
+      <div class="bigsteps" data-stagger="60">
         <article class="bigstep" data-reveal="up">
           <span class="bigstep__num">01</span>
           <div class="why__icon">{I['chat']}</div>
@@ -464,7 +464,7 @@ def build_order():
         <span class="eyebrow eyebrow--center" data-reveal="fade">Good to Know</span>
         <h2 id="ship-h" data-reveal="up" data-delay="90">Shipping at a <em class="gold-text serif">Glance</em></h2>
       </div>
-      <div class="why__grid" data-stagger="100">
+      <div class="why__grid" data-stagger="60">
         <article class="why__card" data-reveal="up"><div class="why__icon">{I['truck']}</div>
           <h3>Free Above ₹999</h3><p>Complimentary shipping across India on orders above ₹999. A flat ₹79 applies below that.</p></article>
         <article class="why__card" data-reveal="up"><div class="why__icon">{I['clock']}</div>
@@ -483,7 +483,7 @@ def build_order():
         <span class="eyebrow eyebrow--center" data-reveal="fade">Questions</span>
         <h2 id="faq-h" data-reveal="up" data-delay="90">Frequently Asked <em class="gold-text serif">Questions</em></h2>
       </div>
-      <div class="faq" data-stagger="70">
+      <div class="faq" data-stagger="60">
 """
     for i, (q, a) in enumerate(ORDER_FAQ):
         body += f"""        <details class="faq__item" data-reveal="up"{' open' if i == 0 else ''}>

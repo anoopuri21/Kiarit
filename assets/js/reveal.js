@@ -12,7 +12,7 @@
   function splitWords() {
     document.querySelectorAll('[data-split]').forEach(function (el) {
       if (el.dataset.splitDone) return;
-      var stagger = parseInt(el.dataset.split, 10) || 70;
+      var stagger = parseInt(el.dataset.split, 10) || 60;
       var html = '';
       el.textContent.trim().split(/\s+/).forEach(function (w, i) {
         html += '<span class="tw" style="--tw-delay:' + i * stagger + 'ms"><span>' + w + '</span></span> ';
@@ -31,7 +31,7 @@
   } else {
     // Apply stagger delays declared via data-stagger on a parent
     document.querySelectorAll('[data-stagger]').forEach(function (parent) {
-      var step = parseInt(parent.dataset.stagger, 10) || 90;
+      var step = parseInt(parent.dataset.stagger, 10) || 60;
       var kids = parent.querySelectorAll(':scope > [data-reveal]');
       kids.forEach(function (k, i) {
         if (!k.style.getPropertyValue('--reveal-delay')) {

@@ -389,10 +389,24 @@ def wa(msg):
     return f"https://wa.me/{SITE['wa']}?text={quote(msg)}"
 
 
+CAT_TINT = {
+    "Dermatology":      "derma",
+    "Skincare":         "skin",
+    "Daily Protection": "sun",
+    "Hair Care":        "hair",
+    "Nutraceutical":    "nutra",
+}
+
+
+def tint_of(p):
+    """Category tint slug, used to colour-code cards, badges and PDP heroes."""
+    return CAT_TINT.get(p["cat"], "derma")
+
+
 def product_card(p, reveal=True):
     r = ' data-reveal="up"' if reveal else ""
     tag = f'<span class="pcard__tag{p["tag_class"]}">{p["tag"]}</span>' if p["tag"] else ""
-    return f"""        <article class="pcard"{r}>
+    return f"""        <article class="pcard" data-tint="{tint_of(p)}"{r}>
           <div class="pcard__media">
             {tag}
             <a href="{p['slug']}.html" aria-label="View {p['name']} details">

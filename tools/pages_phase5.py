@@ -66,7 +66,7 @@ def build_products():
         {chips}
       </div>
 
-      <div class="products__grid" id="grid" data-stagger="90">
+      <div class="products__grid" id="grid" data-stagger="60">
 """
     for p in PRODUCTS:
         card = product_card(p)
@@ -84,7 +84,7 @@ def build_products():
         <span class="eyebrow eyebrow--center" data-reveal="fade">Not Sure Where to Start</span>
         <h2 id="help-h" data-reveal="up" data-delay="90">Build Your <em class="gold-text serif">Routine</em></h2>
       </div>
-      <div class="bigsteps" data-stagger="120">
+      <div class="bigsteps" data-stagger="60">
         <article class="bigstep" data-reveal="up">
           <span class="bigstep__num">AM</span>
           <div class="why__icon">{I['drop']}</div>
@@ -219,7 +219,7 @@ def build_product(p, idx):
 
     body += f"""
           <h3 class="pdp__subh" data-reveal="up">How to Use</h3>
-          <ol class="pdp__steps" data-stagger="80">
+          <ol class="pdp__steps" data-stagger="60">
 """
     for step in p["how"]:
         body += f'            <li data-reveal="up">{step}</li>\n'
@@ -232,7 +232,7 @@ def build_product(p, idx):
 
         <aside class="pdp__benefits">
           <h3 data-reveal="up">Key Benefits</h3>
-          <div class="benefits" data-stagger="90">
+          <div class="benefits" data-stagger="60">
 """
     for title, txt in p["benefits"]:
         body += f"""            <div class="benefit" data-reveal="up">
@@ -268,7 +268,7 @@ def build_product(p, idx):
         <h2 id="rev-h" data-reveal="up" data-delay="90">What Buyers <em class="gold-text serif">Say</em></h2>
         <p data-reveal="up" data-delay="170">Rated <strong>{rating} out of 5</strong> from {rcount} verified purchases.</p>
       </div>
-      <div class="rgrid" data-stagger="110">
+      <div class="rgrid" data-stagger="60">
 """
     for name, place, r, txt in REVIEWS[p["slug"]]:
         body += review_card(name, place, r, txt)
@@ -283,7 +283,7 @@ def build_product(p, idx):
         <span class="eyebrow eyebrow--center" data-reveal="fade">Questions</span>
         <h2 id="faq-h" data-reveal="up" data-delay="90">Common <em class="gold-text serif">Questions</em></h2>
       </div>
-      <div class="faq" data-stagger="70">
+      <div class="faq" data-stagger="60">
 """
     for i, (q, a) in enumerate(p["faq"]):
         body += f"""        <details class="faq__item" data-reveal="up"{' open' if i == 0 else ''}>
@@ -301,7 +301,7 @@ def build_product(p, idx):
         <span class="eyebrow eyebrow--center" data-reveal="fade">You May Also Like</span>
         <h2 id="rel-h" data-reveal="up" data-delay="90">Related <em class="gold-text serif">Products</em></h2>
       </div>
-      <div class="products__grid" data-stagger="90">
+      <div class="products__grid" data-stagger="60">
 """
     related = [q for q in PRODUCTS if q["slug"] != p["slug"]][:3]
     for q in related:

@@ -902,7 +902,7 @@
   position: absolute; right: 22px; top: 50%; z-index: 4;
   transform: translateY(-50%) rotate(90deg);
   transform-origin: right center;
-  font-size: .6875rem; font-weight: 600;
+  font-size: var(--fs-eyebrow); font-weight: 600;
   letter-spacing: .42em; text-transform: uppercase;
   color: var(--gold-700);
   opacity: .55;
@@ -974,7 +974,7 @@
 }
 .poster-light__caption span {
   display: block;
-  font-size: .6875rem; font-weight: 700;
+  font-size: var(--fs-eyebrow); font-weight: 700;
   letter-spacing: .18em; text-transform: uppercase;
   color: var(--gold-300);
   margin-bottom: .25rem;
@@ -1006,7 +1006,7 @@
 .poster-light__stat > span {
   display: block;
   margin-top: .45rem;
-  font-size: .6875rem; font-weight: 600;
+  font-size: var(--fs-eyebrow); font-weight: 600;
   letter-spacing: .14em; text-transform: uppercase;
   color: var(--ink-3);
 }
@@ -1125,7 +1125,7 @@
 .valuerow__tag {
   justify-self: end;
   white-space: nowrap;
-  font-size: .6875rem; font-weight: 700;
+  font-size: var(--fs-eyebrow); font-weight: 700;
   letter-spacing: .14em; text-transform: uppercase;
   color: var(--gold-800);
   border: 1px solid var(--line-gold);
@@ -1183,7 +1183,7 @@
     justify-content: center;
     padding: clamp(1.5rem, 1rem + 2vw, 2.6rem);
   }
-  .pcard--featured .pcard__title { font-size: clamp(1.3rem, 1.1rem + .9vw, 1.85rem); }
+  .pcard--featured .pcard__title { font-size: var(--fs-h3); }
   .pcard--featured .pcard__desc {
     font-size: var(--fs-body);
     max-width: var(--measure);
@@ -1243,3 +1243,58 @@
     box-shadow: var(--sh-3);
   }
 }
+
+/* ==========================================================================
+   CATEGORY TINTS (stage 4)
+   Each product family carries a tint on its card media, its badge and its
+   detail-page hero, so the range is legible as a system at a glance.
+   ========================================================================== */
+[data-tint="derma"] { --tint: var(--tint-derma); --tint-ink: #46543f; }
+[data-tint="skin"]  { --tint: var(--tint-skin);  --tint-ink: #7a4a3c; }
+[data-tint="sun"]   { --tint: var(--tint-sun);   --tint-ink: #7d5c0e; }
+[data-tint="hair"]  { --tint: var(--tint-hair);  --tint-ink: #5b4f3c; }
+[data-tint="nutra"] { --tint: var(--tint-nutra); --tint-ink: #8a4a24; }
+
+.pcard[data-tint] .pcard__media { background: var(--tint); }
+.pcard[data-tint] .pcard__cat   { color: var(--tint-ink); }
+.pcard[data-tint]:hover { border-color: color-mix(in srgb, var(--tint-ink) 34%, transparent); }
+
+/* A thin tint rule across the top of the body separates media from copy. */
+.pcard[data-tint] .pcard__body { position: relative; }
+.pcard[data-tint] .pcard__body::before {
+  content: "";
+  position: absolute; inset: 0 0 auto 0; height: 2px;
+  background: linear-gradient(90deg, var(--tint-ink), transparent 70%);
+  opacity: 0;
+  transition: opacity var(--t-med) var(--ease);
+}
+.pcard[data-tint]:hover .pcard__body::before { opacity: .5; }
+
+/* ==========================================================================
+   BRAND DIVIDER (stage 4)
+   A hairline with a small centred diamond — a small, ownable device used
+   between sections instead of a plain border.
+   ========================================================================== */
+.rule {
+  position: relative;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--line-gold) 18%, var(--line-gold) 82%, transparent);
+  margin-block: 0;
+  border: 0;
+}
+.rule::after {
+  content: "";
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 7px; height: 7px;
+  transform: translate(-50%, -50%) rotate(45deg);
+  background: var(--gold-500);
+  box-shadow: 0 0 0 4px var(--ivory);
+}
+.rule--left::after { left: 0; transform: translate(0, -50%) rotate(45deg); }
+
+/* Grain texture is now meaningful: champagne fields only, not every band. */
+.section.grain::before { opacity: 0; }
+.section--alt.grain::before,
+.poster-light .poster-light__field::after,
+.trust::after { opacity: 1; }

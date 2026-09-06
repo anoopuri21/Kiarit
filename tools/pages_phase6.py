@@ -347,7 +347,7 @@ def build_404():
         <span class="eyebrow eyebrow--center" data-reveal="fade">While You Are Here</span>
         <h2 id="pop-h" data-reveal="up" data-delay="90">Our <em class="gold-text serif">Bestsellers</em></h2>
       </div>
-      <div class="products__grid" data-stagger="90">
+      <div class="products__grid" data-stagger="60">
 """
     from build import product_card
     for prod in [PRODUCTS[0], PRODUCTS[3], PRODUCTS[1]]:

@@ -43,8 +43,9 @@
   /* ---- Category tints ---- */
   --tint-derma: var(--sage-soft);
   --tint-skin:  var(--rose-nude);
+  --tint-sun:   #fdf1d8;
+  --tint-hair:  #f0ebe1;
   --tint-nutra: var(--clay-soft);
-  --tint-hair:  var(--gold-100);
 
   /* ---- Semantic ---- */
   --bg:          var(--ivory);
@@ -338,19 +339,21 @@ h4 { font-size: var(--fs-h4); line-height: 1.3; }
   opacity: 0;
   will-change: transform, opacity, filter;
   transition:
-    opacity var(--t-slow) var(--ease),
-    transform var(--t-slow) var(--ease),
-    filter var(--t-slow) var(--ease),
+    opacity var(--reveal-t) var(--ease),
+    transform var(--reveal-t) var(--ease),
+    filter var(--reveal-t) var(--ease),
     clip-path 1.15s var(--ease);
   transition-delay: var(--reveal-delay, 0ms);
 }
-[data-reveal="up"]    { transform: translate3d(0, 46px, 0); }
-[data-reveal="down"]  { transform: translate3d(0, -34px, 0); }
-[data-reveal="left"]  { transform: translate3d(-56px, 0, 0); }
-[data-reveal="right"] { transform: translate3d(56px, 0, 0); }
-[data-reveal="zoom"]  { transform: scale(.9); }
-[data-reveal="blur"]  { transform: translate3d(0, 26px, 0); filter: blur(14px); }
-[data-reveal="mask"]  { clip-path: inset(0 0 100% 0); transform: translate3d(0, 26px, 0); }
+/* One distance token for every direction, so the whole page moves as a
+   single system instead of at five different amplitudes. */
+[data-reveal="up"]    { transform: translate3d(0, var(--reveal-y), 0); }
+[data-reveal="down"]  { transform: translate3d(0, calc(var(--reveal-y) * -1), 0); }
+[data-reveal="left"]  { transform: translate3d(calc(var(--reveal-y) * -1), 0, 0); }
+[data-reveal="right"] { transform: translate3d(var(--reveal-y), 0, 0); }
+[data-reveal="zoom"]  { transform: scale(.96); }
+[data-reveal="blur"]  { transform: translate3d(0, var(--reveal-y), 0); filter: blur(10px); }
+[data-reveal="mask"]  { clip-path: inset(0 0 100% 0); transform: translate3d(0, var(--reveal-y), 0); }
 [data-reveal="mask-x"]{ clip-path: inset(0 100% 0 0); }
 [data-reveal="fade"]  { transform: none; }
 

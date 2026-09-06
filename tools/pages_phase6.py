@@ -314,7 +314,7 @@ def build_disclaimer():
 # ======================================================= 404
 def build_404():
     body = f"""
-  <section class="e404">
+  <section class="e404 on-dark">
     <div class="e404__bg" aria-hidden="true"></div>
     <div class="container">
       <div class="e404__inner">

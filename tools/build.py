@@ -350,7 +350,7 @@ def page_hero(eyebrow, title, sub, crumbs):
         f'<a href="{u}">{n}</a><span aria-hidden="true">/</span>' if u else f'<span aria-current="page">{n}</span>'
         for n, u in crumbs)
     return f"""
-  <section class="phero" aria-labelledby="phero-h">
+  <section class="phero on-dark" aria-labelledby="phero-h">
     <div class="phero__bg" aria-hidden="true"></div>
     <div class="container phero__inner">
       <nav class="crumbs" aria-label="Breadcrumb">{crumb_html}</nav>
@@ -364,7 +364,7 @@ def page_hero(eyebrow, title, sub, crumbs):
 
 def cta_band(title, text, b1=("About Us", "about.html"), b2=("Contact Us", "contact.html")):
     return f"""
-  <section class="ctaband" aria-labelledby="cta-h">
+  <section class="ctaband on-dark" aria-labelledby="cta-h">
     <div class="ctaband__glow" aria-hidden="true"></div>
     <div class="container ctaband__inner">
       <span class="eyebrow eyebrow--light eyebrow--center" data-reveal="fade">Let's Begin</span>

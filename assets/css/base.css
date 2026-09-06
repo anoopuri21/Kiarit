@@ -5,96 +5,185 @@
 
 /* ---------- 1. DESIGN TOKENS ---------- */
 :root {
-  /* Core brand */
-  --gold-900: #6b4e0f;
-  --gold-800: #8a6614;
-  --gold-700: #a8801f;
-  --gold-600: #bf9530;
-  --gold-500: #c9a227;   /* primary gold */
+  /* ---- Brand gold ----
+     500 is the brand gold: use it for FILLS, rules and decoration.
+     --gold-text is the only gold approved for TEXT — it clears 4.5:1 on
+     every light surface we ship (ivory 5.96, ivory-2 5.62, champagne 5.12). */
+  --gold-900: #4f3a0b;
+  --gold-800: #6b4e0f;
+  --gold-700: #7d5c0e;
+  --gold-600: #a8801f;
+  --gold-500: #c9a227;   /* primary brand gold — fills and rules only */
   --gold-400: #d9b64a;
   --gold-300: #e6cd82;
   --gold-200: #f0e0b4;
   --gold-100: #f8f1de;
+  --gold-text: #7d5c0e;  /* AA-safe gold for any text under 24px */
 
-  --black-900: #08080a;  /* primary black */
-  --black-800: #0f1012;
-  --black-700: #16181b;
-  --black-600: #23262b;
-  --charcoal:  #2c3036;
+  /* ---- Warm ink ----
+     Replaces the old blue-black #08080a, which fought the warm ivory page. */
+  --ink-900: #1a1714;    /* primary dark surface */
+  --ink-800: #241f1a;
+  --ink-700: #2f2922;
+  --ink-600: #3d352c;
+  --charcoal: #2c3036;
 
-  /* Light theme surfaces */
-  --ivory:      #fdfbf7;   /* page base */
-  --ivory-2:    #f8f4ec;
-  --champagne:  #f2e9db;
-  --champagne-2:#eadfcc;
-  --rose-nude:  #f4e6e0;
-  --sage:       #7d8f7a;
-  --sage-soft:  #eaefe7;
+  /* ---- Light surfaces ---- */
+  --ivory:       #fdfbf7;   /* page base */
+  --ivory-2:     #f8f4ec;
+  --champagne:   #f2e9db;
+  --champagne-2: #eadfcc;
+  --rose-nude:   #f4e6e0;
+  --sage:        #7d8f7a;
+  --sage-deep:   #5f7059;   /* AA-safe sage for badges with white text */
+  --sage-soft:   #eaefe7;
+  --clay:        #b8734a;   /* nutraceutical / warmth accent */
+  --clay-soft:   #f6e7dd;
 
-  /* Semantic */
-  --bg:         var(--ivory);
-  --bg-alt:     var(--ivory-2);
-  --surface:    #ffffff;
-  --ink:        #14161a;
-  --ink-2:      #3d434c;
-  --ink-3:      #6a7179;
-  --line:       rgba(20, 22, 26, .10);
-  --line-gold:  rgba(201, 162, 39, .32);
-  --accent:     var(--gold-500);
-  --accent-deep:var(--gold-700);
+  /* ---- Category tints ---- */
+  --tint-derma: var(--sage-soft);
+  --tint-skin:  var(--rose-nude);
+  --tint-nutra: var(--clay-soft);
+  --tint-hair:  var(--gold-100);
 
-  /* Typography */
+  /* ---- Semantic ---- */
+  --bg:          var(--ivory);
+  --bg-alt:      var(--ivory-2);
+  --surface:     #ffffff;
+  --ink:         #1a1714;
+  --ink-2:       #3d352c;
+  --ink-3:       #635a4f;
+  --ink-4:       #6f675e;
+  --line:        rgba(26, 23, 20, .10);
+  --line-strong: rgba(26, 23, 20, .16);
+  --line-gold:   rgba(201, 162, 39, .32);
+  --accent:      var(--gold-500);
+  --accent-deep: var(--gold-text);
+
+  /* Legacy aliases — kept so existing rules keep resolving */
+  --black-900: var(--ink-900);
+  --black-800: var(--ink-800);
+  --black-700: var(--ink-700);
+  --black-600: var(--ink-600);
+
+  /* ---- Typography ---- */
   --font-display: "Playfair Display", "Cormorant Garamond", Georgia, serif;
   --font-body:    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 
-  --fs-eyebrow: clamp(.66rem, .58rem + .28vw, .78rem);
-  --fs-small:   clamp(.82rem, .78rem + .18vw, .9rem);
-  --fs-body:    clamp(.95rem, .91rem + .2vw, 1.02rem);
-  --fs-lead:    clamp(1.02rem, .96rem + .36vw, 1.18rem);
-  --fs-h4:      clamp(1.1rem, 1rem + .5vw, 1.35rem);
-  --fs-h3:      clamp(1.25rem, 1.1rem + .7vw, 1.7rem);
-  --fs-h2:      clamp(1.85rem, 1.35rem + 2vw, 3.1rem);
-  --fs-h1:      clamp(2.35rem, 1.5rem + 3.6vw, 4.9rem);
+  /* Modular scale, ratio ~1.28. --fs-h3 is the restored mid-tier that was
+     missing between 50px section headings and 21px card titles. */
+  --fs-eyebrow: .8125rem;                              /* 13px, fixed */
+  --fs-small:   clamp(.875rem, .85rem + .12vw, .9375rem);
+  --fs-body:    clamp(1rem, .97rem + .15vw, 1.0625rem);
+  --fs-lead:    clamp(1.0625rem, 1rem + .3vw, 1.1875rem);
+  --fs-h4:      clamp(1.125rem, 1.05rem + .35vw, 1.3125rem);
+  --fs-h3:      clamp(1.5rem, 1.2rem + 1.1vw, 2rem);   /* 24 -> 32px */
+  --fs-h2:      clamp(1.875rem, 1.35rem + 2.1vw, 3.25rem);
+  --fs-h1:      clamp(2.375rem, 1.5rem + 3.6vw, 4.75rem);
   --fs-mega:    clamp(3rem, 1.4rem + 7vw, 8rem);
 
-  /* Spacing — 8pt system */
-  --sp-1: .25rem;  --sp-2: .5rem;   --sp-3: .75rem;  --sp-4: 1rem;
-  --sp-5: 1.5rem;  --sp-6: 2rem;    --sp-7: 3rem;    --sp-8: 4rem;
-  --sp-9: 6rem;    --sp-10: 8rem;
-  --section-y: clamp(4.5rem, 3rem + 6vw, 9rem);
+  --lh-tight: 1.08;   /* headings */
+  --lh-snug:  1.25;   /* card titles */
+  --lh-lead:  1.6;
+  --lh-body:  1.7;
 
-  /* Layout */
+  /* Inter's `ch` unit (the width of "0") is 1.26x its average character
+     width, so 68 real characters measures 54ch, not 68ch. Verified in
+     browser: 1ch = 11px, mean glyph = 8.7px at 17px Inter. */
+  --measure:        42ch;   /* ~66 characters rendered in Inter */
+  --measure-narrow: 36ch;   /* ~57 characters rendered in Inter */
+
+  /* ---- Spacing: strict 8px grid ---- */
+  --sp-1: 0.25rem;  /*  4 */
+  --sp-2: 0.5rem;   /*  8 */
+  --sp-3: 0.75rem;  /* 12 */
+  --sp-4: 1rem;     /* 16 */
+  --sp-5: 1.5rem;   /* 24 */
+  --sp-6: 2rem;     /* 32 */
+  --sp-7: 3rem;     /* 48 */
+  --sp-8: 4rem;     /* 64 */
+  --sp-9: 6rem;     /* 96 */
+  --sp-10: 8rem;    /* 128 */
+
+  /* Fluid gap steps. Components pick a step instead of writing their own
+     clamp(), which is what produced 27 distinct gap values on one page. */
+  --gap-xs: clamp(0.5rem, 0.45rem + 0.2vw, 0.75rem);
+  --gap-sm: clamp(0.75rem, 0.65rem + 0.4vw, 1rem);
+  --gap-md: clamp(1rem, 0.8rem + 0.8vw, 1.5rem);
+  --gap-lg: clamp(1.5rem, 1.1rem + 1.6vw, 2rem);
+  --gap-xl: clamp(2rem, 1.4rem + 2.4vw, 3rem);
+  --gap-2xl: clamp(2.5rem, 1.5rem + 4vw, 4.5rem);
+
+  /* Three section rhythms instead of one flat 134px everywhere */
+  --section-y:       clamp(4rem, 3rem + 4vw, 7rem);    /* standard */
+  --section-y-tight: clamp(2.5rem, 2rem + 2.5vw, 4.5rem);
+  --section-y-loose: clamp(5rem, 3.5rem + 6vw, 10rem);
+
+  /* ---- Layout ---- */
   --container: 1280px;
   --container-narrow: 960px;
-  --gutter: clamp(1.15rem, .6rem + 2.4vw, 3rem);
+  --gutter: clamp(1.25rem, .6rem + 2.4vw, 3rem);
 
-  /* Radius */
-  --r-xs: 3px;  --r-sm: 6px;  --r-md: 10px;  --r-lg: 18px;  --r-xl: 28px; --r-full: 999px;
+  /* ---- Radius: three steps ---- */
+  --r-sm:   8px;
+  --r-md:   16px;
+  --r-lg:   16px;
+  --r-full: 999px;
+  --r-xs: var(--r-sm);
+  --r-xl: var(--r-md);
 
-  /* Shadows */
-  --sh-1: 0 1px 2px rgba(16,18,22,.05), 0 2px 8px rgba(16,18,22,.04);
-  --sh-2: 0 2px 6px rgba(16,18,22,.05), 0 12px 30px rgba(16,18,22,.07);
-  --sh-3: 0 6px 16px rgba(16,18,22,.07), 0 26px 60px rgba(16,18,22,.11);
-  --sh-gold: 0 14px 44px rgba(168,128,31,.22);
+  /* ---- Elevation: four steps, warm-tinted ---- */
+  --sh-1: 0 1px 2px rgba(26,23,20,.04);
+  --sh-2: 0 4px 16px rgba(26,23,20,.06);
+  --sh-3: 0 12px 32px rgba(26,23,20,.08);
+  --sh-4: 0 24px 64px rgba(26,23,20,.12);
+  --sh-gold: 0 12px 32px rgba(125,92,14,.18);
 
-  /* Motion */
+  /* ---- Motion ---- */
   --ease: cubic-bezier(.16, 1, .3, 1);
   --ease-io: cubic-bezier(.65, .05, .36, 1);
   --t-fast: .28s;
   --t-med: .55s;
   --t-slow: .9s;
+  --reveal-y: 24px;
+  --reveal-t: .6s;
 
-  /* Chrome heights */
+  /* ---- Chrome heights ---- */
   --topbar-h: 40px;
   --nav-h: 76px;
   --header-h: calc(var(--nav-h) + var(--topbar-h));
 }
 
+/* ----------------------------------------------------------------------
+   ON-DARK SCOPE
+   Gold that is legible on ivory (#7d5c0e) is far too dark on an ink
+   surface. Any dark band opts in by carrying .on-dark, which re-points the
+   text tokens rather than requiring per-component overrides.
+   ---------------------------------------------------------------------- */
+.on-dark {
+  --gold-text: var(--gold-500);   /* 7.38:1 on --ink-900 */
+  --accent-deep: var(--gold-400);
+  --ink:    #ffffff;
+  --ink-2:  rgba(255,255,255,.82);
+  --ink-3:  rgba(255,255,255,.66);
+  --ink-4:  rgba(255,255,255,.54);
+  --line:   rgba(255,255,255,.14);
+  --line-strong: rgba(255,255,255,.22);
+  --surface: rgba(255,255,255,.05);
+  color: var(--ink-2);
+}
+.on-dark h1, .on-dark h2, .on-dark h3, .on-dark h4 { color: #fff; }
+.on-dark .eyebrow { color: var(--gold-500); }
+/* Small gold marks that hardcode a dark tint must flip on ink surfaces. */
+.on-dark .logo__sub,
+.on-dark .sig-role,
+.on-dark .prose a { color: var(--gold-400); }
+
 /* Gradients as reusable strings */
 :root {
   --grad-gold: linear-gradient(115deg, var(--gold-700) 0%, var(--gold-400) 34%, var(--gold-200) 50%, var(--gold-500) 68%, var(--gold-800) 100%);
   --grad-gold-text: linear-gradient(100deg, var(--gold-700), var(--gold-400) 45%, var(--gold-300) 60%, var(--gold-600));
-  --grad-dark: linear-gradient(160deg, var(--black-900), var(--black-700) 55%, #1b1d21);
+  --grad-dark: linear-gradient(160deg, var(--ink-900), var(--ink-800) 55%, #332b23);
 }
 
 /* ---------- 2. RESET ---------- */
@@ -143,12 +232,21 @@ html { scrollbar-width: thin; scrollbar-color: var(--gold-400) var(--champagne);
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
   font-weight: 600;
-  line-height: 1.1;
+  line-height: var(--lh-tight);
   color: var(--ink);
   letter-spacing: -.018em;
   font-optical-sizing: auto;
   text-rendering: optimizeLegibility;
+  /* Even out ragged line breaks in short display headings. */
+  text-wrap: balance;
 }
+h3, h4, h5, h6 { line-height: var(--lh-snug); }
+p, li { text-wrap: pretty; }
+
+/* Cap the reading measure so no paragraph exceeds a comfortable line length. */
+p { max-width: var(--measure); }
+.lead { max-width: var(--measure-narrow); }
+.sec-head--center p, .sec-head--center .lead { margin-inline: auto; }
 h1 { font-weight: 700; letter-spacing: -.028em; }
 h2 { letter-spacing: -.022em; }
 h1 { font-size: var(--fs-h1); }
@@ -156,7 +254,6 @@ h2 { font-size: var(--fs-h2); }
 h3 { font-size: var(--fs-h3); line-height: 1.2; }
 h4 { font-size: var(--fs-h4); line-height: 1.3; }
 
-p { max-width: 72ch; }
 
 .eyebrow {
   display: inline-flex;

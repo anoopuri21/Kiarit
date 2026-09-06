@@ -1022,3 +1022,224 @@
     aspect-ratio: 16 / 10;
   }
 }
+
+/* ==========================================================================
+   VALUES — editorial numbered list (stage 3)
+   Replaces the fourth centred-heading-plus-card-grid on the home page.
+   ========================================================================== */
+.values {
+  background: linear-gradient(180deg, var(--ivory) 0%, #ffffff 100%);
+}
+
+/* Asymmetric head: title left, intent right — not another centred stack. */
+.values__head {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: var(--gap-2xl);
+  align-items: end;
+  padding-bottom: var(--sp-8);
+  border-bottom: 1px solid var(--line-gold);
+}
+.values__head h2 {
+  font-size: clamp(1.9rem, 1.3rem + 2.4vw, 3.1rem);
+  margin: var(--sp-4) 0 0;
+  text-wrap: initial;
+}
+.values__intro {
+  font-size: var(--fs-lead);
+  color: var(--ink-3);
+  max-width: var(--measure-narrow);
+  margin: 0;
+}
+@media (max-width: 860px) {
+  .values__head { grid-template-columns: 1fr; align-items: start; gap: var(--gap-lg); }
+}
+
+.values__list {
+  list-style: none;
+  margin: 0; padding: 0;
+  counter-reset: value;
+}
+
+.valuerow {
+  display: grid;
+  grid-template-columns: auto auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--gap-lg);
+  padding-block: clamp(1.5rem, 1rem + 1.8vw, 2.5rem);
+  border-bottom: 1px solid var(--line);
+  position: relative;
+  transition: background-color var(--t-med) var(--ease);
+}
+.valuerow::before {
+  /* Gold wash that wipes in from the left on hover. */
+  content: "";
+  position: absolute;
+  inset: 0 calc(var(--gutter) * -1);
+  background: linear-gradient(90deg, var(--gold-100), transparent 62%);
+  opacity: 0;
+  transition: opacity var(--t-med) var(--ease);
+  pointer-events: none;
+}
+.valuerow:hover::before { opacity: 1; }
+.valuerow > * { position: relative; z-index: 1; }
+
+.valuerow__num {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 1.6rem + 3vw, 4.5rem);
+  font-weight: 700;
+  line-height: .9;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--line-gold);
+  min-width: 2.4ch;
+  font-variant-numeric: lining-nums tabular-nums;
+  transition: color var(--t-med) var(--ease), -webkit-text-stroke-color var(--t-med) var(--ease);
+}
+.valuerow:hover .valuerow__num {
+  color: var(--gold-200);
+  -webkit-text-stroke-color: var(--gold-500);
+}
+
+.valuerow__icon {
+  display: grid; place-items: center;
+  width: 46px; height: 46px; flex: none;
+  border-radius: 50%;
+  border: 1px solid var(--line-gold);
+  background: #fff;
+  transition: background-color var(--t-med) var(--ease), transform var(--t-med) var(--ease);
+}
+.valuerow__icon svg { width: 21px; height: 21px; color: var(--gold-700); }
+.valuerow:hover .valuerow__icon { background: var(--gold-100); transform: scale(1.06); }
+
+.valuerow__body h3 {
+  font-size: clamp(1.15rem, 1.05rem + .5vw, 1.5rem);
+  margin: 0 0 .35rem;
+}
+.valuerow__body p {
+  margin: 0;
+  color: var(--ink-3);
+  font-size: var(--fs-small);
+  max-width: var(--measure);
+}
+
+.valuerow__tag {
+  justify-self: end;
+  white-space: nowrap;
+  font-size: .6875rem; font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--gold-800);
+  border: 1px solid var(--line-gold);
+  border-radius: var(--r-full);
+  padding: .4rem .9rem;
+  background: #fff;
+}
+
+@media (max-width: 900px) {
+  .valuerow {
+    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-areas:
+      "num  icon"
+      "body body"
+      "tag  tag";
+    gap: var(--sp-3) var(--sp-4);
+    align-items: center;
+  }
+  .valuerow__num  { grid-area: num; }
+  .valuerow__icon { grid-area: icon; justify-self: start; }
+  .valuerow__body { grid-area: body; }
+  .valuerow__tag  { grid-area: tag; justify-self: start; }
+  .valuerow::before { inset: 0 calc(var(--gutter) * -0.5); }
+}
+
+/* ==========================================================================
+   PRODUCTS — featured first card (stage 3)
+   Breaks the even 3-up rhythm so the grid has a focal point.
+   ========================================================================== */
+@media (min-width: 1001px) {
+  .products__grid--featured {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  .products__grid--featured > .pcard { grid-column: span 2; }
+  .products__grid--featured > .pcard--featured {
+    grid-column: span 4;
+    grid-row: span 1;
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    align-items: stretch;
+  }
+  /* The featured card lays its media and body side by side. */
+  .pcard--featured .pcard__media {
+    /* Stretch to the full card height instead of holding a 1:1 box, which
+       left a gap under the image in the side-by-side layout. */
+    aspect-ratio: auto;
+    height: auto;
+    align-self: stretch;
+    min-height: 100%;
+    border-radius: var(--r-md) 0 0 var(--r-md);
+  }
+  .pcard--featured .pcard__media img { height: 100%; object-fit: cover; }
+  .pcard--featured .pcard__body {
+    display: flex; flex-direction: column;
+    justify-content: center;
+    padding: clamp(1.5rem, 1rem + 2vw, 2.6rem);
+  }
+  .pcard--featured .pcard__title { font-size: clamp(1.3rem, 1.1rem + .9vw, 1.85rem); }
+  .pcard--featured .pcard__desc {
+    font-size: var(--fs-body);
+    max-width: var(--measure);
+  }
+  /* Give the featured card a warmer field so it reads as the hero product. */
+  .pcard--featured {
+    background: linear-gradient(150deg, #ffffff 0%, var(--gold-100) 100%);
+    border-color: var(--line-gold);
+    box-shadow: var(--sh-3);
+  }
+}
+
+/* ==========================================================================
+   CEO — portrait bleeds left, quote overlaps (stage 3)
+   Was the same image-left / text-right split as the overview section.
+   ========================================================================== */
+@media (min-width: 941px) {
+  .ceo .container { position: relative; }
+  .ceo__grid {
+    grid-template-columns: minmax(300px, .78fr) 1.22fr;
+    align-items: stretch;              /* portrait matches the quote height */
+    column-gap: 0;                     /* the quote card supplies the offset */
+  }
+  .ceo__portrait {
+    max-width: none;
+    margin-bottom: 0;
+    /* Bleed to the viewport edge on the left. */
+    margin-left: calc(max(0px, (100vw - var(--container)) / 2 + var(--gutter)) * -1);
+    width: calc(100% + max(0px, (100vw - var(--container)) / 2 + var(--gutter)));
+  }
+  .ceo__portrait {
+    display: flex;
+    padding-bottom: 30px;
+  }
+  .ceo__portrait-inner {
+    /* Fill the row height the quote card sets, rather than holding a fixed
+       ratio that left the two planes visibly mismatched. */
+    aspect-ratio: auto;
+    flex: 1;
+    min-height: 100%;
+    border-radius: 0 var(--r-md) var(--r-md) 0;
+    box-shadow: var(--sh-4);
+  }
+  .ceo__portrait-inner img { height: 100%; object-fit: cover; object-position: 50% 22%; }
+  /* Keep the signature plate inside the frame. */
+  .ceo__sig-card { bottom: 8px; }
+  /* Body overlaps the portrait so the two planes interlock. */
+  .ceo__body {
+    position: relative;
+    z-index: 3;
+    margin-left: clamp(-6rem, -4vw, -2.5rem);
+    background: rgba(253,251,247,.94);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--line-gold);
+    border-radius: var(--r-md);
+    padding: clamp(1.8rem, 1.2rem + 2.6vw, 3.2rem);
+    box-shadow: var(--sh-3);
+  }
+}

@@ -247,38 +247,100 @@
 .contact__mapcard strong { display: block; font-family: var(--font-display); font-size: var(--fs-lead); font-weight: 600; color: var(--ink); }
 .contact__mapcard span { display: block; font-size: var(--fs-eyebrow); color: var(--ink-3); line-height: 1.55; margin-top: .12rem; }
 
-/* ---------- BIG STEPS (order page) ---------- */
+/* ---------- BIG STEPS — connected timeline (stage 3) ----------
+   Was three equal boxes, the same shape as every other card grid. Now a
+   horizontal journey with a connecting rule, so the sequence reads as one
+   process rather than three unrelated options.
+   -------------------------------------------------------------- */
 .bigsteps {
+  position: relative;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--gap-lg);
-  margin-top: clamp(2.2rem, 1.4rem + 2.6vw, 3.4rem);
+  gap: var(--gap-xl);
+  margin-top: clamp(2.5rem, 1.6rem + 3vw, 4rem);
+  counter-reset: bigstep;
 }
-@media (max-width: 940px) { .bigsteps { grid-template-columns: 1fr; } }
+/* Each step draws the rule to the next one. Doing it per step rather than
+   once across the grid keeps it correct whatever the column gap resolves to. */
+.bigstep::after {
+  content: "";
+  position: absolute;
+  top: 27px;                              /* half the 54px marker */
+  left: 54px;                             /* right edge of this marker */
+  right: calc(var(--gap-xl) * -1);        /* reach the next marker */
+  height: 1px;
+  background: linear-gradient(90deg, var(--line-gold), rgba(201,162,39,.5));
+  z-index: 0;
+}
+.bigstep:last-child::after { display: none; }
+@media (max-width: 940px) { .bigstep::after { display: none; } }
 
 .bigstep {
   position: relative;
+  z-index: 1;
   display: flex; flex-direction: column;
-  background: linear-gradient(170deg, #ffffff 0%, #fdfbf6 100%);
-  border: 1px solid var(--line);
-  border-radius: var(--r-lg);
-  padding: clamp(1.7rem, 1.1rem + 1.6vw, 2.5rem);
-  overflow: hidden;
-  box-shadow: var(--sh-2);
-  transition: transform var(--t-med) var(--ease), box-shadow var(--t-med) var(--ease), border-color var(--t-med) var(--ease);
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
+  text-align: left;
+  transition: transform var(--t-med) var(--ease);
 }
-.bigstep:hover { transform: translateY(-8px); box-shadow: var(--sh-3); border-color: var(--line-gold); }
+.bigstep:hover { transform: translateY(-4px); }
+
+/* The number is the marker sitting on the connecting rule. */
 .bigstep__num {
-  position: absolute; right: 16px; top: 10px;
+  position: static;
+  display: grid; place-items: center;
+  width: 54px; height: 54px;
+  margin-bottom: var(--sp-5);
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid var(--line-gold);
+  box-shadow: var(--sh-2);
   font-family: var(--font-display);
-  font-size: 4rem; font-weight: 700;
-  color: var(--champagne);
-  line-height: 1; user-select: none;
-  font-variant-numeric: lining-nums tabular-nums;
+  font-size: var(--fs-h4);
+  font-weight: 700;
+  color: var(--gold-800);
+  line-height: 1;
+  transition: background-color var(--t-med) var(--ease), border-color var(--t-med) var(--ease), color var(--t-med) var(--ease);
 }
-.bigstep h3 { font-size: 1.3rem; margin: 0 0 .55rem; position: relative; z-index: 2; }
-.bigstep p { font-size: var(--fs-small); color: var(--ink-3); margin-bottom: var(--sp-5); position: relative; z-index: 2; }
+.bigstep:hover .bigstep__num {
+  background: var(--grad-gold);
+  border-color: transparent;
+  color: #1a1714;
+}
+
+.bigstep .why__icon {
+  width: 40px; height: 40px;
+  margin-bottom: var(--sp-4);
+}
+.bigstep .why__icon svg { width: 19px; height: 19px; }
+.bigstep h3 { font-size: var(--fs-h4); margin: 0 0 .5rem; position: relative; z-index: 2; }
+.bigstep p {
+  font-size: var(--fs-small);
+  color: var(--ink-3);
+  margin-bottom: var(--sp-5);
+  max-width: var(--measure);
+  position: relative; z-index: 2;
+}
 .bigstep .link-gold { margin-top: auto; position: relative; z-index: 2; }
+
+@media (max-width: 940px) {
+  .bigsteps { grid-template-columns: 1fr; gap: var(--gap-lg); }
+  .bigstep {
+    display: grid;
+    grid-template-columns: 54px 1fr;
+    column-gap: var(--sp-5);
+    align-items: start;
+    padding-bottom: var(--sp-5);
+    border-bottom: 1px solid var(--line);
+  }
+  .bigstep:last-child { border-bottom: 0; }
+  .bigstep__num { grid-row: span 2; margin-bottom: 0; }
+  .bigstep .why__icon { display: none; }
+}
 
 /* ---------- PAYMENT ---------- */
 .pay__grid {

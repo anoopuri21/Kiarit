@@ -1,0 +1,403 @@
+/* ==========================================================================
+   KIARIT PHARMACEUTICALS — base.css
+   Design tokens, reset, typography, layout primitives, motion system
+   ========================================================================== */
+
+/* ---------- 1. DESIGN TOKENS ---------- */
+:root {
+  /* ---- Brand gold ----
+     500 is the brand gold: use it for FILLS, rules and decoration.
+     --gold-text is the only gold approved for TEXT — it clears 4.5:1 on
+     every light surface we ship (ivory 5.96, ivory-2 5.62, champagne 5.12). */
+  --gold-900: #4f3a0b;
+  --gold-800: #6b4e0f;
+  --gold-700: #7d5c0e;
+  --gold-600: #a8801f;
+  --gold-500: #c9a227;   /* primary brand gold — fills and rules only */
+  --gold-400: #d9b64a;
+  --gold-300: #e6cd82;
+  --gold-200: #f0e0b4;
+  --gold-100: #f8f1de;
+  --gold-text: #7d5c0e;  /* AA-safe gold for any text under 24px */
+
+  /* ---- Warm ink ----
+     Replaces the old blue-black #08080a, which fought the warm ivory page. */
+  --ink-900: #1a1714;    /* primary dark surface */
+  --ink-800: #241f1a;
+  --ink-700: #2f2922;
+  --ink-600: #3d352c;
+  --charcoal: #2c3036;
+
+  /* ---- Light surfaces ---- */
+  --ivory:       #fdfbf7;   /* page base */
+  --ivory-2:     #f8f4ec;
+  --champagne:   #f2e9db;
+  --champagne-2: #eadfcc;
+  --rose-nude:   #f4e6e0;
+  --sage:        #7d8f7a;
+  --sage-deep:   #5f7059;   /* AA-safe sage for badges with white text */
+  --sage-soft:   #eaefe7;
+  --clay:        #b8734a;   /* nutraceutical / warmth accent */
+  --clay-soft:   #f6e7dd;
+
+  /* ---- Category tints ---- */
+  --tint-derma: var(--sage-soft);
+  --tint-skin:  var(--rose-nude);
+  --tint-sun:   #fdf1d8;
+  --tint-hair:  #e7ede4;   /* sage, matching the Kiamild bottle */
+  --tint-nutra: var(--clay-soft);
+  --tint-body:  #eef0f2;
+
+  /* ---- Semantic ---- */
+  --bg:          var(--ivory);
+  --bg-alt:      var(--ivory-2);
+  --surface:     #ffffff;
+  --ink:         #1a1714;
+  --ink-2:       #3d352c;
+  --ink-3:       #635a4f;
+  --ink-4:       #6f675e;
+  --line:        rgba(26, 23, 20, .10);
+  --line-strong: rgba(26, 23, 20, .16);
+  --line-gold:   rgba(201, 162, 39, .32);
+  --accent:      var(--gold-500);
+  --accent-deep: var(--gold-text);
+
+  /* Legacy aliases — kept so existing rules keep resolving */
+  --black-900: var(--ink-900);
+  --black-800: var(--ink-800);
+  --black-700: var(--ink-700);
+  --black-600: var(--ink-600);
+
+  /* ---- Typography ---- */
+  --font-display: "Playfair Display", "Cormorant Garamond", Georgia, serif;
+  --font-body:    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  /* Modular scale, ratio ~1.28. --fs-h3 is the restored mid-tier that was
+     missing between 50px section headings and 21px card titles. */
+  --fs-eyebrow: .8125rem;                              /* 13px, fixed */
+  --fs-small:   clamp(.875rem, .85rem + .12vw, .9375rem);
+  --fs-body:    clamp(1rem, .97rem + .15vw, 1.0625rem);
+  --fs-lead:    clamp(1.0625rem, 1rem + .3vw, 1.1875rem);
+  --fs-h4:      clamp(1.125rem, 1.05rem + .35vw, 1.3125rem);
+  --fs-h3:      clamp(1.5rem, 1.2rem + 1.1vw, 2rem);   /* 24 -> 32px */
+  --fs-h2:      clamp(1.875rem, 1.35rem + 2.1vw, 3.25rem);
+  --fs-h1:      clamp(2.375rem, 1.5rem + 3.6vw, 4.75rem);
+  --fs-mega:    clamp(3rem, 1.4rem + 7vw, 8rem);
+
+  --lh-tight: 1.08;   /* headings */
+  --lh-snug:  1.25;   /* card titles */
+  --lh-lead:  1.6;
+  --lh-body:  1.7;
+
+  /* Inter's `ch` unit (the width of "0") is 1.26x its average character
+     width, so 68 real characters measures 54ch, not 68ch. Verified in
+     browser: 1ch = 11px, mean glyph = 8.7px at 17px Inter. */
+  --measure:        42ch;   /* ~66 characters rendered in Inter */
+  --measure-narrow: 36ch;   /* ~57 characters rendered in Inter */
+
+  /* ---- Spacing: strict 8px grid ---- */
+  --sp-1: 0.25rem;  /*  4 */
+  --sp-2: 0.5rem;   /*  8 */
+  --sp-3: 0.75rem;  /* 12 */
+  --sp-4: 1rem;     /* 16 */
+  --sp-5: 1.5rem;   /* 24 */
+  --sp-6: 2rem;     /* 32 */
+  --sp-7: 3rem;     /* 48 */
+  --sp-8: 4rem;     /* 64 */
+  --sp-9: 6rem;     /* 96 */
+  --sp-10: 8rem;    /* 128 */
+
+  /* Fluid gap steps. Components pick a step instead of writing their own
+     clamp(), which is what produced 27 distinct gap values on one page. */
+  /* Inline icon-to-label gap. Fixed rather than em so it lands on the grid
+     instead of producing a different sub-pixel value at every font size. */
+  --gap-inline: 0.5rem;
+  --gap-xs: clamp(0.5rem, 0.45rem + 0.2vw, 0.75rem);
+  --gap-sm: clamp(0.75rem, 0.65rem + 0.4vw, 1rem);
+  --gap-md: clamp(1rem, 0.8rem + 0.8vw, 1.5rem);
+  --gap-lg: clamp(1.5rem, 1.1rem + 1.6vw, 2rem);
+  --gap-xl: clamp(2rem, 1.4rem + 2.4vw, 3rem);
+  --gap-2xl: clamp(2.5rem, 1.5rem + 4vw, 4.5rem);
+
+  /* Three section rhythms instead of one flat 134px everywhere */
+  /* Section rhythm. Stage 1 cut these back hard to break the flat 134px
+     everywhere; that overcorrected and the page started to feel cramped.
+     These restore comfortable breathing room while keeping three distinct
+     tiers so hierarchy still reads. */
+  --section-y:       clamp(4.5rem, 3rem + 5.5vw, 8.5rem);   /* standard */
+  --section-y-tight: clamp(3rem, 2.25rem + 3vw, 5.5rem);
+  --section-y-loose: clamp(6rem, 4rem + 7vw, 11rem);
+
+  /* ---- Layout ---- */
+  --container: 1280px;
+  --container-narrow: 960px;
+  --gutter: clamp(1.25rem, .6rem + 2.4vw, 3rem);
+
+  /* ---- Radius: three steps ---- */
+  --r-sm:   8px;
+  --r-md:   16px;
+  --r-lg:   16px;
+  --r-full: 999px;
+  --r-xs: var(--r-sm);
+  --r-xl: var(--r-md);
+
+  /* ---- Elevation: four steps, warm-tinted ---- */
+  --sh-1: 0 1px 2px rgba(26,23,20,.04);
+  --sh-2: 0 4px 16px rgba(26,23,20,.06);
+  --sh-3: 0 12px 32px rgba(26,23,20,.08);
+  --sh-4: 0 24px 64px rgba(26,23,20,.12);
+  --sh-gold: 0 12px 32px rgba(125,92,14,.18);
+
+  /* ---- Motion ---- */
+  --ease: cubic-bezier(.16, 1, .3, 1);
+  --ease-io: cubic-bezier(.65, .05, .36, 1);
+  --t-fast: .28s;
+  --t-med: .55s;
+  --t-slow: .9s;
+  --reveal-y: 24px;
+  --reveal-t: .6s;
+
+  /* ---- Chrome heights ---- */
+  --topbar-h: 40px;
+  --nav-h: 76px;
+  --header-h: calc(var(--nav-h) + var(--topbar-h));
+}
+
+/* ----------------------------------------------------------------------
+   ON-DARK SCOPE
+   Gold that is legible on ivory (#7d5c0e) is far too dark on an ink
+   surface. Any dark band opts in by carrying .on-dark, which re-points the
+   text tokens rather than requiring per-component overrides.
+   ---------------------------------------------------------------------- */
+.on-dark {
+  --gold-text: var(--gold-500);   /* 7.38:1 on --ink-900 */
+  --accent-deep: var(--gold-400);
+  --ink:    #ffffff;
+  --ink-2:  rgba(255,255,255,.82);
+  --ink-3:  rgba(255,255,255,.66);
+  --ink-4:  rgba(255,255,255,.54);
+  --line:   rgba(255,255,255,.14);
+  --line-strong: rgba(255,255,255,.22);
+  --surface: rgba(255,255,255,.05);
+  color: var(--ink-2);
+}.on-dark h1, .on-dark h3 { color: #fff; }
+.on-dark .eyebrow { color: var(--gold-500); }/* Small gold marks that hardcode a dark tint must flip on ink surfaces. */
+.on-dark .logo__sub { color: var(--gold-400); }
+
+/* Gradients as reusable strings */
+:root {
+  --grad-gold: linear-gradient(115deg, var(--gold-700) 0%, var(--gold-400) 34%, var(--gold-200) 50%, var(--gold-500) 68%, var(--gold-800) 100%);
+  --grad-gold-text: linear-gradient(100deg, var(--gold-700), var(--gold-400) 45%, var(--gold-300) 60%, var(--gold-600));
+  --grad-dark: linear-gradient(160deg, var(--ink-900), var(--ink-800) 55%, #332b23);
+}
+
+/* ---------- 2. RESET ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--nav-h) + 16px);
+}
+html { overflow-x: hidden; }
+html, body { max-width: 100%; }
+body {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.7;
+  font-optical-sizing: auto;
+  color: var(--ink-2);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  font-feature-settings: "kern" 1, "liga" 1;
+}
+img, picture, video, canvas, svg { display: block; max-width: 100%; }
+input, button, textarea, select { font: inherit; color: inherit; }
+button { background: none; border: 0; cursor: pointer; }
+p, h1, h2, h3, h4, h5, h6 { overflow-wrap: break-word; }
+ul[class], ol[class] { list-style: none; padding: 0; }
+a { color: inherit; text-decoration: none; }
+:focus-visible {
+  outline: 2px solid var(--gold-600);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+::selection { background: var(--gold-300); color: var(--black-900); }
+
+/* Custom scrollbar */
+html { scrollbar-width: thin; scrollbar-color: var(--gold-400) var(--champagne); }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--champagne); }
+::-webkit-scrollbar-thumb { background: linear-gradient(var(--gold-500), var(--gold-700)); border-radius: 999px; border: 2px solid var(--champagne); }
+::-webkit-scrollbar-thumb:hover { background: var(--gold-600); }
+
+/* ---------- 3. TYPOGRAPHY ---------- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: var(--lh-tight);
+  color: var(--ink);
+  letter-spacing: -.018em;
+  font-optical-sizing: auto;
+  text-rendering: optimizeLegibility;
+  /* Even out ragged line breaks in short display headings. */
+  text-wrap: balance;
+}
+h3, h4, h5, h6 { line-height: var(--lh-snug); }
+p, li { text-wrap: pretty; }
+
+/* Cap the reading measure so no paragraph exceeds a comfortable line length. */
+p { max-width: var(--measure); }
+
+/* The `* { margin: 0 }` reset also removed paragraph spacing, so consecutive
+   paragraphs ran together as one block. Restore it as flow spacing, which
+   only applies between siblings and never adds a trailing gap. */
+p + p,
+p + ul, p + ol,
+ul + p, ol + p { margin-top: var(--sp-4); }
+.lead { max-width: var(--measure-narrow); }
+h1 { font-weight: 700; letter-spacing: -.028em; }
+h2 { letter-spacing: -.022em; }
+h1 { font-size: var(--fs-h1); }
+h2 { font-size: var(--fs-h2); }
+h3 { font-size: var(--fs-h3); line-height: 1.2; }
+h4 { font-size: var(--fs-h4); line-height: 1.3; }
+
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gap-inline);
+  font-family: var(--font-body);
+  font-size: var(--fs-eyebrow);
+  font-weight: 600;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--accent-deep);
+}
+.eyebrow::before {
+  content: "";
+  width: 34px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-500));
+}
+.eyebrow--center::after {
+  content: "";
+  width: 34px; height: 1px;
+  background: linear-gradient(90deg, var(--gold-500), transparent);
+}
+.eyebrow--light { color: var(--gold-300); }
+
+.lead { font-size: var(--fs-lead); line-height: 1.72; color: var(--ink-2); }
+.serif { font-family: var(--font-display); }
+
+/* Gold gradient lettering. The italic <em> inside a display heading is the
+   house accent, so every title variant shares this one rule. */
+.gold-text,
+.poster__title em,
+.poster-light__title em,
+.ctaband h2 em,
+.phero__title em,
+.e404__title em {
+  background: var(--grad-gold-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.poster__title em,
+.poster-light__title em,
+.ctaband h2 em,
+.phero__title em,
+.e404__title em { font-style: italic; }
+
+/* Section heading block */
+/* Section heads are left-aligned by default: an editorial page reads from a
+   consistent left edge, and centring every heading was what made four
+   sections look like the same section repeated. */
+.sec-head {
+  max-width: 720px;
+  margin-bottom: clamp(2.5rem, 1.75rem + 2.5vw, 4rem);
+}
+.sec-head h2 { margin: var(--sp-3) 0 var(--sp-4); }
+.sec-head p { margin-inline: 0; }/* Opt-in centring { margin-inline: auto; text-align: center; }
+
+/* ---------- 4. LAYOUT ---------- */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+.container--narrow { max-width: var(--container-narrow); }
+.section { padding-block: var(--section-y); position: relative; }
+.section--tight { padding-block: var(--section-y-tight); }
+.section--alt { background: var(--bg-alt); }
+
+/* Subtle paper grain overlay for luxury depth */
+.grain::after {
+  content: "";
+  position: absolute; inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: .5;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.055'/%3E%3C/svg%3E");
+}
+
+/* ---------- 5. MOTION / CINEMATIC REVEAL SYSTEM ---------- */
+[data-reveal] {
+  opacity: 0;
+  will-change: transform, opacity, filter;
+  transition:
+    opacity var(--reveal-t) var(--ease),
+    transform var(--reveal-t) var(--ease),
+    filter var(--reveal-t) var(--ease),
+    clip-path 1.15s var(--ease);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+/* One distance token for every direction, so the whole page moves as a
+   single system instead of at five different amplitudes. */
+[data-reveal="up"]    { transform: translate3d(0, var(--reveal-y), 0); }
+[data-reveal="down"]  { transform: translate3d(0, calc(var(--reveal-y) * -1), 0); }
+[data-reveal="left"]  { transform: translate3d(calc(var(--reveal-y) * -1), 0, 0); }
+[data-reveal="right"] { transform: translate3d(var(--reveal-y), 0, 0); }
+[data-reveal="zoom"]  { transform: scale(.96); }
+[data-reveal="blur"]  { transform: translate3d(0, var(--reveal-y), 0); filter: blur(10px); }
+[data-reveal="mask"]  { clip-path: inset(0 0 100% 0); transform: translate3d(0, var(--reveal-y), 0); }
+[data-reveal="mask-x"]{ clip-path: inset(0 100% 0 0); }
+[data-reveal="fade"]  { transform: none; }
+
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+  filter: none;
+  clip-path: inset(0 0 0 0);
+}
+
+/* Parallax layer base */
+[data-parallax] { will-change: transform; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+    scroll-behavior: auto !important;
+  }
+  [data-reveal] { opacity: 1 !important; transform: none !important; filter: none !important; clip-path: none !important; }
+}
+.skip-link {
+  position: fixed; top: 0; left: 50%;
+  transform: translate(-50%, -140%);
+  z-index: 2000;
+  background: var(--black-900); color: var(--gold-300);
+  padding: .8rem 1.6rem; border-radius: 0 0 var(--r-md) var(--r-md);
+  font-size: var(--fs-small); font-weight: 600; letter-spacing: .06em;
+  transition: transform var(--t-fast) var(--ease);
+}
+.skip-link:focus { transform: translate(-50%, 0); }
+
+.no-scroll { overflow: hidden; }
+.text-center { text-align: center; }

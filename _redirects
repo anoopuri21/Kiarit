@@ -1,0 +1,39 @@
+# ==========================================================================
+# KIARIT PHARMACEUTICALS — redirects (Cloudflare Workers static assets)
+#
+# Replaces the mod_rewrite block in .htaccess. Cloudflare handles HTTPS and
+# the apex/www choice at the DNS and SSL layer, so neither belongs here.
+#
+# The site uses clean URLs (/about, not /about.html). The .html -> clean
+# redirect is produced automatically by "html_handling": "drop-trailing-slash"
+# in wrangler.jsonc, so writing those rules here as well would create a
+# redirect loop. Only genuine aliases belong in this file.
+#
+# Format: <source> <destination> <status>
+# ==========================================================================
+
+# Friendly aliases people are likely to type or that may appear in print.
+/shop  /products  301
+/buy   /order     301
+/home  /          301
+
+# Old .html URLs -> clean URLs, permanently.
+# Cloudflare's html_handling would already do this, but it answers 307
+# (temporary), which does not pass ranking signals. _redirects is evaluated
+# before html_handling, so these 301s win and search engines are told the
+# move is permanent. These point .html -> clean, the SAME direction as
+# html_handling, so they cannot loop.
+/index.html             /                   301
+/about.html             /about              301
+/products.html          /products           301
+/product-1.html         /product-1          301
+/product-2.html         /product-2          301
+/product-3.html         /product-3          301
+/product-4.html         /product-4          301
+/product-5.html         /product-5          301
+/contact.html           /contact            301
+/order.html             /order              301
+/privacy-policy.html    /privacy-policy     301
+/terms.html             /terms              301
+/shipping-returns.html  /shipping-returns   301
+/disclaimer.html        /disclaimer         301

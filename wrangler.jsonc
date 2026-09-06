@@ -1,0 +1,43 @@
+{
+  // ==========================================================================
+  // KIARIT PHARMACEUTICALS — Cloudflare Workers (static assets) config
+  //
+  // This site is pure static HTML/CSS/JS, so there is no Worker script at all:
+  // no "main" entry means every request is served straight from the asset
+  // store. Those requests are free and unmetered — the Worker only ever gets
+  // invoked if we later add server-side code.
+  //
+  // Deploy:  npx wrangler deploy
+  // Preview: npx wrangler dev
+  // ==========================================================================
+  "name": "kiarit",
+  "compatibility_date": "2026-09-06",
+
+  "assets": {
+    // dist/ is built by tools/build_dist.py from an explicit allowlist, so
+    // .git, tools/, the virtualenv and node_modules cannot reach production
+    // even by accident. Run that script before every deploy.
+    "directory": "./dist/",
+
+    // Serve /about.html at exactly that path, with no redirect.
+    //
+    // Cloudflare's default ("auto-trailing-slash") 301s /about.html to
+    // /about. Every canonical tag, sitemap entry and internal link on this
+    // site uses the .html form, so that default would put a redirect in front
+    // of every indexed URL and make each canonical disagree with the URL that
+    // actually serves it.
+    //
+    // "drop-trailing-slash" keeps the .html paths literal (verified: they
+    // return 200, not 301) while still mapping "/" to index.html. Plain
+    // "none" also keeps the paths literal but breaks the homepage — "/"
+    // returns 404 because nothing maps it to index.html.
+    "html_handling": "drop-trailing-slash",
+
+    // Unknown paths render 404.html with a real 404 status.
+    "not_found_handling": "404-page"
+  },
+
+  "observability": {
+    "enabled": true
+  }
+}

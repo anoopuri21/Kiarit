@@ -2,14 +2,14 @@
 """Phase 6: legal pages, 404 and generated SEO config files."""
 import sys, os, datetime
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from build import (SITE, PRODUCTS, I, render, write, page_hero, cta_band, wa,
+from build import (SITE, PRODUCTS, I, render, write, page_hero, cta_band, wa, url,
                    org_schema, breadcrumb, ROOT)
 
 UPDATED = "6 September 2026"
 
 
 def legal(file, nav_title, eyebrow, h1, sub, title, desc, blocks, schema_type="WebPage"):
-    body = page_hero(eyebrow, h1, sub, [("Home", "index.html"), (nav_title, None)])
+    body = page_hero(eyebrow, h1, sub, [("Home", "/"), (nav_title, None)])
     body += f"""
   <section class="section grain">
     <div class="container container--narrow">
@@ -31,7 +31,7 @@ def legal(file, nav_title, eyebrow, h1, sub, title, desc, blocks, schema_type="W
 """
     body += cta_band("Have a Question We Have Not <em>Answered</em>?",
                      "Our team is happy to walk you through any of our policies in plain language.",
-                     ("About Us", "about.html"), ("Contact Us", "contact.html"))
+                     ("About Us", "/about"), ("Contact Us", "/contact"))
 
     page = {
         "file": file,
@@ -164,7 +164,7 @@ def build_terms():
             ]),
 
             h("Delivery"),
-            p("Estimated delivery timelines are indicative and depend on the courier network, your location and factors beyond our control such as weather, strikes or public holidays. Delivery details, charges and timelines are set out on our <a href='shipping-returns.html'>Shipping &amp; Returns</a> page, which forms part of these terms."),
+            p("Estimated delivery timelines are indicative and depend on the courier network, your location and factors beyond our control such as weather, strikes or public holidays. Delivery details, charges and timelines are set out on our <a href='/shipping-returns'>Shipping &amp; Returns</a> page, which forms part of these terms."),
 
             h("Product Use and Suitability"),
             ul([
@@ -323,18 +323,18 @@ def build_404():
         <h1 class="e404__title">This Page Has <em>Moved On</em></h1>
         <p class="e404__sub">The link you followed may be broken, or the page may have been renamed. Let us get you back to something useful.</p>
         <div class="e404__actions">
-          <a class="btn btn--gold btn--lg" href="index.html">{I['home']} Back to Home</a>
-          <a class="btn btn--ghost btn--lg" href="products.html">{I['grid']} Browse Products</a>
+          <a class="btn btn--gold btn--lg" href="/">{I['home']} Back to Home</a>
+          <a class="btn btn--ghost btn--lg" href="/products">{I['grid']} Browse Products</a>
         </div>
 
         <div class="e404__links">
           <span>Popular pages</span>
           <nav aria-label="Popular pages">
-            <a href="about.html">About Us</a>
-            <a href="products.html">All Products</a>
-            <a href="order.html">Order &amp; Pay</a>
-            <a href="contact.html">Contact</a>
-            <a href="shipping-returns.html">Shipping &amp; Returns</a>
+            <a href="/about">About Us</a>
+            <a href="/products">All Products</a>
+            <a href="/order">Order &amp; Pay</a>
+            <a href="/contact">Contact</a>
+            <a href="/shipping-returns">Shipping &amp; Returns</a>
           </nav>
         </div>
       </div>
@@ -370,12 +370,14 @@ def build_404():
 # ======================================================= SITEMAP / ROBOTS
 def build_sitemap():
     today = "2026-09-06"
-    entries = [("", "1.0", "weekly"), ("products.html", "0.9", "weekly"),
-               ("about.html", "0.8", "monthly"), ("order.html", "0.8", "monthly"),
-               ("contact.html", "0.8", "monthly")]
-    entries += [(f"{p['slug']}.html", "0.9", "weekly") for p in PRODUCTS]
-    entries += [("shipping-returns.html", "0.5", "yearly"), ("privacy-policy.html", "0.3", "yearly"),
-                ("terms.html", "0.3", "yearly"), ("disclaimer.html", "0.3", "yearly")]
+    # Slugs, not filenames: the site is served with clean URLs, and a sitemap
+    # entry that redirects is a wasted crawl and a canonical mismatch.
+    entries = [("", "1.0", "weekly"), ("products", "0.9", "weekly"),
+               ("about", "0.8", "monthly"), ("order", "0.8", "monthly"),
+               ("contact", "0.8", "monthly")]
+    entries += [(p['slug'], "0.9", "weekly") for p in PRODUCTS]
+    entries += [("shipping-returns", "0.5", "yearly"), ("privacy-policy", "0.3", "yearly"),
+                ("terms", "0.3", "yearly"), ("disclaimer", "0.3", "yearly")]
 
     x = ['<?xml version="1.0" encoding="UTF-8"?>',
          '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"',
@@ -387,7 +389,7 @@ def build_sitemap():
         x.append(f"    <lastmod>{today}</lastmod>")
         x.append(f"    <changefreq>{freq}</changefreq>")
         x.append(f"    <priority>{prio}</priority>")
-        prod = next((p for p in PRODUCTS if f"{p['slug']}.html" == loc), None)
+        prod = next((p for p in PRODUCTS if p['slug'] == loc), None)
         if prod:
             x.append("    <image:image>")
             x.append(f"      <image:loc>{SITE['url']}/assets/img/products/{prod['slug']}.jpg</image:loc>")

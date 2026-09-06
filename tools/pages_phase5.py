@@ -2,7 +2,7 @@
 """Phase 5 pages: products listing + 6 product detail pages."""
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from build import (SITE, PRODUCTS, PMAP, I, rupee, stars, render, write, page_hero,
+from build import (SITE, PRODUCTS, PMAP, I, rupee, stars, render, write, page_hero, url,
                    cta_band, wa, org_schema, breadcrumb, faq_schema, product_card)
 
 REVIEWS = {
@@ -41,7 +41,7 @@ def build_products():
         "Our Collection",
         'Five Formulations,<br>One <em>Standard</em>',
         "A focused range covering dermatology, daily skincare, hair care and inner wellness — each developed under strict quality controls.",
-        [("Home", "index.html"), ("Products", None)],
+        [("Home", "/"), ("Products", None)],
     )
 
     cats = []
@@ -88,21 +88,21 @@ def build_products():
           <div class="why__icon">{I['drop']}</div>
           <h3>Morning Routine</h3>
           <p>Cleanse with Ritglow Face Wash, apply Ritclear AZ Serum, and always finish with Ritshade Sunscreen.</p>
-          <a class="link-gold" href="product-2.html">Start with Ritshade {I['arrow']}</a>
+          <a class="link-gold" href="/product-2">Start with Ritshade {I['arrow']}</a>
         </article>
         <article class="bigstep" data-reveal="up">
           <span class="bigstep__num">PM</span>
           <div class="why__icon">{I['leaf']}</div>
           <h3>Evening Routine</h3>
           <p>Cleanse away the day with Ritglow, then let Ritclear AZ Serum work on breakouts and marks overnight.</p>
-          <a class="link-gold" href="product-1.html">Explore Ritclear AZ {I['arrow']}</a>
+          <a class="link-gold" href="/product-1">Explore Ritclear AZ {I['arrow']}</a>
         </article>
         <article class="bigstep" data-reveal="up">
           <span class="bigstep__num">+</span>
           <div class="why__icon">{I['heart']}</div>
           <h3>Hair &amp; Body</h3>
           <p>Kiamild Shampoo as often as you wash, and Kiarestora Shower Oil in place of soap for comfortable skin.</p>
-          <a class="link-gold" href="product-5.html">Discover Kiarestora {I['arrow']}</a>
+          <a class="link-gold" href="/product-5">Discover Kiarestora {I['arrow']}</a>
         </article>
       </div>
     </div>
@@ -110,7 +110,7 @@ def build_products():
 """
     body += cta_band("Need Help Choosing the Right <em>Product</em>?",
                      "Message our team — we will recommend a routine based on your skin type and concern.",
-                     ("Contact Us", "contact.html"), ("How to Order", "order.html"))
+                     ("Contact Us", "/contact"), ("How to Order", "/order"))
 
     item_list = {
         "@context": "https://schema.org", "@type": "ItemList",
@@ -118,7 +118,7 @@ def build_products():
         "numberOfItems": len(PRODUCTS),
         "itemListElement": [{
             "@type": "ListItem", "position": i + 1,
-            "url": f"{SITE['url']}/{p['slug']}.html",
+            "url": f"{SITE['url']}{url(p['slug'])}",
             "name": p["name"],
         } for i, p in enumerate(PRODUCTS)],
     }
@@ -127,7 +127,7 @@ def build_products():
         "title": "All Products | KIARIT PHARMACEUTICALS — Skincare & Nutraceuticals",
         "desc": "Browse the KIARIT range — Ritclear AZ Serum, Ritshade Sunscreen, Ritglow Face Wash, Kiamild Shampoo and Kiarestora Shower Oil. GMP certified, 24-hour dispatch.",
         "og_title": "All Products — KIARIT PHARMACEUTICALS",
-        "schema": [org_schema(), breadcrumb([("Home", ""), ("Products", "products.html")]), item_list],
+        "schema": [org_schema(), breadcrumb([("Home", ""), ("Products", "/products")]), item_list],
         "head_extra": "",
     }
     html = render(page, body)
@@ -147,8 +147,8 @@ def build_product(p, idx):
   <section class="pdp">
     <div class="container">
       <nav class="crumbs crumbs--light" aria-label="Breadcrumb">
-        <a href="index.html">Home</a><span aria-hidden="true">/</span>
-        <a href="products.html">Products</a><span aria-hidden="true">/</span>
+        <a href="/">Home</a><span aria-hidden="true">/</span>
+        <a href="/products">Products</a><span aria-hidden="true">/</span>
         <span aria-current="page">{p['name']}</span>
       </nav>
 
@@ -193,7 +193,7 @@ def build_product(p, idx):
             <a class="btn btn--wa btn--lg" href="{wa('Hello KIARIT, I want to order the ' + p['name'] + ' (' + p['size'] + ') at ' + rupee(p['price']) + '. Please confirm availability.')}" target="_blank" rel="noopener noreferrer">
               {I['wa']} Order on WhatsApp
             </a>
-            <a class="btn btn--outline btn--lg" href="order.html">{I['qr']} Pay via QR</a>
+            <a class="btn btn--outline btn--lg" href="/order">{I['qr']} Pay via QR</a>
           </div>
 
           <div class="pdp__assure" data-reveal="up" data-delay="320">
@@ -322,11 +322,11 @@ def build_product(p, idx):
     body += f"""      </div>
 
       <nav class="pdp__nav" aria-label="Product navigation">
-        <a class="pdp__nav-link pdp__nav-link--prev" href="{prev_p['slug']}.html">
+        <a class="pdp__nav-link pdp__nav-link--prev" href="{url(prev_p['slug'])}">
           <span>Previous</span><strong>{prev_p['name']}</strong>
         </a>
-        <a class="btn btn--outline" href="products.html">All Products</a>
-        <a class="pdp__nav-link pdp__nav-link--next" href="{next_p['slug']}.html">
+        <a class="btn btn--outline" href="/products">All Products</a>
+        <a class="pdp__nav-link pdp__nav-link--next" href="{url(next_p['slug'])}">
           <span>Next</span><strong>{next_p['name']}</strong>
         </a>
       </nav>
@@ -335,11 +335,11 @@ def build_product(p, idx):
 """
     body += cta_band(f"Ready to Try <em>{p['name'].replace('Kiarit ', '')}</em>?",
                      "Message us on WhatsApp and our team will confirm your order within minutes.",
-                     ("How to Order", "order.html"), ("Contact Us", "contact.html"))
+                     ("How to Order", "/order"), ("Contact Us", "/contact"))
 
     product_schema = {
         "@context": "https://schema.org", "@type": "Product",
-        "@id": f"{SITE['url']}/{p['slug']}.html#product",
+        "@id": f"{SITE['url']}{url(p['slug'])}#product",
         "name": p["name"], "sku": p["sku"], "category": p["cat"],
         "description": p["short"],
         "image": [f"{SITE['url']}/assets/img/products/{p['slug']}.jpg"],
@@ -348,7 +348,7 @@ def build_product(p, idx):
         "size": p["size"],
         "offers": {
             "@type": "Offer",
-            "url": f"{SITE['url']}/{p['slug']}.html",
+            "url": f"{SITE['url']}{url(p['slug'])}",
             "priceCurrency": "INR", "price": str(p["price"]),
             "priceValidUntil": "2027-12-31",
             "availability": "https://schema.org/InStock",
@@ -380,7 +380,7 @@ def build_product(p, idx):
         "og_type": "product",
         "og": f"assets/img/products/{p['slug']}.jpg",
         "schema": [org_schema(),
-                   breadcrumb([("Home", ""), ("Products", "products.html"), (p["name"], f"{p['slug']}.html")]),
+                   breadcrumb([("Home", ""), ("Products", "/products"), (p["name"], url(p['slug']))]),
                    product_schema,
                    faq_schema(p["faq"])],
     }

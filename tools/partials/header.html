@@ -36,7 +36,7 @@
   <!-- Navbar -->
   <div class="nav">
     <div class="container nav__inner">
-      <a class="logo" href="index.html" aria-label="KIARIT Pharmaceuticals — Home">
+      <a class="logo" href="/" aria-label="KIARIT Pharmaceuticals — Home">
         <img class="logo__mark" src="assets/img/logo.svg" alt="" width="42" height="42" aria-hidden="true">
         <span class="logo__text">
           <span class="logo__name">Kiarit</span>
@@ -45,20 +45,20 @@
       </a>
 
       <nav id="navMenu" class="nav__menu" aria-label="Main navigation">
-        <div class="nav__item"><a class="nav__link" href="index.html">Home</a></div>
-        <div class="nav__item"><a class="nav__link" href="about.html">About</a></div>
+        <div class="nav__item"><a class="nav__link" href="/">Home</a></div>
+        <div class="nav__item"><a class="nav__link" href="/about">About</a></div>
         <div class="nav__item nav__item--has-dropdown">
-          <a class="nav__link" href="products.html" aria-haspopup="true" aria-expanded="false">
+          <a class="nav__link" href="/products" aria-haspopup="true" aria-expanded="false">
             Products
             <svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
           </a>
           <div class="dropdown" role="menu">
 {{PRODUCT_MENU}}
-            <div class="dropdown__all"><a href="products.html" role="menuitem">View All Products</a></div>
+            <div class="dropdown__all"><a href="/products" role="menuitem">View All Products</a></div>
           </div>
         </div>
-        <div class="nav__item"><a class="nav__link" href="contact.html">Contact</a></div>
-        <div class="nav__item"><a class="nav__link" href="order.html">Order &amp; Pay</a></div>
+        <div class="nav__item"><a class="nav__link" href="/contact">Contact</a></div>
+        <div class="nav__item"><a class="nav__link" href="/order">Order &amp; Pay</a></div>
         <div class="nav__mobile-cta">
           <a class="btn btn--gold btn--block" href="{{WA_ORDER}}" target="_blank" rel="noopener noreferrer">Order on WhatsApp</a>
           <a class="btn btn--outline btn--block" href="tel:{{PHONE_LINK}}">Call Us Now</a>

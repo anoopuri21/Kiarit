@@ -14,3 +14,11 @@ Thumbs.db
 # assets/video/hero.*, which are committed. Keep them out of the repo;
 # see tools/make_hero_video.py for how to restore and re-render.
 tools/hero_src/
+
+# Cloudflare deploy folder, assembled by tools/build_dist.py from files
+# already tracked elsewhere in the repo. Rebuild it, do not edit it.
+dist/
+
+# Wrangler local dev state
+.wrangler/
+node_modules/

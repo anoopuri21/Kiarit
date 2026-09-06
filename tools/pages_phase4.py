@@ -2,7 +2,7 @@
 """Phase 4 pages: About, Contact, Order & Pay."""
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from build import (SITE, PRODUCTS, I, rupee, stars, head, render, write, page_hero,
+from build import (SITE, PRODUCTS, I, rupee, stars, head, render, write, page_hero, url,
                    cta_band, wa, org_schema, breadcrumb, faq_schema, product_card)
 
 
@@ -12,7 +12,7 @@ def build_about():
         "Our Story",
         'Built on Science,<br>Guided by <em>Responsibility</em>',
         "A healthcare-focused pharmaceutical and cosmetic company delivering products we would trust for our own families.",
-        [("Home", "index.html"), ("About Us", None)],
+        [("Home", "/"), ("About Us", None)],
     )
 
     body += f"""
@@ -161,7 +161,7 @@ def build_about():
 """
     body += cta_band("Explore the <em>KIARIT</em> Collection",
                      "Six focused formulations across dermatology, skincare and inner wellness.",
-                     ("View Products", "products.html"), ("Contact Us", "contact.html"))
+                     ("View Products", "/products"), ("Contact Us", "/contact"))
 
     page = {
         "file": "about.html",
@@ -169,10 +169,10 @@ def build_about():
         "desc": "KIARIT PHARMACEUTICALS is a healthcare-focused company delivering quality dermatology, skincare and nutraceutical products. Read our story, mission and values.",
         "og_title": "About KIARIT PHARMACEUTICALS — Science, Quality, Responsibility",
         "schema": [org_schema(),
-                   breadcrumb([("Home", ""), ("About Us", "about.html")]),
+                   breadcrumb([("Home", ""), ("About Us", "/about")]),
                    {"@context": "https://schema.org", "@type": "AboutPage",
                     "name": "About KIARIT PHARMACEUTICALS",
-                    "url": SITE["url"] + "/about.html",
+                    "url": SITE["url"] + "/about",
                     "description": SITE["overview"],
                     "mainEntity": {"@id": SITE["url"] + "/#organization"}},
                    {"@context": "https://schema.org", "@type": "Person",
@@ -189,7 +189,7 @@ def build_contact():
         "Get in Touch",
         'We Would Love to<br><em>Hear From You</em>',
         "Questions about a product, an order or bulk enquiries — reach us directly by phone, email or WhatsApp.",
-        [("Home", "index.html"), ("Contact", None)],
+        [("Home", "/"), ("Contact", None)],
     )
 
     body += f"""
@@ -262,7 +262,7 @@ def build_contact():
 
           <div class="contact__actions" data-reveal="up" data-delay="440">
             <a class="btn btn--wa" href="{wa('Hello KIARIT, I would like to place an order.')}" target="_blank" rel="noopener noreferrer">{I['wa']} Order on WhatsApp</a>
-            <a class="btn btn--outline" href="order.html">How to Order &amp; Pay</a>
+            <a class="btn btn--outline" href="/order">How to Order &amp; Pay</a>
           </div>
         </div>
 
@@ -304,7 +304,7 @@ def build_contact():
             <div class="step" data-reveal="up"><span class="step__num">3</span><div><strong>Send Screenshot</strong><span>We dispatch within 24 working hours and share tracking.</span></div></div>
           </div>
           <div class="contact__actions" data-reveal="up" data-delay="440">
-            <a class="btn btn--gold" href="order.html" data-magnetic>Full Payment Details {I['arrow']}</a>
+            <a class="btn btn--gold" href="/order" data-magnetic>Full Payment Details {I['arrow']}</a>
           </div>
         </div>
       </div>
@@ -313,7 +313,7 @@ def build_contact():
 """
     body += cta_band("Have a Question About <em>KIARIT</em>?",
                      "Learn more about our science and standards, or browse the full product range.",
-                     ("About Us", "about.html"), ("View Products", "products.html"))
+                     ("About Us", "/about"), ("View Products", "/products"))
 
     page = {
         "file": "contact.html",
@@ -321,10 +321,10 @@ def build_contact():
         "desc": f"Contact KIARIT PHARMACEUTICALS on {SITE['phone_display']}, WhatsApp or email. New Delhi office. Order support, bulk and distribution enquiries welcome.",
         "og_title": "Contact KIARIT PHARMACEUTICALS",
         "schema": [org_schema(),
-                   breadcrumb([("Home", ""), ("Contact", "contact.html")]),
+                   breadcrumb([("Home", ""), ("Contact", "/contact")]),
                    {"@context": "https://schema.org", "@type": "LocalBusiness",
                     "@id": SITE["url"] + "/#localbusiness",
-                    "name": SITE["name"], "url": SITE["url"] + "/contact.html",
+                    "name": SITE["name"], "url": SITE["url"] + "/contact",
                     "image": SITE["url"] + "/assets/img/og/og-default.jpg",
                     "telephone": "+" + SITE["wa"], "email": SITE["email"],
                     "priceRange": "₹₹",
@@ -339,7 +339,7 @@ def build_contact():
                     "sameAs": list(SITE["social"].values())},
                    {"@context": "https://schema.org", "@type": "ContactPage",
                     "name": "Contact KIARIT PHARMACEUTICALS",
-                    "url": SITE["url"] + "/contact.html"}],
+                    "url": SITE["url"] + "/contact"}],
     }
     write("contact.html", render(page, body))
 
@@ -368,7 +368,7 @@ def build_order():
         "Order &amp; Payment",
         'Simple Ordering,<br><em>Secure Payment</em>',
         "No checkout forms and no card details. Message us, scan the QR code and your order is on its way.",
-        [("Home", "index.html"), ("How to Order & Pay", None)],
+        [("Home", "/"), ("How to Order & Pay", None)],
     )
 
     body += f"""
@@ -402,7 +402,7 @@ def build_order():
           <div class="why__icon">{I['truck']}</div>
           <h3>Share Screenshot &amp; Relax</h3>
           <p>Send us your payment screenshot on WhatsApp. We confirm your order in writing and dispatch within 24 working hours with tracking details.</p>
-          <a class="link-gold" href="shipping-returns.html">Shipping Policy {I['arrow']}</a>
+          <a class="link-gold" href="/shipping-returns">Shipping Policy {I['arrow']}</a>
         </article>
       </div>
     </div>
@@ -497,7 +497,7 @@ def build_order():
 """
     body += cta_band("Ready to Place Your <em>Order</em>?",
                      "Our team is available Monday to Saturday, 9:30 AM to 6:30 PM.",
-                     ("View Products", "products.html"), ("Contact Us", "contact.html"))
+                     ("View Products", "/products"), ("Contact Us", "/contact"))
 
     page = {
         "file": "order.html",
@@ -505,7 +505,7 @@ def build_order():
         "desc": "Order KIARIT products in three steps: message us on WhatsApp, scan our UPI QR to pay, share the screenshot. Free shipping above ₹999, dispatch in 24 hours.",
         "og_title": "How to Order & Pay — KIARIT PHARMACEUTICALS",
         "schema": [org_schema(),
-                   breadcrumb([("Home", ""), ("How to Order & Pay", "order.html")]),
+                   breadcrumb([("Home", ""), ("How to Order & Pay", "/order")]),
                    faq_schema(ORDER_FAQ),
                    {"@context": "https://schema.org", "@type": "HowTo",
                     "name": "How to order from KIARIT PHARMACEUTICALS",
@@ -514,13 +514,13 @@ def build_order():
                     "step": [
                         {"@type": "HowToStep", "position": 1, "name": "Message us on WhatsApp",
                          "text": "Send the product name, quantity and your full delivery address with PIN code.",
-                         "url": SITE["url"] + "/order.html#payment"},
+                         "url": SITE["url"] + "/order#payment"},
                         {"@type": "HowToStep", "position": 2, "name": "Scan the QR code and pay",
                          "text": "Open any UPI app, scan our QR code and pay the confirmed amount.",
-                         "url": SITE["url"] + "/order.html#payment"},
+                         "url": SITE["url"] + "/order#payment"},
                         {"@type": "HowToStep", "position": 3, "name": "Share the payment screenshot",
                          "text": "Send your payment screenshot on WhatsApp. We dispatch within 24 working hours.",
-                         "url": SITE["url"] + "/order.html#payment"}]}],
+                         "url": SITE["url"] + "/order#payment"}]}],
     }
     write("order.html", render(page, body))
 

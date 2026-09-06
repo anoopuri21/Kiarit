@@ -232,11 +232,11 @@ def _expand_partial(tpl):
     """Fill the shared placeholders so the product lists in the nav and the
     footer are generated from PRODUCTS rather than hand-maintained."""
     menu = "\n".join(
-        f'            <a href="{p["slug"]}.html" role="menuitem">'
+        f'            <a href="{url(p["slug"])}" role="menuitem">'
         f'<span class="dd-dot"></span>{p["name"]}</a>'
         for p in PRODUCTS)
     links = "\n".join(
-        f'          <a href="{p["slug"]}.html">{p["name"]}</a>'
+        f'          <a href="{url(p["slug"])}">{p["name"]}</a>'
         for p in PRODUCTS)
     return (tpl.replace("{{PRODUCT_MENU}}", menu)
                .replace("{{PRODUCT_LINKS}}", links)
@@ -255,9 +255,21 @@ _FOOTER_RAW = read("tools/partials/footer.html")
 _FLOATERS_RAW = read("tools/partials/floaters.html")
 
 
+def url(target):
+    """Map a page filename to its public URL.
+
+    The site is served from Cloudflare with clean URLs, so "about.html" is
+    published at "/about" and the home page at "/". Every link, canonical tag
+    and sitemap entry goes through here so the whole site agrees on one form
+    per page — a mismatch would put a redirect in front of an indexed URL.
+    """
+    name = target[:-5] if target.endswith(".html") else target
+    return "/" if name == "index" else "/" + name
+
+
 def head(page):
     """Build the <head> block."""
-    canonical = SITE["url"] + "/" + ("" if page["file"] == "index.html" else page["file"])
+    canonical = SITE["url"] + url(page["file"])
     og_img = page.get("og", "assets/img/og/og-default.jpg")
     robots = page.get("robots", "index, follow, max-image-preview:large, max-snippet:-1")
     schema = "\n".join(
@@ -361,7 +373,7 @@ def page_hero(eyebrow, title, sub, crumbs):
 """
 
 
-def cta_band(title, text, b1=("About Us", "about.html"), b2=("Contact Us", "contact.html")):
+def cta_band(title, text, b1=("About Us", "about"), b2=("Contact Us", "contact")):
     return f"""
   <section class="ctaband" aria-labelledby="cta-h">
     <div class="ctaband__glow" aria-hidden="true"></div>
@@ -415,18 +427,18 @@ def product_card(p, reveal=True):
     return f"""        <article class="pcard" data-tint="{tint_of(p)}"{r}>
           <div class="pcard__media">
             {tag}
-            <a href="{p['slug']}.html" aria-label="View {p['name']} details">
+            <a href="{url(p['slug'])}" aria-label="View {p['name']} details">
               <img src="assets/img/products/{p['slug']}.jpg" alt="{p['name']} — {p['cat'].lower()} product by KIARIT Pharmaceuticals" width="900" height="900" loading="lazy">
             </a>
           </div>
           <div class="pcard__body">
             <div class="pcard__cat">{p['cat']}</div>
-            <h3 class="pcard__title"><a href="{p['slug']}.html">{p['name']}</a></h3>
+            <h3 class="pcard__title"><a href="{url(p['slug'])}">{p['name']}</a></h3>
             <p class="pcard__desc">{p['short']}</p>
             <div class="pcard__foot">
               <div class="pcard__price">{rupee(p['price'])} <del>{rupee(p['mrp'])}</del><small>{p['size']} · Inclusive of taxes</small></div>
               <div class="pcard__actions">
-                <a class="pcard__icon-btn" href="{p['slug']}.html" aria-label="View {p['name']} details" title="View details">{I['eye']}</a>
+                <a class="pcard__icon-btn" href="{url(p['slug'])}" aria-label="View {p['name']} details" title="View details">{I['eye']}</a>
                 <a class="pcard__icon-btn pcard__icon-btn--wa" href="{wa('Hello KIARIT, I want to order the ' + p['name'] + '.')}" target="_blank" rel="noopener noreferrer" aria-label="Order {p['name']} on WhatsApp" title="Order on WhatsApp">{I['wa']}</a>
               </div>
             </div>

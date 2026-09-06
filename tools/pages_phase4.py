@@ -47,8 +47,8 @@ def build_about():
 
   <section class="section section--alt grain" aria-labelledby="mv-h">
     <div class="container">
-      <div class="sec-head sec-head--center">
-        <span class="eyebrow eyebrow--center" data-reveal="fade">Purpose</span>
+      <div class="sec-head">
+        <span class="eyebrow" data-reveal="fade">Purpose</span>
         <h2 id="mv-h" data-reveal="up" data-delay="90">Mission &amp; <em class="gold-text serif">Vision</em></h2>
       </div>
       <div class="mv__grid" data-stagger="60">
@@ -68,8 +68,8 @@ def build_about():
 
   <section class="section grain" aria-labelledby="val-h">
     <div class="container">
-      <div class="sec-head sec-head--center">
-        <span class="eyebrow eyebrow--center" data-reveal="fade">What Guides Us</span>
+      <div class="sec-head">
+        <span class="eyebrow" data-reveal="fade">What Guides Us</span>
         <h2 id="val-h" data-reveal="up" data-delay="90">Our Core <em class="gold-text serif">Values</em></h2>
       </div>
       <div class="why__grid" data-stagger="60">
@@ -112,8 +112,8 @@ def build_about():
 
   <section class="section grain" aria-labelledby="jour-h">
     <div class="container container--narrow">
-      <div class="sec-head sec-head--center">
-        <span class="eyebrow eyebrow--center" data-reveal="fade">Our Journey</span>
+      <div class="sec-head">
+        <span class="eyebrow" data-reveal="fade">Our Journey</span>
         <h2 id="jour-h" data-reveal="up" data-delay="90">Milestones That <em class="gold-text serif">Shaped Us</em></h2>
       </div>
       <ol class="timeline" data-stagger="60">
@@ -195,8 +195,8 @@ def build_contact():
     body += f"""
   <section class="section grain" aria-labelledby="ways-h">
     <div class="container">
-      <div class="sec-head sec-head--center">
-        <span class="eyebrow eyebrow--center" data-reveal="fade">Contact Channels</span>
+      <div class="sec-head">
+        <span class="eyebrow" data-reveal="fade">Contact Channels</span>
         <h2 id="ways-h" data-reveal="up" data-delay="90">Reach Us <em class="gold-text serif">Directly</em></h2>
         <p data-reveal="up" data-delay="170">No forms, no waiting queues. Every channel below reaches our team directly during business hours.</p>
       </div>
@@ -374,8 +374,8 @@ def build_order():
     body += f"""
   <section class="section grain" aria-labelledby="steps-h">
     <div class="container">
-      <div class="sec-head sec-head--center">
-        <span class="eyebrow eyebrow--center" data-reveal="fade">The Process</span>
+      <div class="sec-head">
+        <span class="eyebrow" data-reveal="fade">The Process</span>
         <h2 id="steps-h" data-reveal="up" data-delay="90">Order in Three <em class="gold-text serif">Easy Steps</em></h2>
         <p data-reveal="up" data-delay="170">Our ordering process is intentionally personal — a real person confirms every order before it ships.</p>
       </div>
@@ -460,8 +460,8 @@ def build_order():
 
   <section class="section grain" aria-labelledby="ship-h">
     <div class="container">
-      <div class="sec-head sec-head--center">
-        <span class="eyebrow eyebrow--center" data-reveal="fade">Good to Know</span>
+      <div class="sec-head">
+        <span class="eyebrow" data-reveal="fade">Good to Know</span>
         <h2 id="ship-h" data-reveal="up" data-delay="90">Shipping at a <em class="gold-text serif">Glance</em></h2>
       </div>
       <div class="why__grid" data-stagger="60">
@@ -479,8 +479,8 @@ def build_order():
 
   <section class="section section--alt grain" aria-labelledby="faq-h">
     <div class="container container--narrow">
-      <div class="sec-head sec-head--center">
-        <span class="eyebrow eyebrow--center" data-reveal="fade">Questions</span>
+      <div class="sec-head">
+        <span class="eyebrow" data-reveal="fade">Questions</span>
         <h2 id="faq-h" data-reveal="up" data-delay="90">Frequently Asked <em class="gold-text serif">Questions</em></h2>
       </div>
       <div class="faq" data-stagger="60">

@@ -54,8 +54,8 @@ def build_products():
     body += f"""
   <section class="section grain" aria-labelledby="all-h">
     <div class="container">
-      <div class="sec-head sec-head--center">
-        <span class="eyebrow eyebrow--center" data-reveal="fade">Browse</span>
+      <div class="sec-head">
+        <span class="eyebrow" data-reveal="fade">Browse</span>
         <h2 id="all-h" data-reveal="up" data-delay="90">The Complete <em class="gold-text serif">KIARIT Range</em></h2>
         <p data-reveal="up" data-delay="170">Every product below is manufactured in a GMP-certified facility and dispatched within 24 working hours.</p>
       </div>
@@ -78,8 +78,8 @@ def build_products():
 
   <section class="section section--alt grain" aria-labelledby="help-h">
     <div class="container">
-      <div class="sec-head sec-head--center">
-        <span class="eyebrow eyebrow--center" data-reveal="fade">Not Sure Where to Start</span>
+      <div class="sec-head">
+        <span class="eyebrow" data-reveal="fade">Not Sure Where to Start</span>
         <h2 id="help-h" data-reveal="up" data-delay="90">Build Your <em class="gold-text serif">Routine</em></h2>
       </div>
       <div class="bigsteps" data-stagger="60">
@@ -309,8 +309,8 @@ def build_product(p, idx):
 
   <section class="section section--alt grain" aria-labelledby="rel-h">
     <div class="container">
-      <div class="sec-head sec-head--center">
-        <span class="eyebrow eyebrow--center" data-reveal="fade">You May Also Like</span>
+      <div class="sec-head">
+        <span class="eyebrow" data-reveal="fade">You May Also Like</span>
         <h2 id="rel-h" data-reveal="up" data-delay="90">Related <em class="gold-text serif">Products</em></h2>
       </div>
       <div class="products__grid" data-stagger="60">

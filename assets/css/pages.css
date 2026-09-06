@@ -684,7 +684,8 @@
 .testi::after {
   content: "\201C";
   position: absolute; z-index: 0;
-  top: clamp(150px, 20vw, 300px); left: clamp(16px, 6vw, 120px);
+  /* Sits behind the card, clear of the now left-aligned heading above it. */
+  top: clamp(230px, 26vw, 400px); left: clamp(8px, 3vw, 60px);
   font-family: var(--font-display);
   font-size: clamp(180px, 22vw, 360px);
   line-height: .7;
@@ -1195,8 +1196,16 @@
   .pcard--featured .pcard__body {
     display: flex; flex-direction: column;
     justify-content: center;
-    padding: clamp(1.5rem, 1rem + 2vw, 2.6rem);
+    gap: var(--sp-5);
+    padding: clamp(2rem, 1.25rem + 2.5vw, 3rem);
   }
+  /* In the standard card the foot is pushed down with margin-top:auto so the
+     price line sits at the bottom. Here the body is vertically centred, so
+     that auto margin just tore a 300px hole through the middle of it. */
+  .pcard--featured .pcard__foot { margin-top: 0; }
+  .pcard--featured .pcard__cat,
+  .pcard--featured .pcard__title,
+  .pcard--featured .pcard__desc { margin-bottom: 0; }
   .pcard--featured .pcard__title { font-size: var(--fs-h3); }
   .pcard--featured .pcard__desc {
     font-size: var(--fs-body);

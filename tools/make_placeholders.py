@@ -27,9 +27,9 @@ def font(size, bold=False):
 # imagery read as one system.
 PRODUCTS = [
     ("KIARIT",  "RITCLEAR AZ",   "Azelaic Acid Serum",    (234, 239, 231), (99, 118, 95)),
-    ("KIARIT",  "RITSHADE",      "SPF 50+ PA++++",        (253, 241, 216), (201, 162, 39)),
+    ("KIARIT",  "RITSHADE",      "SPF 50+ PA+++",         (253, 241, 216), (201, 162, 39)),
     ("KIARIT",  "RITGLOW",       "Oil-Free Face Wash",    (244, 230, 224), (176, 118, 96)),
-    ("KIARIT",  "KIAMILD",       "Foaming Shampoo",       (240, 235, 225), (150, 130, 100)),
+    ("KIARIT",  "KIAMILD",       "Foaming Shampoo",       (231, 237, 228), (95, 118, 96)),
     ("KIARIT",  "KIARESTORA",    "Cleansing Shower Oil",  (238, 240, 242), (110, 130, 145)),
 ]
 
@@ -123,8 +123,13 @@ def product_image(i, brand, name, sub, bg, accent):
     print(" ->", p)
 
 
-for i, (b, n, s, bg, ac) in enumerate(PRODUCTS, 1):
-    product_image(i, b, n, s, bg, ac)
+# Product imagery is now real photography under assets/img/products/.
+# Set REGEN_PRODUCTS=1 to fall back to the flat placeholders.
+if os.environ.get("REGEN_PRODUCTS"):
+    for i, (b, n, s, bg, ac) in enumerate(PRODUCTS, 1):
+        product_image(i, b, n, s, bg, ac)
+else:
+    print("  (skipping product images - real photography in place)")
 
 
 # ---------------- Payment QR placeholder ----------------

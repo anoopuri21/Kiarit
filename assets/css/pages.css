@@ -1252,11 +1252,14 @@
 [data-tint="derma"] { --tint: var(--tint-derma); --tint-ink: #46543f; }
 [data-tint="skin"]  { --tint: var(--tint-skin);  --tint-ink: #7a4a3c; }
 [data-tint="sun"]   { --tint: var(--tint-sun);   --tint-ink: #7d5c0e; }
-[data-tint="hair"]  { --tint: var(--tint-hair);  --tint-ink: #5b4f3c; }
+[data-tint="hair"]  { --tint: var(--tint-hair);  --tint-ink: #3f5140; }
 [data-tint="nutra"] { --tint: var(--tint-nutra); --tint-ink: #8a4a24; }
 [data-tint="body"]  { --tint: var(--tint-body);  --tint-ink: #435159; }
 
-.pcard[data-tint] .pcard__media { background: var(--tint); }
+/* The media panel no longer takes the tint: the product photographs carry
+   their own backgrounds, so a coloured panel behind them read as a mistake.
+   The tint stays on the category label, the badge and the hover border. */
+.pcard[data-tint] .pcard__media { background: var(--ivory-2); }
 .pcard[data-tint] .pcard__cat   { color: var(--tint-ink); }
 .pcard[data-tint]:hover { border-color: color-mix(in srgb, var(--tint-ink) 34%, transparent); }
 

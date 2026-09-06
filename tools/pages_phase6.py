@@ -68,7 +68,7 @@ def build_privacy():
         'Privacy <em>Policy</em>',
         "How KIARIT PHARMACEUTICALS collects, uses and protects the limited personal information you share with us.",
         "Privacy Policy | KIARIT PHARMACEUTICALS",
-        "Read how KIARIT PHARMACEUTICALS collects, uses, stores and protects your personal data. We do not sell your information and we collect only what an order requires.",
+        "Read how KIARIT PHARMACEUTICALS collects, uses and protects your personal data. We never sell your information and collect only what an order requires.",
         [
             h("Our Commitment"),
             p(f"{SITE['name']} respects your privacy. This policy explains what information we collect when you contact us or place an order, why we collect it, how long we keep it and the choices available to you. We follow the Information Technology Act, 2000 and the Digital Personal Data Protection Act, 2023 as applicable in India."),
@@ -203,7 +203,7 @@ def build_shipping():
         'Shipping &amp; <em>Returns</em>',
         "Clear timelines, honest charges and a straightforward replacement process — everything you need to know before you order.",
         "Shipping & Returns Policy | KIARIT PHARMACEUTICALS",
-        "KIARIT shipping charges, dispatch and delivery timelines across India, damaged-parcel replacement, the returns policy for sealed goods, and refund processing times.",
+        "KIARIT shipping charges, dispatch and delivery timelines across India, damaged-parcel replacement and the returns policy for sealed goods.",
         [
             h("Shipping Charges"),
             ul([

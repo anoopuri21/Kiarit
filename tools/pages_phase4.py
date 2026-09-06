@@ -124,7 +124,7 @@ def build_about():
         <li class="timeline__item" data-reveal="up"><span class="timeline__year">2023</span>
           <div><strong>Skincare Expansion</strong><p>The daily skincare range launches, extending our dermatology expertise into everyday routines.</p></div></li>
         <li class="timeline__item" data-reveal="up"><span class="timeline__year">2025</span>
-          <div><strong>Nutraceuticals</strong><p>Kiarit Nutra Boost introduces inner wellness to the portfolio, completing our care philosophy.</p></div></li>
+          <div><strong>Body &amp; Hair</strong><p>Kiamild and Kiarestora extend our care philosophy beyond the face, into everyday hair and body routines.</p></div></li>
         <li class="timeline__item" data-reveal="up"><span class="timeline__year">2026</span>
           <div><strong>Nationwide Reach</strong><p>Serving customers across India with a focused six-product signature collection.</p></div></li>
       </ol>

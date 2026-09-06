@@ -47,29 +47,24 @@
       <nav aria-labelledby="f-prod">
         <h3 id="f-prod">Our Products</h3>
         <div class="footer__links">
-          <a href="product-1.html">Glow Serum</a>
-          <a href="product-2.html">Aqua Cream</a>
-          <a href="product-3.html">Clarify Gel</a>
-          <a href="product-4.html">Sun Shield SPF 50+</a>
-          <a href="product-5.html">Repair Hair Oil</a>
-          <a href="product-6.html">Nutra Boost Collagen</a>
+{{PRODUCT_LINKS}}
         </div>
       </nav>
 
       <div>
         <h3>Get in Touch</h3>
         <div class="footer__contact">
-          <a href="tel:+919876543210">
+          <a href="tel:{{PHONE_LINK}}">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            <span>+91 98765 43210</span>
+            <span>{{PHONE_DISPLAY}}</span>
           </a>
-          <a href="mailto:info@kiaritpharmaceuticals.com">
+          <a href="mailto:{{EMAIL}}">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
-            <span>info@kiaritpharmaceuticals.com</span>
+            <span>{{EMAIL}}</span>
           </a>
           <div>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            <span>Plot No. 24, Industrial Area Phase II,<br>New Delhi 110020, India</span>
+            <span>{{ADDR1}},<br>{{ADDR2}}</span>
           </div>
         </div>
 

@@ -1254,6 +1254,7 @@
 [data-tint="sun"]   { --tint: var(--tint-sun);   --tint-ink: #7d5c0e; }
 [data-tint="hair"]  { --tint: var(--tint-hair);  --tint-ink: #5b4f3c; }
 [data-tint="nutra"] { --tint: var(--tint-nutra); --tint-ink: #8a4a24; }
+[data-tint="body"]  { --tint: var(--tint-body);  --tint-ink: #435159; }
 
 .pcard[data-tint] .pcard__media { background: var(--tint); }
 .pcard[data-tint] .pcard__cat   { color: var(--tint-ink); }
@@ -1298,3 +1299,50 @@
 .section--alt.grain::before,
 .poster-light .poster-light__field::after,
 .trust::after { opacity: 1; }
+
+/* ==========================================================================
+   POSTER #2 — full-bleed plate with overlapping copy card (stage 3b)
+   The sixth distinct section pattern: the image runs edge to edge and the
+   text card sits over its lower-left corner, rather than the two sitting
+   side by side in neighbouring columns like the overview and CEO sections.
+   ========================================================================== */
+@media (min-width: 941px) {
+  .poster--bleed { padding-block: 0; }
+  .poster--bleed .poster__grid {
+    grid-template-columns: minmax(0, 1.02fr) minmax(0, 1fr);
+    align-items: center;
+    column-gap: 0;
+  }
+  /* Panel bleeds right, out to the viewport edge. */
+  .poster--bleed .poster__panel {
+    order: 2;
+    width: calc(100% + max(0px, (100vw - var(--container)) / 2) + var(--gutter));
+    max-width: none;
+    margin: 0;
+    border-radius: var(--r-md) 0 0 var(--r-md);
+    aspect-ratio: 4 / 4.6;
+    box-shadow: var(--sh-4);
+  }
+  .poster--bleed .poster__panel img { width: 100%; height: 100%; object-fit: cover; }
+  /* Caption sits clear of the overlapping copy card. */
+  .poster--bleed .poster__panel-cap {
+    left: auto; right: var(--sp-5);
+    text-align: right;
+    max-width: 60%;
+  }
+
+  /* Copy card overlaps the plate's left edge. */
+  .poster--bleed .poster__content {
+    order: 1;
+    position: relative;
+    z-index: 3;
+    margin-right: clamp(-7rem, -5vw, -3rem);
+    background: rgba(253,251,247,.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--line-gold);
+    border-radius: var(--r-md);
+    padding: clamp(1.8rem, 1.2rem + 2.6vw, 3.2rem);
+    box-shadow: var(--sh-3);
+    max-width: none;
+  }
+}

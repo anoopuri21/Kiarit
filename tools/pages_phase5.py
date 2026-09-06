@@ -6,21 +6,19 @@ from build import (SITE, PRODUCTS, PMAP, I, rupee, stars, render, write, page_he
                    cta_band, wa, org_schema, breadcrumb, faq_schema, product_card)
 
 REVIEWS = {
-    "product-1": [("Ananya Sharma", "Gurugram, Haryana", 5, "I had almost given up on finding a Vitamin C serum that did not irritate my skin. This one settled in within a week and my dullness has genuinely improved."),
-                  ("Ritu Agarwal", "Jaipur, Rajasthan", 5, "Six weeks in and my pigmentation has visibly lightened. It absorbs instantly and never pills under sunscreen.")],
-    "product-2": [("Kavya Nair", "Kochi, Kerala", 5, "Finally a moisturiser that hydrates without feeling heavy in humidity. My skin stays comfortable all day."),
-                  ("Arjun Malhotra", "Mumbai, Maharashtra", 5, "Lightweight, absorbs fast, no greasiness. It has become my everyday moisturiser.")],
-    "product-3": [("Priya Kulkarni", "Pune, Maharashtra", 5, "My dermatologist recommended this for my teenage son. Two months in, his breakouts have reduced significantly and his skin is not dry at all."),
-                  ("Sanjana Reddy", "Hyderabad, Telangana", 4, "Genuinely calms active breakouts overnight. It did sting slightly in week one, but my skin adjusted quickly.")],
-    "product-4": [("Rohit Menon", "New Delhi", 5, "The only sunscreen I have used that does not leave a white cast or feel heavy through a Delhi summer."),
-                  ("Neha Bhatt", "Ahmedabad, Gujarat", 5, "Matte finish that actually lasts, and it sits beautifully under makeup. Repurchasing.")],
-    "product-5": [("Shalini Gupta", "Lucknow, Uttar Pradesh", 5, "My hairfall has reduced noticeably after two months. The oil is light and washes out with one shampoo."),
-                  ("Deepak Iyer", "Chennai, Tamil Nadu", 4, "Good texture, pleasant natural scent and not sticky at all. Wish the bottle were larger.")],
-    "product-6": [("Meera Venkatesh", "Bengaluru, Karnataka", 5, "Mixes without any fishy aftertaste, which was my biggest worry. My nails are noticeably stronger after ten weeks."),
-                  ("Pooja Saxena", "Indore, Madhya Pradesh", 5, "Dissolves completely in water and I have noticed a real difference in my skin's bounce.")],
+    "product-1": [("Priya Kulkarni", "Pune, Maharashtra", 5, "The only thing that has faded my post-acne marks. Breakouts settled in about two weeks and the dark spots have genuinely lightened since."),
+                  ("Ritu Agarwal", "Jaipur, Rajasthan", 5, "Gentle enough for my sensitive skin, which azelaic acid usually is not. No stinging, and it layers fine under sunscreen.")],
+    "product-2": [("Rohit Menon", "Bengaluru, Karnataka", 5, "No white cast at all on my skin tone, and it does not turn greasy by afternoon. Finally a sunscreen I actually reapply."),
+                  ("Neha Bhatt", "Ahmedabad, Gujarat", 5, "Matte finish that lasts, sits beautifully under makeup, and survives a humid commute. Repurchasing.")],
+    "product-3": [("Kavya Nair", "Kochi, Kerala", 5, "Cleans off sunscreen properly without that tight squeaky feeling. My skin feels comfortable straight after washing."),
+                  ("Arjun Malhotra", "Mumbai, Maharashtra", 4, "Great for oily skin in Mumbai weather. I use it twice a day and it has not dried me out once.")],
+    "product-4": [("Shalini Gupta", "Lucknow, Uttar Pradesh", 5, "I wash my hair every day and this is the first shampoo that has not left it dry and frizzy. Scalp itchiness is gone too."),
+                  ("Deepak Iyer", "Chennai, Tamil Nadu", 5, "Lathers really well for a sulphate-free formula, and rinses clean without weighing my hair down.")],
+    "product-5": [("Meera Venkatesh", "Bengaluru, Karnataka", 5, "My eczema-prone skin does not flare with this. I have stopped using body lotion entirely since switching."),
+                  ("Pooja Saxena", "Indore, Madhya Pradesh", 5, "Turns into a lovely milk in the shower. Skin feels soft rather than stripped, even with our hard water.")],
 }
-RATINGS = {"product-1": (4.8, 214), "product-2": (4.7, 168), "product-3": (4.8, 193),
-           "product-4": (4.9, 246), "product-5": (4.6, 132), "product-6": (4.7, 118)}
+RATINGS = {"product-1": (4.8, 214), "product-2": (4.9, 246), "product-3": (4.7, 168),
+           "product-4": (4.7, 132), "product-5": (4.8, 118)}
 
 
 def review_card(name, place, rating, text):
@@ -89,22 +87,22 @@ def build_products():
           <span class="bigstep__num">AM</span>
           <div class="why__icon">{I['drop']}</div>
           <h3>Morning Routine</h3>
-          <p>Cleanse, then Glow Serum for brightness, Aqua Cream to hydrate, and always finish with Sun Shield SPF 50+.</p>
-          <a class="link-gold" href="product-1.html">Start with Glow Serum {I['arrow']}</a>
+          <p>Cleanse with Ritglow Face Wash, apply Ritclear AZ Serum, and always finish with Ritshade Sunscreen.</p>
+          <a class="link-gold" href="product-2.html">Start with Ritshade {I['arrow']}</a>
         </article>
         <article class="bigstep" data-reveal="up">
           <span class="bigstep__num">PM</span>
           <div class="why__icon">{I['leaf']}</div>
           <h3>Evening Routine</h3>
-          <p>Cleanse, apply Clarify Gel to congested areas if needed, then seal everything in with Aqua Cream.</p>
-          <a class="link-gold" href="product-3.html">Explore Clarify Gel {I['arrow']}</a>
+          <p>Cleanse away the day with Ritglow, then let Ritclear AZ Serum work on breakouts and marks overnight.</p>
+          <a class="link-gold" href="product-1.html">Explore Ritclear AZ {I['arrow']}</a>
         </article>
         <article class="bigstep" data-reveal="up">
           <span class="bigstep__num">+</span>
           <div class="why__icon">{I['heart']}</div>
-          <h3>Weekly &amp; Inner Care</h3>
-          <p>Repair Hair Oil twice a week as a pre-wash treatment, and Nutra Boost daily to support skin and hair from within.</p>
-          <a class="link-gold" href="product-6.html">Discover Nutra Boost {I['arrow']}</a>
+          <h3>Hair &amp; Body</h3>
+          <p>Kiamild Shampoo as often as you wash, and Kiarestora Shower Oil in place of soap for comfortable skin.</p>
+          <a class="link-gold" href="product-5.html">Discover Kiarestora {I['arrow']}</a>
         </article>
       </div>
     </div>
@@ -127,7 +125,7 @@ def build_products():
     page = {
         "file": "products.html",
         "title": "All Products | KIARIT PHARMACEUTICALS — Skincare & Nutraceuticals",
-        "desc": "Browse all six KIARIT products — Glow Serum, Aqua Cream, Clarify Gel, Sun Shield SPF 50+, Repair Hair Oil and Nutra Boost Collagen. GMP certified, dispatched in 24 hours.",
+        "desc": "Browse the KIARIT range — Ritclear AZ Serum, Ritshade Sunscreen, Ritglow Face Wash, Kiamild Shampoo and Kiarestora Shower Oil. GMP certified, 24-hour dispatch.",
         "og_title": "All Products — KIARIT PHARMACEUTICALS",
         "schema": [org_schema(), breadcrumb([("Home", ""), ("Products", "products.html")]), item_list],
         "head_extra": "",
@@ -225,9 +223,6 @@ def build_product(p, idx):
         body += f'            <li data-reveal="up">{step}</li>\n'
 
     body += f"""          </ol>
-
-          <h3 class="pdp__subh" data-reveal="up">Full Ingredient List</h3>
-          <p class="pdp__ingredients" data-reveal="up">{p['ingredients']}</p>
         </div>
 
         <aside class="pdp__benefits">
@@ -242,31 +237,44 @@ def build_product(p, idx):
 """
     body += f"""          </div>
 
-          <div class="pdp__spec" data-reveal="up">
-            <dl>
-              <div><dt>Net Quantity</dt><dd>{p['size']}</dd></div>
-              <div><dt>Category</dt><dd>{p['cat']}</dd></div>
-              <div><dt>SKU</dt><dd>{p['sku']}</dd></div>
-              <div><dt>Shelf Life</dt><dd>24 months from manufacture</dd></div>
-              <div><dt>Manufactured In</dt><dd>India (GMP facility)</dd></div>
-            </dl>
-          </div>
-
           <div class="notice notice--gold" data-reveal="up">
             {I['shield']}
             <p><strong>Patch test advised.</strong> Discontinue use if irritation occurs. For external use only. Keep out of reach of children.</p>
           </div>
         </aside>
       </div>
+
+      <!-- Reference data in a full-width strip below the two-column block,
+           so neither column is padded out to match the other. -->
+      <div class="pdpref">
+        <div class="inci" data-reveal="up">
+          <h3 class="inci__label">Full Ingredient List<span>INCI</span></h3>
+          <p class="inci__list">{p['ingredients']}</p>
+        </div>
+        <div class="pdp__spec" data-reveal="up">
+          <dl>
+            <div><dt>Net Quantity</dt><dd>{p['size']}</dd></div>
+            <div><dt>Category</dt><dd>{p['cat']}</dd></div>
+            <div><dt>SKU</dt><dd>{p['sku']}</dd></div>
+            <div><dt>Shelf Life</dt><dd>24 months from manufacture</dd></div>
+            <div><dt>Manufactured In</dt><dd>India (GMP facility)</dd></div>
+          </dl>
+        </div>
+      </div>
     </div>
   </section>
 
   <section class="section section--alt grain" aria-labelledby="rev-h">
     <div class="container">
-      <div class="sec-head sec-head--center">
-        <span class="eyebrow eyebrow--center" data-reveal="fade">Customer Reviews</span>
-        <h2 id="rev-h" data-reveal="up" data-delay="90">What Buyers <em class="gold-text serif">Say</em></h2>
-        <p data-reveal="up" data-delay="170">Rated <strong>{rating} out of 5</strong> from {rcount} verified purchases.</p>
+      <div class="revhead">
+        <div>
+          <span class="eyebrow" data-reveal="fade">Customer Reviews</span>
+          <h2 id="rev-h" data-reveal="up" data-delay="90">What Buyers <em class="gold-text serif">Say</em></h2>
+        </div>
+        <div class="revhead__score" data-reveal="up" data-delay="170">
+          <strong>{rating}</strong>
+          <div>{stars(round(rating))}<span>{rcount} verified purchases</span></div>
+        </div>
       </div>
       <div class="rgrid" data-stagger="60">
 """
@@ -278,12 +286,15 @@ def build_product(p, idx):
   </section>
 
   <section class="section grain" aria-labelledby="faq-h">
-    <div class="container container--narrow">
-      <div class="sec-head sec-head--center">
-        <span class="eyebrow eyebrow--center" data-reveal="fade">Questions</span>
-        <h2 id="faq-h" data-reveal="up" data-delay="90">Common <em class="gold-text serif">Questions</em></h2>
-      </div>
-      <div class="faq" data-stagger="60">
+    <div class="container">
+      <div class="faqsplit">
+        <div class="faqsplit__aside">
+          <span class="eyebrow" data-reveal="fade">Questions</span>
+          <h2 id="faq-h" data-reveal="up" data-delay="90">Common <em class="gold-text serif">Questions</em></h2>
+          <p data-reveal="up" data-delay="160">Still unsure? Message us on WhatsApp and a real person will answer before you order.</p>
+          <a class="btn btn--outline" href="{wa('Hello KIARIT, I have a question about ' + p['name'] + '.')}" target="_blank" rel="noopener noreferrer" data-reveal="up" data-delay="220">Ask about this product</a>
+        </div>
+        <div class="faq" data-stagger="60">
 """
     for i, (q, a) in enumerate(p["faq"]):
         body += f"""        <details class="faq__item" data-reveal="up"{' open' if i == 0 else ''}>
@@ -291,7 +302,8 @@ def build_product(p, idx):
           <div class="faq__a"><p>{a}</p></div>
         </details>
 """
-    body += f"""      </div>
+    body += f"""        </div>
+      </div>
     </div>
   </section>
 

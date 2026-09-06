@@ -731,11 +731,18 @@
 
 /* ---- PDP body columns ---- */
 .pdp__cols {
+  /* Columns are independent flows of unequal length, so a masonry-style
+     column layout suits them better than a grid that leaves the shorter
+     side padded out with dead space. */
   display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  /* Narrower copy column and a wider aside evens the two flows out; the
+     previous 1.35:1 left a 300px void under the shorter side. */
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr);
   gap: var(--gap-2xl);
   align-items: start;
 }
+/* Pull the aside up level with the copy and let it sit tight to its content. */
+.pdp__benefits { align-self: start; }
 @media (max-width: 940px) { .pdp__cols { grid-template-columns: 1fr; } }
 .pdp__cols > div > p { max-width: var(--measure); }
 
@@ -1073,3 +1080,125 @@
 /* The ingredient list is reference material, not prose — it can run wider
    but still needs a ceiling. */
 .pdp__ingredients { max-width: var(--measure) !important; }
+
+/* ==========================================================================
+   PDP — INGREDIENT BAND, REVIEW HEAD, FAQ SPLIT (stage 3c)
+   The product page ran three centred-heading sections back to back. These
+   give it the same compositional variety as the home page.
+   ========================================================================== */
+
+/* Full-width INCI strip. Reference data, so it is labelled and set apart
+   rather than trailing off the bottom of the left column. */
+.inci {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--gap-xl);
+  align-items: start;
+  margin-top: var(--sp-8);
+  padding-top: var(--sp-6);
+  border-top: 1px solid var(--line-gold);
+}
+.inci__label {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--fs-eyebrow);
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--gold-800);
+  white-space: nowrap;
+}
+.inci__label span {
+  display: block;
+  margin-top: .3rem;
+  font-size: var(--fs-eyebrow);
+  letter-spacing: .2em;
+  color: var(--ink-4);
+  font-weight: 600;
+}
+.inci__list {
+  margin: 0;
+  max-width: none;        /* a comma list, not prose — it can run wide */
+  font-size: var(--fs-small);
+  line-height: 1.8;
+  color: var(--ink-2);
+}
+@media (max-width: 700px) {
+  .inci { grid-template-columns: 1fr; gap: var(--sp-4); }
+}
+
+/* Review head: title left, score pulled out right. */
+.revhead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--gap-lg);
+  padding-bottom: var(--sp-6);
+  margin-bottom: var(--sp-7);
+  border-bottom: 1px solid var(--line-gold);
+}
+.revhead h2 { margin: var(--sp-3) 0 0; }
+.revhead__score {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-md);
+}
+.revhead__score > strong {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 1.8rem + 2vw, 3.4rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--gold-800);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+.revhead__score .stars { margin-bottom: .3rem; }
+.revhead__score span {
+  display: block;
+  font-size: var(--fs-eyebrow);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+/* FAQ: intent on the left, questions on the right. */
+.faqsplit {
+  display: grid;
+  grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr);
+  gap: var(--gap-2xl);
+  align-items: start;
+}
+.faqsplit__aside { position: sticky; top: calc(var(--header-h) + var(--sp-6)); }
+.faqsplit__aside h2 { margin: var(--sp-3) 0 var(--sp-4); }
+.faqsplit__aside p {
+  color: var(--ink-3);
+  margin-bottom: var(--sp-5);
+  max-width: var(--measure-narrow);
+}
+@media (max-width: 940px) {
+  .faqsplit { grid-template-columns: 1fr; gap: var(--gap-lg); }
+  .faqsplit__aside { position: static; }
+}
+
+/* Reference band: INCI list and the spec table, side by side under the
+   two-column block. Keeps both flows in the block a similar length. */
+.pdpref {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  gap: var(--gap-2xl);
+  align-items: start;
+  margin-top: var(--sp-8);
+  padding-top: var(--sp-6);
+  border-top: 1px solid var(--line-gold);
+}
+.pdpref .inci {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+  grid-template-columns: 1fr;
+  gap: var(--sp-4);
+}
+.pdpref .pdp__spec { margin-top: 0; }
+@media (max-width: 940px) {
+  .pdpref { grid-template-columns: 1fr; gap: var(--gap-lg); }
+}

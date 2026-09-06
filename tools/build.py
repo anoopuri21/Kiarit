@@ -18,16 +18,16 @@ SITE = {
     "name": "KIARIT PHARMACEUTICALS",
     "short": "KIARIT",
     "url": "https://www.kiaritpharmaceuticals.com",
-    "phone_display": "+91 98765 43210",
-    "phone_link": "+919876543210",
-    "wa": "919876543210",
-    "email": "info@kiaritpharmaceuticals.com",
-    "addr_line1": "Plot No. 24, Industrial Area Phase II",
-    "addr_line2": "New Delhi 110020, India",
-    "street": "Plot No. 24, Industrial Area Phase II",
-    "city": "New Delhi",
-    "region": "Delhi",
-    "zip": "110020",
+    "phone_display": "+91 85878 75749",
+    "phone_link": "+918587875749",
+    "wa": "918587875749",
+    "email": "kiaritpharma@gmail.com",
+    "addr_line1": "1st Floor, 1st Main, Ganga Nagar, Gramatana,",
+    "addr_line2": "HMT Layout, CBI Main Rd, Bengaluru, Karnataka 560032",
+    "street": "1st Floor, 1st Main, Ganga Nagar, Gramatana, HMT Layout, CBI Main Rd",
+    "city": "Bengaluru",
+    "region": "Karnataka",
+    "zip": "560032",
     "upi_id": "kiaritpharma@upi",
     "bank_name": "HDFC Bank",
     "bank_ac": "5010 0123 4567 89",
@@ -56,150 +56,127 @@ SITE = {
 # ---------------------------------------------------------------- product data
 PRODUCTS = [
     {
-        "slug": "product-1", "name": "Kiarit Glow Serum", "cat": "Dermatology",
+        "slug": "product-1", "name": "Ritclear AZ Serum", "cat": "Dermatology",
         "tag": "Bestseller", "tag_class": "",
-        "size": "30 ml", "price": 849, "mrp": 1099, "sku": "KRT-GS-030",
-        "short": "A lightweight Vitamin C & niacinamide serum that visibly brightens dull skin, evens tone and defends against daily environmental stress.",
-        "meta": "Kiarit Glow Serum with Vitamin C and niacinamide brightens dull skin, evens tone and protects against daily environmental stress. 30 ml. Order on WhatsApp.",
+        "size": "30 ml", "price": 849, "mrp": 1099, "sku": "KRT-RCAZ-030",
+        "short": "An azelaic acid and zinc serum that calms active breakouts, fades post-acne marks and evens out uneven tone without over-drying.",
+        "meta": "Ritclear AZ Serum with azelaic acid and zinc calms breakouts, fades post-acne marks and evens skin tone without over-drying. 30 ml. Order on WhatsApp.",
         "long": [
-            "Kiarit Glow Serum is a fast-absorbing daily brightening treatment built around a stabilised form of Vitamin C, supported by niacinamide and a light hyaluronic base. It is formulated for Indian skin and climate — potent enough to deliver visible results, gentle enough for everyday use.",
-            "Used consistently each morning, it helps soften the appearance of dullness, uneven tone and early pigmentation, while the antioxidant complex helps defend skin against pollution and daily oxidative stress.",
+            "Ritclear AZ Serum pairs azelaic acid with zinc PCA and niacinamide in a lightweight, fast-absorbing base. Azelaic acid works on two fronts at once — it calms the bacteria and inflammation behind active breakouts, and it interrupts the excess pigment production that leaves dark marks behind after a spot heals.",
+            "It is formulated for Indian skin and climate, where post-inflammatory hyperpigmentation is often the longer-lasting problem. Gentle enough for daily use on sensitive, acne-prone skin, and light enough to layer under sunscreen without pilling.",
         ],
         "benefits": [
-            ("Visible Brightening", "Helps reduce the look of dullness and uneven tone over 4–6 weeks."),
-            ("Antioxidant Defence", "Supports the skin's barrier against pollution and free-radical stress."),
-            ("Lightweight Finish", "Absorbs in seconds with no sticky or greasy residue."),
-            ("Gentle Formulation", "Free from parabens, sulphates and added synthetic fragrance."),
+            ("Calms Active Breakouts", "Azelaic acid targets the bacteria and inflammation behind spots."),
+            ("Fades Post-Acne Marks", "Interrupts excess pigment so dark marks clear faster."),
+            ("Evens Skin Tone", "Helps soften the look of blotchiness and uneven patches."),
+            ("Gentle Daily Use", "Well tolerated by sensitive skin; no parabens or added fragrance."),
         ],
-        "how": ["Cleanse and pat the skin dry.",
-                "Apply 3–4 drops to the face and neck, avoiding the eye area.",
-                "Follow with Kiarit Aqua Cream to lock in hydration.",
-                "Always finish with Kiarit Sun Shield SPF 50+ during the day."],
-        "ingredients": "Aqua, Ethyl Ascorbic Acid (Vitamin C), Niacinamide, Sodium Hyaluronate, Glycerin, Propanediol, Ferulic Acid, Panthenol, Tocopherol, Xanthan Gum, Phenoxyethanol.",
-        "faq": [("How soon will I see results?", "Most users notice improved radiance within 3–4 weeks of consistent daily use, with tone improvements around 6–8 weeks."),
-                ("Can I use it with other actives?", "Yes. Use the serum in the morning and keep exfoliating acids or retinoids for your night routine.")],
+        "how": ["Cleanse with Ritglow Face Wash and pat the skin dry.",
+                "Apply 3\u20134 drops to the face, avoiding the eye area.",
+                "Begin once daily at night, building to twice daily as your skin adjusts.",
+                "Always finish with Ritshade Sunscreen during the day."],
+        "ingredients": "Aqua, Azelaic Acid, Niacinamide, Zinc PCA, Glycerin, Propanediol, Sodium Hyaluronate, Panthenol, Allantoin, Xanthan Gum, Phenoxyethanol.",
+        "faq": [("How soon will I see results?", "Active breakouts usually settle within 2\u20133 weeks. Post-acne marks fade more gradually, typically over 8\u201312 weeks of consistent use."),
+                ("Can I use it with other actives?", "Yes, but introduce them separately. Keep retinoids or exfoliating acids to alternate nights until you know how your skin responds.")],
     },
     {
-        "slug": "product-2", "name": "Kiarit Aqua Cream", "cat": "Skincare",
+        "slug": "product-2", "name": "Ritshade Sunscreen", "cat": "Daily Protection",
         "tag": "", "tag_class": "",
-        "size": "50 g", "price": 699, "mrp": 899, "sku": "KRT-AC-050",
-        "short": "A weightless hyaluronic acid moisturiser that locks in hydration for 24 hours, restoring softness and a healthy, dewy finish.",
-        "meta": "Kiarit Aqua Cream is a weightless hyaluronic acid moisturiser delivering 24-hour hydration with a non-greasy, dewy finish. 50 g. Order on WhatsApp.",
+        "size": "50 ml", "price": 749, "mrp": 949, "sku": "KRT-RSH-050",
+        "short": "A broad-spectrum SPF 50+ PA++++ sunscreen with a weightless finish, no white cast and no greasy residue \u2014 built for daily Indian wear.",
+        "meta": "Ritshade Sunscreen offers broad-spectrum SPF 50+ PA++++ protection with a weightless, no-white-cast finish suited to daily Indian wear. 50 ml.",
         "long": [
-            "Kiarit Aqua Cream is a gel-cream moisturiser built on multi-weight hyaluronic acid, ceramides and glycerin. The low-weight molecules draw moisture deep into the skin while the ceramide complex helps seal the barrier so hydration lasts through the day.",
-            "The texture is deliberately weightless — it disappears into the skin without tack or shine, which makes it comfortable in humid weather and easy to layer under sunscreen or makeup.",
+            "Ritshade Sunscreen delivers broad-spectrum SPF 50+ PA++++ protection against both UVB burning and the UVA rays responsible for tanning, pigmentation and premature ageing. The filter system is chosen for cosmetic elegance as much as protection.",
+            "Most people stop wearing sunscreen because of how it feels, not how it works. This one absorbs in seconds, leaves no white cast on Indian skin tones, and finishes matte enough to wear under makeup or on its own through a humid day.",
         ],
         "benefits": [
-            ("24-Hour Hydration", "Multi-weight hyaluronic acid holds moisture at every layer of the skin."),
-            ("Barrier Support", "Ceramides help strengthen and repair a compromised moisture barrier."),
-            ("Non-Comedogenic", "Formulated so it will not clog pores or trigger congestion."),
-            ("Layers Cleanly", "Sits comfortably under sunscreen, serum or makeup."),
-        ],
-        "how": ["Apply to clean, slightly damp skin morning and night.",
-                "Warm a pea-sized amount between fingertips.",
-                "Press gently into the face and neck using upward strokes.",
-                "Follow with sunscreen during the daytime."],
-        "ingredients": "Aqua, Glycerin, Sodium Hyaluronate, Ceramide NP, Squalane, Caprylic/Capric Triglyceride, Cetearyl Alcohol, Panthenol, Allantoin, Tocopherol, Phenoxyethanol.",
-        "faq": [("Is it suitable for oily skin?", "Yes. The gel-cream base is oil-free and non-comedogenic, making it well suited to oily and combination skin."),
-                ("Can it be used under makeup?", "Absolutely. Allow one minute to absorb fully, then apply sunscreen and makeup as usual.")],
-    },
-    {
-        "slug": "product-3", "name": "Kiarit Clarify Gel", "cat": "Dermatology",
-        "tag": "Dermat Choice", "tag_class": " pcard__tag--sage",
-        "size": "30 g", "price": 579, "mrp": 749, "sku": "KRT-CG-030",
-        "short": "A non-drying salicylic acid gel that calms active breakouts, refines pores and helps prevent post-acne marks over time.",
-        "meta": "Kiarit Clarify Gel with 2% salicylic acid calms active breakouts, unclogs pores and helps prevent post-acne marks without over-drying. 30 g.",
-        "long": [
-            "Kiarit Clarify Gel pairs 2% salicylic acid with soothing zinc PCA and centella asiatica. The salicylic acid works inside the pore to clear congestion, while the calming actives keep irritation and post-treatment dryness in check.",
-            "It is designed as a targeted daily treatment for oily and acne-prone skin — effective on active breakouts, but balanced enough that the skin does not end up tight, flaky or over-stripped.",
-        ],
-        "benefits": [
-            ("Clears Congestion", "2% salicylic acid dissolves oil and debris trapped inside pores."),
-            ("Calms Redness", "Centella and zinc PCA soothe inflammation around active breakouts."),
-            ("Refines Texture", "Regular use helps visibly minimise the appearance of enlarged pores."),
-            ("No Over-Drying", "Balanced formulation avoids the tightness typical of acne treatments."),
-        ],
-        "how": ["Cleanse thoroughly and pat dry.",
-                "Apply a thin layer over affected areas once daily to begin.",
-                "Increase to twice daily only once your skin has adjusted.",
-                "Always use sunscreen — exfoliating acids increase sun sensitivity."],
-        "ingredients": "Aqua, Salicylic Acid (2%), Zinc PCA, Centella Asiatica Extract, Niacinamide, Glycerin, Propanediol, Allantoin, Panthenol, Xanthan Gum, Phenoxyethanol.",
-        "faq": [("Can I use it on my whole face?", "Yes, a thin layer across oily areas is fine. Start once daily and build up slowly."),
-                ("Is it safe during pregnancy?", "Please consult your physician before using salicylic acid products during pregnancy.")],
-    },
-    {
-        "slug": "product-4", "name": "Kiarit Sun Shield SPF 50+", "cat": "Daily Protection",
-        "tag": "", "tag_class": "",
-        "size": "50 ml", "price": 749, "mrp": 949, "sku": "KRT-SS-050",
-        "short": "Broad-spectrum SPF 50+ PA++++ protection in a matte, no-white-cast finish that layers beautifully under makeup.",
-        "meta": "Kiarit Sun Shield SPF 50+ PA++++ offers broad-spectrum UVA and UVB protection with a matte, no-white-cast finish. 50 ml. Order on WhatsApp.",
-        "long": [
-            "Kiarit Sun Shield delivers SPF 50+ PA++++ broad-spectrum protection using a modern hybrid filter system. It shields against UVA, UVB and visible-light stress without the heaviness or chalky cast associated with traditional sunscreens.",
-            "The finish is genuinely matte, which makes it practical for daily Indian weather — comfortable through humidity, and clean enough to wear under makeup without pilling.",
-        ],
-        "benefits": [
-            ("SPF 50+ PA++++", "Highest tier of broad-spectrum UVA and UVB defence."),
-            ("No White Cast", "Blends invisibly across a wide range of Indian skin tones."),
-            ("Matte Finish", "Controls shine through the day without drying the skin."),
-            ("Makeup Friendly", "Sits smoothly under foundation without pilling or patchiness."),
+            ("SPF 50+ PA++++", "Broad-spectrum defence against UVB, UVA and visible light."),
+            ("No White Cast", "Blends clear on medium and deep skin tones."),
+            ("Weightless Finish", "Absorbs quickly and sits matte, even in humidity."),
+            ("Layers Cleanly", "Works over serums and under makeup without pilling."),
         ],
         "how": ["Apply as the final step of your morning routine.",
-                "Use approximately two finger-lengths for face and neck.",
-                "Apply 15 minutes before sun exposure.",
-                "Reapply every 3–4 hours when outdoors."],
-        "ingredients": "Aqua, Ethylhexyl Methoxycinnamate, Zinc Oxide, Titanium Dioxide, Bis-Ethylhexyloxyphenol Methoxyphenyl Triazine, Glycerin, Niacinamide, Silica, Tocopherol, Phenoxyethanol.",
-        "faq": [("Does it leave a white cast?", "No. The hybrid filter system is formulated specifically to blend invisibly on deeper skin tones."),
-                ("How often should I reapply?", "Every 3–4 hours when outdoors, or immediately after heavy sweating or swimming.")],
+                "Use two finger-lengths to cover the face and neck properly.",
+                "Allow 15 minutes before sun exposure.",
+                "Reapply every 3\u20134 hours when outdoors."],
+        "ingredients": "Aqua, Ethylhexyl Methoxycinnamate, Bis-Ethylhexyloxyphenol Methoxyphenyl Triazine, Butyl Methoxydibenzoylmethane, Niacinamide, Glycerin, Tocopherol, Squalane, Panthenol, Xanthan Gum, Phenoxyethanol.",
+        "faq": [("Is it suitable for oily skin?", "Yes. The finish is matte and non-comedogenic, so it suits oily and combination skin well."),
+                ("Do I need it indoors?", "If you sit near windows, yes. UVA passes through glass and is the main driver of pigmentation and ageing.")],
     },
     {
-        "slug": "product-5", "name": "Kiarit Repair Hair Oil", "cat": "Hair Care",
+        "slug": "product-3", "name": "Ritglow Face Wash", "cat": "Skincare",
+        "tag": "Oil-Free", "tag_class": " pcard__tag--sage",
+        "size": "100 ml", "price": 449, "mrp": 599, "sku": "KRT-RGF-100",
+        "short": "An oil-free daily face wash that lifts away excess sebum, sweat and pollution without stripping the skin or leaving it tight.",
+        "meta": "Ritglow Face Wash is an oil-free daily cleanser that removes sebum, sweat and pollution without stripping skin or leaving tightness. 100 ml.",
+        "long": [
+            "Ritglow Face Wash is built around a mild amino-acid surfactant system rather than harsh sulphates. It clears the day\u2019s oil, sweat, sunscreen and pollution thoroughly, but leaves the skin\u2019s moisture barrier intact.",
+            "The oil-free formula suits oily, combination and acne-prone skin, and it is gentle enough to use twice daily. Skin should feel clean and comfortable afterwards \u2014 never tight, squeaky or stripped.",
+        ],
+        "benefits": [
+            ("Oil-Free Formula", "Clears excess sebum without adding any back."),
+            ("No Tightness", "Amino-acid surfactants clean without stripping the barrier."),
+            ("Removes Sunscreen", "Lifts away SPF, sweat and pollution in a single wash."),
+            ("Twice-Daily Safe", "Mild enough for morning and evening use."),
+        ],
+        "how": ["Wet the face with lukewarm water.",
+                "Massage a coin-sized amount over damp skin for 30 seconds.",
+                "Rinse thoroughly and pat dry \u2014 do not rub.",
+                "Follow with Ritclear AZ Serum and your moisturiser."],
+        "ingredients": "Aqua, Sodium Cocoyl Glycinate, Cocamidopropyl Betaine, Glycerin, Niacinamide, Sodium PCA, Panthenol, Allantoin, Aloe Barbadensis Leaf Juice, Citric Acid, Phenoxyethanol.",
+        "faq": [("Will it dry out my skin?", "No. The surfactant system is chosen specifically to clean without stripping, so skin stays comfortable after rinsing."),
+                ("Can I use it with the AZ serum?", "Yes \u2014 they are designed to work together. Cleanse first, then apply the serum to dry skin.")],
+    },
+    {
+        "slug": "product-4", "name": "Kiamild Foaming Shampoo", "cat": "Hair Care",
         "tag": "", "tag_class": "",
-        "size": "100 ml", "price": 649, "mrp": 829, "sku": "KRT-RH-100",
-        "short": "A fast-absorbing blend of botanical oils and peptides that strengthens roots, reduces breakage and restores natural shine.",
-        "meta": "Kiarit Repair Hair Oil blends botanical oils, biotin and peptides to strengthen roots, reduce breakage and restore shine. 100 ml. Order on WhatsApp.",
+        "size": "200 ml", "price": 599, "mrp": 799, "sku": "KRT-KMS-200",
+        "short": "A gentle everyday foaming shampoo that cleanses scalp and lengths thoroughly while staying mild enough for daily washing.",
+        "meta": "Kiamild Foaming Shampoo cleanses scalp and hair gently enough for everyday washing, without sulphates or the squeaky-stripped feeling. 200 ml.",
         "long": [
-            "Kiarit Repair Hair Oil combines cold-pressed botanical oils with biotin and a lightweight peptide complex. Rather than sitting on the surface, the blend is formulated to absorb into the scalp and hair shaft, supporting stronger roots and reducing mechanical breakage.",
-            "Regular use helps improve the look of density and shine, while the non-sticky texture means it can be used as a pre-wash treatment or a light overnight nourishing oil.",
+            "Kiamild is a mild, sulphate-free foaming shampoo made for people who wash their hair often. It lathers generously and rinses clean, lifting oil, sweat and product build-up from the scalp without stripping the lengths.",
+            "Daily washing is only a problem when the shampoo is too harsh for it. This formula keeps the scalp comfortable and the hair soft, so frequent washing does not leave you with dryness, frizz or an itchy scalp.",
         ],
         "benefits": [
-            ("Strengthens Roots", "Biotin and peptides support the scalp and follicle health."),
-            ("Reduces Breakage", "Improves elasticity so hair resists everyday mechanical damage."),
-            ("Restores Shine", "Botanical oils smooth the cuticle for natural, healthy lustre."),
-            ("Non-Sticky", "Absorbs cleanly without the heaviness of traditional hair oils."),
+            ("Everyday Gentle", "Mild enough to use daily without drying the lengths."),
+            ("Sulphate-Free Lather", "Generous foam from gentle surfactants, not harsh sulphates."),
+            ("Scalp Comfort", "Helps relieve itchiness and build-up at the roots."),
+            ("Rinses Clean", "No residue, no weighing hair down."),
         ],
-        "how": ["Section dry hair and apply directly to the scalp.",
-                "Massage gently with fingertips for 3–5 minutes.",
-                "Work the remaining oil through the mid-lengths and ends.",
-                "Leave for at least one hour, or overnight, then shampoo."],
-        "ingredients": "Cocos Nucifera Oil, Sesamum Indicum Oil, Argania Spinosa Kernel Oil, Ricinus Communis Oil, Biotin, Copper Tripeptide-1, Rosmarinus Officinalis Extract, Tocopherol, Parfum (Natural).",
-        "faq": [("How often should I use it?", "Two to three times a week as a pre-wash treatment gives the best results."),
-                ("Will it make my hair greasy?", "No. The blend is formulated to absorb, and it washes out cleanly with a single shampoo.")],
+        "how": ["Wet hair thoroughly with lukewarm water.",
+                "Work a coin-sized amount into the scalp, not the lengths.",
+                "Massage for 60 seconds, then rinse well.",
+                "Repeat only if hair is heavily soiled."],
+        "ingredients": "Aqua, Sodium Cocoyl Isethionate, Cocamidopropyl Betaine, Coco-Glucoside, Glycerin, Panthenol, Niacinamide, Guar Hydroxypropyltrimonium Chloride, Citric Acid, Sodium Benzoate, Phenoxyethanol.",
+        "faq": [("Is it safe for coloured hair?", "Yes. The sulphate-free base is gentle on colour and helps it last longer than a conventional shampoo."),
+                ("Can I use it every day?", "Yes \u2014 that is what it is formulated for. Focus the lather on the scalp and let the rinse clean the lengths.")],
     },
     {
-        "slug": "product-6", "name": "Kiarit Nutra Boost Collagen", "cat": "Nutraceutical",
+        "slug": "product-5", "name": "Kiarestora Shower Oil", "cat": "Body Care",
         "tag": "New Launch", "tag_class": "",
-        "size": "200 g", "price": 1199, "mrp": 1499, "sku": "KRT-NB-200",
-        "short": "Marine collagen peptides with biotin and Vitamin C to support skin elasticity, hair strength and joint comfort from within.",
-        "meta": "Kiarit Nutra Boost delivers marine collagen peptides with biotin and Vitamin C to support skin elasticity, hair strength and joint comfort. 200 g.",
+        "size": "200 ml", "price": 699, "mrp": 899, "sku": "KRT-KRS-200",
+        "short": "A cleansing shower oil that turns to a soft milk on contact with water, leaving skin comfortable and nourished rather than tight.",
+        "meta": "Kiarestora Shower Oil transforms into a soft cleansing milk on water, leaving skin nourished and comfortable instead of tight. 200 ml.",
         "long": [
-            "Kiarit Nutra Boost provides hydrolysed marine collagen peptides in a readily absorbable form, combined with Vitamin C — an essential cofactor in the body's own collagen synthesis — plus biotin and zinc.",
-            "It is an unflavoured powder that dissolves cleanly in water, juice or a morning beverage, with none of the fishy aftertaste common to marine collagen supplements.",
+            "Kiarestora Shower Oil is a body cleanser for skin that soap leaves tight and itchy. The oil base emulsifies into a light milk the moment it meets water, cleansing gently while leaving a fine layer of nourishing lipids behind.",
+            "It suits dry, sensitive and eczema-prone skin, and it is particularly useful in winter or in hard-water areas where conventional body washes strip the skin. Skin feels soft and supple straight out of the shower, often without needing lotion.",
         ],
         "benefits": [
-            ("Skin Elasticity", "Supports the skin's natural collagen structure and firmness."),
-            ("Hair & Nail Strength", "Biotin and zinc support keratin production from within."),
-            ("Joint Comfort", "Type I and III peptides support connective tissue health."),
-            ("Dissolves Cleanly", "Unflavoured and fully soluble with no aftertaste."),
+            ("Cleanses Without Stripping", "Oil-to-milk base lifts grime while preserving skin lipids."),
+            ("Comfort After Showering", "No tightness or itch, even in hard water."),
+            ("Nourishing Finish", "Leaves skin soft enough to often skip body lotion."),
+            ("Sensitive-Skin Friendly", "Free from soap, sulphates and added synthetic fragrance."),
         ],
-        "how": ["Add one scoop (10 g) to 200 ml of water or juice.",
-                "Stir well until completely dissolved.",
-                "Take once daily, preferably on an empty stomach.",
-                "Use consistently for at least 8–12 weeks for best results."],
-        "ingredients": "Hydrolysed Marine Collagen Peptides (Type I & III), Ascorbic Acid (Vitamin C), Biotin, Zinc Gluconate, Hyaluronic Acid, Natural Flavour.",
-        "faq": [("Does it taste fishy?", "No. The peptides are processed and deodorised so the powder is genuinely neutral in taste."),
-                ("When is the best time to take it?", "Most people take it in the morning on an empty stomach, but any consistent daily time works.")],
+        "how": ["Apply to damp skin in the shower.",
+                "Massage gently \u2014 the oil will turn into a soft milk.",
+                "Rinse thoroughly with lukewarm water.",
+                "Pat dry, leaving the skin slightly damp."],
+        "ingredients": "Helianthus Annuus Seed Oil, PEG-7 Glyceryl Cocoate, Caprylic/Capric Triglyceride, Glycerin, Prunus Amygdalus Dulcis Oil, Tocopherol, Panthenol, Bisabolol, Citric Acid, Phenoxyethanol.",
+        "faq": [("Do I still need body lotion?", "Often not. The shower oil leaves enough nourishment behind that most people find lotion unnecessary except in very dry weather."),
+                ("Is it safe for eczema-prone skin?", "It is formulated to be. It is soap-free and fragrance-free, but check with your dermatologist if you are mid-flare.")],
     },
 ]
+
 PMAP = {p["slug"]: p for p in PRODUCTS}
 
 
@@ -251,9 +228,31 @@ def read(p):
         return f.read()
 
 
-HEADER = read("tools/partials/header.html")
-FOOTER = read("tools/partials/footer.html")
-FLOATERS = read("tools/partials/floaters.html")
+def _expand_partial(tpl):
+    """Fill the shared placeholders so the product lists in the nav and the
+    footer are generated from PRODUCTS rather than hand-maintained."""
+    menu = "\n".join(
+        f'            <a href="{p["slug"]}.html" role="menuitem">'
+        f'<span class="dd-dot"></span>{p["name"]}</a>'
+        for p in PRODUCTS)
+    links = "\n".join(
+        f'          <a href="{p["slug"]}.html">{p["name"]}</a>'
+        for p in PRODUCTS)
+    return (tpl.replace("{{PRODUCT_MENU}}", menu)
+               .replace("{{PRODUCT_LINKS}}", links)
+               .replace("{{WA_ORDER}}", wa("Hello KIARIT, I would like to place an order."))
+               .replace("{{WA_ASK}}", wa("Hello KIARIT, I have a question."))
+               .replace("{{WA_PLAIN}}", "https://wa.me/" + SITE["wa"])
+               .replace("{{PHONE_LINK}}", SITE["phone_link"])
+               .replace("{{PHONE_DISPLAY}}", SITE["phone_display"])
+               .replace("{{EMAIL}}", SITE["email"])
+               .replace("{{ADDR1}}", SITE["addr_line1"])
+               .replace("{{ADDR2}}", SITE["addr_line2"]))
+
+
+_HEADER_RAW = read("tools/partials/header.html")
+_FOOTER_RAW = read("tools/partials/footer.html")
+_FLOATERS_RAW = read("tools/partials/floaters.html")
 
 
 def head(page):
@@ -389,12 +388,19 @@ def wa(msg):
     return f"https://wa.me/{SITE['wa']}?text={quote(msg)}"
 
 
+# Partials depend on wa(), so expand them once it is defined.
+HEADER = _expand_partial(_HEADER_RAW)
+FOOTER = _expand_partial(_FOOTER_RAW)
+FLOATERS = _expand_partial(_FLOATERS_RAW)
+
+
 CAT_TINT = {
     "Dermatology":      "derma",
     "Skincare":         "skin",
     "Daily Protection": "sun",
     "Hair Care":        "hair",
     "Nutraceutical":    "nutra",
+    "Body Care":        "body",
 }
 
 

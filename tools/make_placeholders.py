@@ -23,13 +23,14 @@ def font(size, bold=False):
     return ImageFont.load_default()
 
 
+# Backgrounds match the category tints used in the CSS so the cards and the
+# imagery read as one system.
 PRODUCTS = [
-    ("KIARIT",  "GLOW SERUM",    "Vitamin C Brightening", (242, 233, 219), (201, 162, 39)),
-    ("KIARIT",  "AQUA CREAM",    "Hyaluronic Moisturiser", (233, 240, 243), (120, 155, 175)),
-    ("KIARIT",  "CLARIFY GEL",   "Acne Control Formula",  (234, 239, 231), (125, 143, 122)),
-    ("KIARIT",  "SUN SHIELD",    "SPF 50+ PA++++",        (250, 240, 220), (214, 160, 60)),
-    ("KIARIT",  "REPAIR OIL",    "Nourishing Hair Care",  (244, 230, 224), (176, 118, 96)),
-    ("KIARIT",  "NUTRA BOOST",   "Collagen Supplement",   (238, 231, 243), (140, 118, 168)),
+    ("KIARIT",  "RITCLEAR AZ",   "Azelaic Acid Serum",    (234, 239, 231), (99, 118, 95)),
+    ("KIARIT",  "RITSHADE",      "SPF 50+ PA++++",        (253, 241, 216), (201, 162, 39)),
+    ("KIARIT",  "RITGLOW",       "Oil-Free Face Wash",    (244, 230, 224), (176, 118, 96)),
+    ("KIARIT",  "KIAMILD",       "Foaming Shampoo",       (240, 235, 225), (150, 130, 100)),
+    ("KIARIT",  "KIARESTORA",    "Cleansing Shower Oil",  (238, 240, 242), (110, 130, 145)),
 ]
 
 W = H = 900

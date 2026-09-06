@@ -11,7 +11,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: .65em;
+  gap: var(--gap-inline);
   padding: .92em 1.95em;
   font-family: var(--font-body);
   font-size: var(--fs-eyebrow);
@@ -70,7 +70,7 @@
   position: relative;
   display: inline-flex;
   align-items: center;
-  gap: .55em;
+  gap: var(--gap-inline);
   width: fit-content;
   white-space: nowrap;
   font-size: var(--fs-eyebrow);
@@ -106,7 +106,7 @@
 }
 .topbar__inner { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-4); width: 100%; }
 .topbar__contact { display: flex; align-items: center; gap: var(--sp-5); }
-.topbar a { display: inline-flex; align-items: center; gap: .5em; transition: color var(--t-fast) var(--ease); }
+.topbar a { display: inline-flex; align-items: center; gap: var(--gap-inline); transition: color var(--t-fast) var(--ease); }
 .topbar a:hover { color: var(--gold-300); }
 .topbar svg { width: 14px; height: 14px; color: var(--gold-500); flex: none; }
 .topbar__socials { display: flex; align-items: center; gap: var(--sp-1); }
@@ -174,7 +174,7 @@
 .nav__item { position: relative; }
 .nav__link {
   position: relative;
-  display: inline-flex; align-items: center; gap: .35em;
+  display: inline-flex; align-items: center; gap: var(--gap-inline);
   padding: .5rem 0;
   font-size: var(--fs-eyebrow); font-weight: 600;
   letter-spacing: .11em; text-transform: uppercase;

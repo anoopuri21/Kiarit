@@ -1,0 +1,15 @@
+{
+  "name": "kiarit",
+  "version": "1.0.0",
+  "private": true,
+  "description": "KIARIT PHARMACEUTICALS — static site, deployed to Cloudflare Workers static assets.",
+  "scripts": {
+    "pages": "python3 tools/pages_phase4.py && python3 tools/pages_phase5.py && python3 tools/pages_phase6.py",
+    "build": "python3 tools/build_dist.py",
+    "dev": "wrangler dev",
+    "deploy": "npm run build && wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "4.129.0"
+  }
+}

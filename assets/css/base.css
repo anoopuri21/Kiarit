@@ -87,6 +87,7 @@
   /* Chrome heights */
   --topbar-h: 40px;
   --nav-h: 76px;
+  --header-h: calc(var(--nav-h) + var(--topbar-h));
 }
 
 /* Gradients as reusable strings */

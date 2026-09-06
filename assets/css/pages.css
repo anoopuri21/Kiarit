@@ -10,7 +10,10 @@
 /* ==================== HERO ==================== */
 .hero {
   position: relative;
-  min-height: clamp(600px, 92vh, 1000px);
+  /* Fill the screen below the sticky header. svh keeps the hero stable while
+     mobile browser chrome collapses; vh is the fallback for older engines. */
+  min-height: clamp(560px, calc(100vh - var(--header-h)), 1040px);
+  min-height: clamp(560px, calc(100svh - var(--header-h)), 1040px);
   display: grid;
   align-items: center;
   overflow: hidden;
@@ -45,7 +48,7 @@
 
 .hero__inner {
   position: relative; z-index: 5;
-  padding-block: clamp(6rem, 4rem + 10vw, 9rem) clamp(7rem, 5rem + 8vw, 10rem);
+  padding-block: clamp(3rem, 1.5rem + 6vw, 6rem) clamp(4.5rem, 3rem + 6vw, 8rem);
   width: 100%;
 }
 .hero__content { max-width: 830px; }

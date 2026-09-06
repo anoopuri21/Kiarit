@@ -415,8 +415,33 @@ def product_card(p, reveal=True):
 """
 
 
+"""Map each generated file to the top-level nav item it belongs under, so the
+current page is marked with aria-current and the matching active style."""
+NAV_OWNER = {
+    "index.html": "index.html",
+    "about.html": "about.html",
+    "products.html": "products.html",
+    "contact.html": "contact.html",
+    "order.html": "order.html",
+}
+for _p in PRODUCTS:
+    NAV_OWNER[f"{_p['slug']}.html"] = "products.html"
+
+
+def header_for(page):
+    """Return the shared header with the active nav item marked up."""
+    owner = NAV_OWNER.get(page.get("file", ""))
+    if not owner:
+        return HEADER
+    target = f'<a class="nav__link" href="{owner}"'
+    if target not in HEADER:
+        return HEADER
+    replacement = f'<a class="nav__link is-active" href="{owner}" aria-current="page"'
+    return HEADER.replace(target, replacement, 1)
+
+
 def render(page, body):
-    return (head(page) + HEADER + '<main id="main">\n' + body +
+    return (head(page) + header_for(page) + '<main id="main">\n' + body +
             "\n</main>\n" + FOOTER + FLOATERS +
             '\n<script src="assets/js/main.js" defer></script>\n'
             '<script src="assets/js/reveal.js" defer></script>\n'

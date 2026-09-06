@@ -26,8 +26,8 @@ Deploying is a straight file copy: upload everything except `tools/` and
 | --- | --- |
 | `index.html` | Home — hero video, trust strip, overview, two poster sections, product grid, CEO message, why-choose-us, testimonial slider, QR teaser, CTA |
 | `about.html` | Company overview, mission and vision, core values, quality band, milestone timeline, CEO message |
-| `products.html` | All six products with a category filter |
-| `product-1.html` … `product-6.html` | Individual product pages with pricing, benefits, how-to-use, ingredients, reviews and FAQ |
+| `products.html` | All five products with a category filter |
+| `product-1.html` … `product-5.html` | Individual product pages with pricing, benefits, how-to-use, ingredients, reviews and FAQ |
 | `contact.html` | Phone, WhatsApp and email cards, office location with map |
 | `order.html` | Three-step ordering guide, UPI QR and bank details, shipping summary, FAQ |
 | `privacy-policy.html` | Privacy policy |
@@ -87,12 +87,12 @@ text, save. Nothing to compile.
 ### The consistent way — use the generator
 
 Because the header, footer, meta tags and structured data repeat across
-sixteen pages, they are generated from shared partials. If you change anything
+fifteen pages, they are generated from shared partials. If you change anything
 that appears on every page, edit the source and regenerate:
 
 ```bash
 python3 tools/pages_phase4.py   # about, contact, order
-python3 tools/pages_phase5.py   # products listing + 6 product pages
+python3 tools/pages_phase5.py   # products listing + 5 product pages
 python3 tools/pages_phase6.py   # legal pages, 404, sitemap.xml, robots.txt
 ```
 
@@ -100,7 +100,7 @@ python3 tools/pages_phase6.py   # legal pages, 404, sitemap.xml, robots.txt
 | --- | --- |
 | Phone, email, address, UPI, bank details, social links | `SITE` dict in `tools/build.py` |
 | Product names, prices, copy, benefits, ingredients, FAQs | `PRODUCTS` list in `tools/build.py` |
-| Header, footer or floating buttons | `tools/partials/*.html` |
+| Header, footer or floating buttons | `tools/partials/*.html` — product lists and contact details are placeholders filled from `SITE` and `PRODUCTS` at build time |
 | Reviews and ratings | `REVIEWS` / `RATINGS` in `tools/pages_phase5.py` |
 | Legal text | `tools/pages_phase6.py` |
 
@@ -116,15 +116,19 @@ excluded from crawling by `robots.txt` and blocked by `.htaccess`.
 
 Replace these placeholders with real values:
 
-- [ ] **Contact details** — phone, email, address (`SITE` in `tools/build.py`)
+Real: contact details, product names, packaging specs and ingredient lists.
+
+Still placeholder:
+
 - [ ] **Payment details** — UPI ID, bank account, IFSC, and the QR image at
       `assets/img/qr/payment-qr.png`
 - [ ] **Social links** — Facebook, Instagram, LinkedIn, YouTube
 - [ ] **Logo** — `assets/img/logo.svg`
-- [ ] **Product photography** — `assets/img/products/product-1..6.jpg`
-      (square, ideally 1200×1200)
+- [ ] **Product photography** — `assets/img/products/product-1..5.jpg` are
+      AI-rendered from the supplied packaging artwork, not studio shots.
+      Replace with real photography when available (square, ideally 1200×1200).
 - [ ] **CEO photograph** — `assets/img/ceo.jpg`
-- [ ] **Product names, descriptions and prices** — currently indicative
+- [ ] **Prices** — currently indicative
 - [ ] **Domain** — set `url` in `SITE`, then regenerate so canonical tags,
       Open Graph URLs and `sitemap.xml` all point at the live domain
 - [ ] **Reviews** — replace the sample reviews with genuine ones, or remove
@@ -153,21 +157,31 @@ After changing `SITE`, run all three generator scripts and redeploy.
 - Skip-to-content link, visible focus rings, full keyboard navigation
 - Touch targets of at least 24×24 px on coarse pointers
 - `prefers-reduced-motion` disables scroll reveals, smooth scrolling and
-  magnetic buttons, and freezes the hero video on its first frame
+  magnetic buttons, and skips the hero video download entirely, leaving its
+  poster as a still hero
 - ARIA labelling on the navigation, slider, accordions and filter controls
 - Text contrast meets WCAG AA
 
 ## Performance
 
 - Self-hosted variable fonts with `font-display: swap` and preloading
-- Hero video paused when off-screen or on a hidden tab; poster image shown
-  until the first frame is ready
+- Hero video is lazy-loaded: its sources sit in `data-src` behind
+  `preload="none"` and are only attached once an IntersectionObserver reports
+  the hero is near the viewport. Playback pauses off-screen and on hidden
+  tabs. `prefers-reduced-motion` and Save-Data skip the download entirely.
 - Lazy loading and explicit dimensions on below-the-fold images to avoid
   layout shift
 - No third-party scripts, trackers or web fonts — the site makes no external
   requests
-- First Contentful Paint measured at 124–228 ms locally; total page weight
-  351 KB–1.2 MB including the hero video
+- First Contentful Paint measured at ~208 ms locally, with CSS, poster and JS
+  all delivered before the video begins downloading
+
+### Hero video
+
+`assets/video/hero.*` is an 18-second seamless loop of the product range,
+rendered by `tools/make_hero_video.py`. The committed output is all the site
+needs; the source plates are gitignored, and the script header explains how to
+re-create them if the video ever has to be rebuilt.
 
 ## Browser support
 

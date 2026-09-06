@@ -39,7 +39,7 @@ def review_card(name, place, rating, text):
 def build_products():
     body = page_hero(
         "Our Collection",
-        'Six Formulations,<br>One <em>Standard</em>',
+        'Five Formulations,<br>One <em>Standard</em>',
         "A focused range covering dermatology, daily skincare, hair care and inner wellness — each developed under strict quality controls.",
         [("Home", "index.html"), ("Products", None)],
     )

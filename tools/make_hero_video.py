@@ -1,145 +1,246 @@
 """
 KIARIT PHARMACEUTICALS — Hero background video generator.
-Procedurally renders an abstract 'liquid gold silk' loop on deep black.
-No products, no people, no text — pure luxury texture.
-Perfectly seamless loop (all time terms are integer harmonics of the loop).
+
+Builds an 18-second cinematic loop from the product still plates in
+tools/hero_src/. Each plate gets a slow Ken Burns move (a scale and pan
+that never reverses direction mid-shot), and shots cross-dissolve into
+one another. The last shot dissolves back into the first, so the file
+loops seamlessly with no visible cut.
+
+The video is a background element: no text, no audio, nothing that has to
+be read. Everything legible sits in the HTML on top of it.
+
+    .venv/bin/python tools/make_hero_video.py
+
+--------------------------------------------------------------------------
+SOURCE PLATES ARE NOT IN THE REPOSITORY
+--------------------------------------------------------------------------
+tools/hero_src/ is gitignored. The rendered output (assets/video/hero.mp4,
+hero.webm, hero-poster.jpg) is committed, so nothing here is needed to
+build or serve the site — only to re-render the video.
+
+To re-create the plates, produce four 16:9 images at roughly 1376x768 and
+save them into tools/hero_src/ under the filenames listed in SHOTS below:
+
+  grp-1.jpg  Ritclear, Ritshade and Ritglow cartons standing on pale
+             marble, warm golden light raking from the right, deep warm
+             brown near-black background.
+  grp-2.jpg  Kiamild and KiaRestora bottles, same set and lighting.
+  grp-3.jpg  Ritclear carton against flowing liquid-gold silk on near
+             black, with suspended gold particles.
+  grp-4.jpg  All five products in a staggered lineup on the marble set.
+
+Composition matters: keep the product mass toward the right of frame and
+leave the left roughly empty. The hero headline sits over the left side,
+and while the renderer repositions each frame automatically (see
+push_right), it can only slide what the plate actually gives it.
+
+Packaging colours, printed text and proportions must match
+assets/img/products/*.jpg exactly.
 """
-import numpy as np, subprocess, os, math
+import math
+import os
+import subprocess
+
+import numpy as np
+from PIL import Image
 import imageio_ffmpeg
 
-W, H = 960, 540          # render res (upscaled to 1920x1080 by ffmpeg)
-FPS = 30
-SECONDS = 12
-N = FPS * SECONDS
-OUT = os.path.join(os.path.dirname(__file__), "..", "assets", "video")
+ROOT = os.path.join(os.path.dirname(__file__), "..")
+SRC = os.path.join(os.path.dirname(__file__), "hero_src")
+OUT = os.path.join(ROOT, "assets", "video")
 os.makedirs(OUT, exist_ok=True)
 
-y, x = np.mgrid[0:H, 0:W].astype(np.float32)
-x = (x / W - 0.5) * 2.0
-y = (y / H - 0.5) * 2.0 * (H / W)
+W, H = 1600, 900           # output resolution — a backdrop, not a feature film
+FPS = 25
+SHOT = 5.8                 # seconds each shot holds
+FADE = 1.3                 # seconds of cross-dissolve between shots
 
-# ---- gold palette ramp (deep black -> bronze -> gold -> pale champagne) ----
-stops = np.array([
-    [0.000, 0.008, 0.008, 0.012],
-    [0.220, 0.055, 0.036, 0.014],
-    [0.420, 0.184, 0.114, 0.031],
-    [0.600, 0.478, 0.310, 0.075],
-    [0.760, 0.780, 0.573, 0.196],
-    [0.885, 0.949, 0.796, 0.427],
-    [1.000, 1.000, 0.949, 0.812],
-], dtype=np.float32)
-ramp_t = np.linspace(0, 1, 1024, dtype=np.float32)
-LUT = np.stack([np.interp(ramp_t, stops[:, 0], stops[:, i + 1]) for i in range(3)], 1).astype(np.float32)
+# Each shot: (file, start_zoom, end_zoom, start_centre, end_centre)
+# Centres are fractions of the image; 0.5 is the middle. Moves are gentle —
+# a hero background that pans hard fights the headline sitting on top of it.
+# The hero copy occupies the left ~45% of the frame, so each shot declares
+# where its product mass should land horizontally in the output (TARGET_X).
+# Panning alone cannot reach those values without hitting the crop clamp, so
+# the renderer also slides the whole plate sideways and extends the dark
+# backdrop into the gap — see push_right() below.
+#
+# (file, zoom0, zoom1, centre0, centre1, target_x)
+SHOTS = [
+    ("grp-1.jpg", 1.08, 1.16, (0.50, 0.56), (0.50, 0.53), 0.70),   # three cartons
+    ("grp-3.jpg", 1.16, 1.06, (0.62, 0.50), (0.58, 0.52), 0.72),   # serum in gold
+    ("grp-4.jpg", 1.18, 1.08, (0.50, 0.56), (0.50, 0.52), 0.68),   # full lineup
+    ("grp-2.jpg", 1.06, 1.14, (0.50, 0.56), (0.50, 0.53), 0.70),   # two bottles
+]
 
-
-def silk(t):
-    """t in [0,1). Returns float field ~[0,1] shaped like flowing silk folds."""
-    T = 2 * math.pi * t
-    # domain warp — two loops of circular drift
-    w1 = np.sin(2.1 * x + 1.3 * y + T) * 0.55 + np.cos(1.7 * y - 1.1 * x + 2 * T) * 0.35
-    w2 = np.cos(1.4 * x - 2.3 * y - T) * 0.45 + np.sin(2.6 * y + 0.9 * x + 3 * T) * 0.25
-
-    xa = x + 0.55 * w1
-    ya = y + 0.55 * w2
-
-    f = np.zeros_like(x)
-    f += 0.85 * np.sin(3.2 * xa + 1.9 * ya + 1.10 * np.sin(2.0 * ya - 1.2 * xa + T) + T)
-    f += 0.55 * np.sin(5.4 * ya - 2.7 * xa + 0.90 * np.cos(3.1 * xa + 2 * T) + 2 * T)
-    f += 0.38 * np.sin(8.1 * xa + 4.6 * ya + 0.70 * np.sin(4.4 * ya + 3 * T) - T)
-    f += 0.22 * np.sin(13.0 * ya + 7.0 * xa + 4 * T)
-    f /= 2.0
-    return f
+N_SHOTS = len(SHOTS)
+STEP = SHOT - FADE                      # new shot begins every STEP seconds
+DURATION = STEP * N_SHOTS               # total loop length
+N_FRAMES = int(round(DURATION * FPS))
 
 
-def frame(i):
-    t = i / N
-    f = silk(t)
-
-    # sharp specular folds: fold the field so ridges become bright gold edges
-    ridge = 1.0 - np.abs(f)
-    ridge = np.clip(ridge, 0, 1) ** 7.0
-
-    body = 0.5 + 0.5 * f
-    v = 0.13 * body + 0.72 * ridge
-
-    # broad diagonal light sweep travelling across the frame (loops once)
-    T = 2 * math.pi * t
-    sweep = np.exp(-((x * 0.75 + y * 0.55 - 0.85 * math.sin(T)) ** 2) / 0.34)
-    v += 0.20 * sweep * (0.14 + 0.86 * ridge)
-
-    # soft warm glow core, breathing
-    glow = np.exp(-((x + 0.18) ** 2 * 0.75 + (y - 0.05) ** 2 * 1.5) / 1.05)
-    v += 0.085 * glow * (0.75 + 0.25 * math.cos(T))
-
-    # vignette + left-side darkening (keeps hero text readable)
-    r2 = (x * 0.72) ** 2 + (y * 1.12) ** 2
-    v *= np.clip(1.10 - 0.80 * r2, 0.02, 1.10)
-    v *= np.clip(0.18 + 0.95 * (x + 1.0) / 2.0, 0.12, 1.05)
-
-    v = np.clip(v, 0, 1)
-    idx = (v * 1023).astype(np.int32)
-    rgb = LUT[idx]
-
-    # floating gold dust
-    rng = np.random.default_rng(7)
-    P = 90
-    px = rng.uniform(-1, 1, P).astype(np.float32)
-    py = rng.uniform(-0.62, 0.62, P).astype(np.float32)
-    ph = rng.uniform(0, 2 * math.pi, P).astype(np.float32)
-    sz = rng.uniform(0.6, 1.6, P).astype(np.float32)
-    dx = px + 0.055 * np.sin(T + ph)
-    dy = py + 0.045 * np.cos(T + ph * 1.7)
-    ix = ((dx / 2.0 + 0.5) * W).astype(np.int32)
-    iy = ((dy / (2.0 * H / W) + 0.5) * H).astype(np.int32)
-    a = 0.16 + 0.20 * np.sin(2 * T + ph)
-    for k in range(P):
-        cx, cy, s = ix[k], iy[k], sz[k]
-        r = max(1, int(s))
-        x0, x1 = max(0, cx - r), min(W, cx + r + 1)
-        y0, y1 = max(0, cy - r), min(H, cy + r + 1)
-        if x1 <= x0 or y1 <= y0:
-            continue
-        rgb[y0:y1, x0:x1] += np.float32(a[k] * 0.55) * np.array([1.0, 0.86, 0.58], np.float32)
-
-    # fine film grain
-    g = (np.random.default_rng(1000 + i).random((H, W, 1)).astype(np.float32) - 0.5) * 0.028
-    rgb = np.clip(rgb + g, 0, 1)
-    return (rgb ** 1.18 * 255).astype(np.uint8)
+def load(name):
+    im = Image.open(os.path.join(SRC, name)).convert("RGB")
+    # Pre-scale so the widest crop we ask for still has real pixels behind it.
+    target_w = int(W * 1.25)
+    if im.width < target_w:
+        im = im.resize((target_w, round(im.height * target_w / im.width)), Image.LANCZOS)
+    return im
 
 
-exe = imageio_ffmpeg.get_ffmpeg_exe()
+PLATES = [load(s[0]) for s in SHOTS]
 
 
-def encode(args, path):
-    p = subprocess.Popen([exe, "-y", "-f", "rawvideo", "-pix_fmt", "rgb24",
-                          "-s", f"{W}x{H}", "-r", str(FPS), "-i", "-",
-                          "-vf", "scale=1920:1080:flags=lanczos"] + args + [path],
-                         stdin=subprocess.PIPE, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-    for i in range(N):
-        p.stdin.write(frame(i).tobytes())
-        if i % 30 == 0:
-            print(f"  frame {i}/{N}", flush=True)
-    p.stdin.close()
-    p.wait()
-    print(" ->", path, os.path.getsize(path) // 1024, "KB")
+def ease(t):
+    """Smootherstep. Keeps the pan from starting or stopping abruptly."""
+    return t * t * t * (t * (t * 6 - 15) + 10)
 
 
-print("Encoding MP4 (H.264)...")
-encode(["-c:v", "libx264", "-profile:v", "high", "-pix_fmt", "yuv420p",
-        "-crf", "26", "-preset", "slow", "-movflags", "+faststart", "-an"],
-       os.path.join(OUT, "hero.mp4"))
+def mass_centre(im):
+    """Horizontal centre of the product mass, as a fraction of width.
 
-print("Encoding WebM (VP9)...")
-encode(["-c:v", "libvpx-vp9", "-pix_fmt", "yuv420p", "-crf", "36", "-b:v", "0",
-        "-row-mt", "1", "-deadline", "good", "-cpu-used", "3", "-an"],
-       os.path.join(OUT, "hero.webm"))
+    Products are the bright, saturated pixels; the backdrop is dark warm
+    brown. Measuring this rather than hard-coding it means the framing stays
+    correct if a plate is ever re-rendered with a different composition.
+    """
+    small = np.asarray(im.resize((160, 90)), dtype=np.float32) / 255.0
+    mx = small.max(2)
+    mn = small.min(2)
+    sat = np.where(mx > 0, (mx - mn) / np.maximum(mx, 1e-6), 0)
+    mask = ((mx > 0.35) & (sat > 0.12)) | (mx > 0.62)
+    cols = mask.sum(0).astype(np.float32)
+    if cols.sum() < 1:
+        return 0.5
+    return float((np.arange(160) * cols).sum() / cols.sum()) / 160.0
 
-print("Poster frame...")
-p = subprocess.Popen([exe, "-y", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}",
-                      "-i", "-", "-frames:v", "1", "-vf", "scale=1920:1080:flags=lanczos",
-                      "-q:v", "3", os.path.join(OUT, "hero-poster.jpg")],
-                     stdin=subprocess.PIPE, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-p.stdin.write(frame(0).tobytes())
-p.stdin.close()
-p.wait()
-print("Done.")
+
+MASS = [mass_centre(p) for p in PLATES]
+
+
+def push_right(arr, shift_px, plate):
+    """Slide the frame right by shift_px and fill the exposed left strip.
+
+    The gap is filled by stretching the plate's own left-edge column, which
+    on these shots is unlit backdrop, so the join is invisible.
+    """
+    if shift_px <= 0:
+        return arr
+    shift_px = min(shift_px, W - 8)
+    out = np.empty_like(arr)
+    out[:, shift_px:] = arr[:, : W - shift_px]
+    edge = arr[:, :1]                      # leftmost column of the real frame
+    out[:, :shift_px] = edge               # broadcast it across the gap
+    return out
+
+
+def frame_for(shot_idx, local_t):
+    """Render one shot at local_t in [0,1] as an HxWx3 uint8 array."""
+    im = PLATES[shot_idx]
+    _, z0, z1, c0, c1, target_x = SHOTS[shot_idx]
+    e = ease(local_t)
+    z = z0 + (z1 - z0) * e
+    cx = c0[0] + (c1[0] - c0[0]) * e
+    cy = c0[1] + (c1[1] - c0[1]) * e
+
+    # Crop box: the visible window, sized by zoom, centred on (cx, cy).
+    iw, ih = im.size
+    # Fit the 16:9 window inside the plate at this zoom level.
+    win_w = iw / z
+    win_h = win_w * H / W
+    if win_h > ih:
+        win_h = ih / z
+        win_w = win_h * W / H
+
+    left = cx * iw - win_w / 2
+    top = cy * ih - win_h / 2
+    left = max(0.0, min(iw - win_w, left))
+    top = max(0.0, min(ih - win_h, top))
+
+    crop = im.resize((W, H), Image.LANCZOS,
+                     box=(left, top, left + win_w, top + win_h))
+    arr = np.asarray(crop, dtype=np.float32)
+
+    # Where did the product mass actually land in this crop?
+    landed = (MASS[shot_idx] * iw - left) / win_w
+    shift = int(round((target_x - landed) * W))
+    return push_right(arr, shift, im)
+
+
+def main():
+    exe = imageio_ffmpeg.get_ffmpeg_exe()
+
+    # Vignette and a faint warm lift, baked in once. The hero copy sits on the
+    # left, so the vignette is biased to darken that side a little more.
+    yy, xx = np.mgrid[0:H, 0:W].astype(np.float32)
+    nx = (xx / W - 0.42) * 2.0
+    ny = (yy / H - 0.5) * 2.0
+    r = np.sqrt(nx * nx * 0.85 + ny * ny)
+    vignette = np.clip(1.0 - 0.42 * np.clip(r - 0.35, 0, None) ** 1.6, 0.35, 1.0)
+    vignette = vignette[:, :, None]
+
+    cmd = [
+        exe, "-y",
+        "-f", "rawvideo", "-pix_fmt", "rgb24",
+        "-s", f"{W}x{H}", "-r", str(FPS),
+        "-i", "pipe:0",
+        "-an",
+        "-c:v", "libx264", "-profile:v", "high", "-preset", "slow",
+        "-crf", "30", "-pix_fmt", "yuv420p",
+        "-movflags", "+faststart",
+        "-g", str(FPS * 2),
+        os.path.join(OUT, "hero.mp4"),
+    ]
+    proc = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.DEVNULL,
+                            stderr=subprocess.DEVNULL)
+
+    for i in range(N_FRAMES):
+        t = i / FPS                       # absolute time in the loop
+        pos = t / STEP                    # which shot we are in, fractionally
+        idx = int(math.floor(pos)) % N_SHOTS
+        into = (pos - math.floor(pos)) * STEP   # seconds into this shot
+
+        # Base shot. Its own progress spans the full SHOT window.
+        a = frame_for(idx, min(1.0, into / SHOT))
+
+        # Cross-dissolve into the next shot over the final FADE seconds.
+        tail = into - (STEP - FADE)
+        if tail > 0:
+            nxt = (idx + 1) % N_SHOTS
+            # The incoming shot has already been running for `tail` seconds.
+            b = frame_for(nxt, min(1.0, tail / SHOT))
+            k = ease(tail / FADE)
+            a = a * (1.0 - k) + b * k
+
+        out = np.clip(a * vignette, 0, 255).astype(np.uint8)
+        proc.stdin.write(out.tobytes())
+
+        if i % 25 == 0:
+            print(f"  frame {i}/{N_FRAMES}", end="\r", flush=True)
+
+    proc.stdin.close()
+    proc.wait()
+    print(f"\n  wrote hero.mp4 ({DURATION:.1f}s, {N_FRAMES} frames)")
+
+    # WebM (VP9) — smaller, served first to browsers that take it.
+    subprocess.run([
+        exe, "-y", "-i", os.path.join(OUT, "hero.mp4"),
+        "-an", "-c:v", "libvpx-vp9", "-crf", "42", "-b:v", "0",
+        "-row-mt", "1", "-cpu-used", "2", "-pix_fmt", "yuv420p",
+        os.path.join(OUT, "hero.webm"),
+    ], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
+    print("  wrote hero.webm")
+
+    # Poster: the first frame, so the still the user sees before playback
+    # matches the video's opening exactly.
+    first = np.clip(frame_for(0, 0.0) * vignette, 0, 255).astype(np.uint8)
+    Image.fromarray(first).save(os.path.join(OUT, "hero-poster.jpg"),
+                                quality=82, optimize=True, progressive=True)
+    print("  wrote hero-poster.jpg")
+
+    for f in ("hero.mp4", "hero.webm", "hero-poster.jpg"):
+        kb = os.path.getsize(os.path.join(OUT, f)) / 1024
+        print(f"    {f:18} {kb:8.0f} KB")
+
+
+if __name__ == "__main__":
+    main()

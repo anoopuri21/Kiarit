@@ -40,10 +40,24 @@
 .hero__media::after {
   content: "";
   position: absolute; inset: 0; z-index: 3;
+  /* The footage now carries product packaging, so the left scrim is heavier:
+     the headline has to win against a lit carton, not just abstract texture. */
   background:
-    linear-gradient(100deg, rgba(8,8,10,.94) 0%, rgba(8,8,10,.80) 34%, rgba(8,8,10,.42) 62%, rgba(8,8,10,.62) 100%),
-    radial-gradient(120% 90% at 78% 42%, rgba(201,162,39,.18), transparent 62%),
-    linear-gradient(0deg, rgba(8,8,10,.88) 0%, transparent 34%);
+    linear-gradient(100deg, rgba(8,8,10,.96) 0%, rgba(8,8,10,.90) 38%, rgba(8,8,10,.55) 66%, rgba(8,8,10,.70) 100%),
+    radial-gradient(120% 90% at 82% 45%, rgba(201,162,39,.16), transparent 62%),
+    linear-gradient(0deg, rgba(8,8,10,.90) 0%, transparent 34%);
+}
+
+/* Portrait screens crop hard off a 16:9 source. The products sit at ~68% of
+   the frame width, so bias the crop right to keep them visible instead of
+   losing them off the edge. */
+@media (max-width: 900px) {
+  .hero__video,
+  .hero__poster { object-position: 74% 50%; }
+}
+@media (max-width: 560px) {
+  .hero__video,
+  .hero__poster { object-position: 78% 50%; }
 }
 
 .hero__inner {

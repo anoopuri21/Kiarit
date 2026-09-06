@@ -144,54 +144,83 @@
     el.textContent = new Date().getFullYear();
   });
 
-  /* ---------- HERO VIDEO: guarantee autoplay / graceful fallback ---------- */
+  /* ---------- HERO VIDEO: lazy load, autoplay, graceful fallback ----------
+     The <source> elements ship with their URL in data-src, so the browser
+     requests nothing until we opt in. We attach the real src only when the
+     hero is actually near the viewport, the tab is visible, the connection
+     is not metered or slow, and the user has not asked for reduced motion.
+     Until then the poster carries the hero on its own.                    */
   var vid = document.querySelector('.hero__video');
   if (vid) {
     var motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    var loaded = false;
 
     vid.muted = true;
     vid.setAttribute('muted', '');
+
+    function saveData() {
+      var c = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+      if (!c) return false;
+      if (c.saveData) return true;
+      return /(^|-)2g$/.test(c.effectiveType || '');
+    }
+
+    function loadVideo() {
+      if (loaded) return;
+      loaded = true;
+      var sources = vid.querySelectorAll('source[data-src]');
+      for (var i = 0; i < sources.length; i++) {
+        sources[i].src = sources[i].getAttribute('data-src');
+        sources[i].removeAttribute('data-src');
+      }
+      vid.load();
+    }
+
     vid.addEventListener('loadeddata', function () { vid.classList.add('is-loaded'); });
-    if (vid.readyState >= 2) vid.classList.add('is-loaded');
 
     function startVideo() {
+      if (motionQuery.matches || saveData()) return;
+      loadVideo();
       var play = vid.play();
       if (play && play.catch) play.catch(function () { /* poster stays visible */ });
     }
 
     function applyMotionPreference() {
       if (motionQuery.matches) {
-        /* Respect prefers-reduced-motion: freeze on the first frame so the
-           hero still reads as a rich image without animating. */
+        /* Respect prefers-reduced-motion: never fetch the video at all, and
+           leave the poster in place as a still hero. */
         vid.pause();
         vid.removeAttribute('autoplay');
-        try { vid.currentTime = 0; } catch (e) { /* not seekable yet */ }
       } else {
         startVideo();
       }
     }
 
-    applyMotionPreference();
     if (motionQuery.addEventListener) {
       motionQuery.addEventListener('change', applyMotionPreference);
     } else if (motionQuery.addListener) {
       motionQuery.addListener(applyMotionPreference);
     }
 
-    /* Pause while off-screen or on a hidden tab to save battery and data. */
+    /* Pause on a hidden tab so a backgrounded page costs nothing. */
     document.addEventListener('visibilitychange', function () {
       if (document.hidden) vid.pause();
-      else if (!motionQuery.matches) startVideo();
+      else if (isOnScreen) startVideo();
     });
 
+    /* Play only while the hero is on screen; pause the moment it leaves. */
+    var isOnScreen = true;
     if ('IntersectionObserver' in window) {
+      isOnScreen = false;
       new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
-          if (motionQuery.matches) return;
+          isOnScreen = entry.isIntersecting;
           if (entry.isIntersecting) startVideo();
           else vid.pause();
         });
-      }, { threshold: 0.15 }).observe(vid);
+      }, { threshold: 0.1, rootMargin: '200px' }).observe(vid);
+    } else {
+      applyMotionPreference();
     }
   }
 

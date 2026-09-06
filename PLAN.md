@@ -1,7 +1,14 @@
 # KIARIT PHARMACEUTICALS — Website Master Plan
 **Luxury Cosmetic / Pharma Brand Website — Static (HTML + CSS + Vanilla JS)**
 
-Version: 1.0 · Date: 2026-09-05 · Status: Awaiting client approval
+Version: 1.0 · Date: 2026-09-05 · Status: Delivered
+
+> **Historical document.** This is the plan the build was approved against and
+> is kept for reference. It describes six products; the range shipped as five
+> (Ritclear AZ Serum, Ritshade Sunscreen, Ritglow Face Wash, Kiamild Foaming
+> Shampoo, KiaRestora Shower Oil). See `README.md` for how the site is
+> actually structured today, and `DESIGN-REVIEW.md` for the design pass
+> applied after the initial build.
 
 ---
 

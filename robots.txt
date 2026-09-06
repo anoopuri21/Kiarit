@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Disallow: /tools/
+Disallow: /.venv/
+
+Sitemap: https://www.kiaritpharmaceuticals.com/sitemap.xml

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="KIARIT Pharmaceuticals monogram">
+  <defs>
+    <linearGradient id="kg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%"   stop-color="#a8801f"/>
+      <stop offset="34%"  stop-color="#e6cd82"/>
+      <stop offset="52%"  stop-color="#f8f1de"/>
+      <stop offset="70%"  stop-color="#c9a227"/>
+      <stop offset="100%" stop-color="#8a6614"/>
+    </linearGradient>
+    <linearGradient id="kg2" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#8a6614"/>
+      <stop offset="50%"  stop-color="#d9b64a"/>
+      <stop offset="100%" stop-color="#a8801f"/>
+    </linearGradient>
+  </defs>
+  <!-- outer hexagon frame -->
+  <path d="M50 3 L91 26.5 L91 73.5 L50 97 L9 73.5 L9 26.5 Z"
+        fill="none" stroke="url(#kg)" stroke-width="2.6" stroke-linejoin="round"/>
+  <path d="M50 11 L84 30.5 L84 69.5 L50 89 L16 69.5 L16 30.5 Z"
+        fill="none" stroke="url(#kg2)" stroke-width="0.9" opacity=".55"/>
+  <!-- stylised K -->
+  <path d="M36 30 L36 70" stroke="url(#kg)" stroke-width="5.4" stroke-linecap="round"/>
+  <path d="M62 30 L40.5 49.4" stroke="url(#kg)" stroke-width="5.4" stroke-linecap="round"/>
+  <path d="M44.5 46.5 L64 70" stroke="url(#kg)" stroke-width="5.4" stroke-linecap="round"/>
+  <!-- leaf / care accent -->
+  <path d="M66 34 C72.5 36.5 74.5 43.5 71 48.5 C67 45.5 65 39 66 34 Z" fill="url(#kg)" opacity=".92"/>
+  <circle cx="50" cy="79.5" r="1.9" fill="url(#kg)"/>
+</svg>

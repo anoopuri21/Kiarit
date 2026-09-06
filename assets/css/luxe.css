@@ -1,0 +1,273 @@
+/* ==========================================================================
+   KIARIT — luxe.css
+   Depth & richness layer: ornaments, texture, gradients, refined details.
+   Loaded last so it can enrich the base look without touching structure.
+   ========================================================================== */
+
+/* ---------- 1. SECTION ORNAMENTS ---------- */
+
+/* Decorative gold diamond divider used above centred section headings */
+.sec-head--center .eyebrow { position: relative; }
+
+/* Soft champagne aura behind centred headings for depth */
+.section .sec-head--center::before {
+  content: "";
+  position: absolute;
+  left: 50%; top: -40px;
+  width: min(720px, 90%); height: 320px;
+  transform: translateX(-50%);
+  background: radial-gradient(closest-side, rgba(201,162,39,.075), transparent 72%);
+  pointer-events: none;
+  z-index: -1;
+}
+.section .sec-head--center { position: relative; }
+
+/* Fine gold hairline that opens each light section */
+.section--alt::before,
+.section--champagne::before {
+  content: "";
+  position: absolute; top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: min(1180px, 92%); height: 1px;
+  background: linear-gradient(90deg, transparent, var(--line-gold) 22%, var(--line-gold) 78%, transparent);
+}
+
+/* ---------- 2. RICHER SURFACES ---------- */
+
+/* Light sections get a subtle warm vertical wash instead of flat colour */
+.section--alt {
+  background:
+    radial-gradient(120% 60% at 50% 0%, rgba(242,233,219,.75), transparent 60%),
+    var(--ivory-2);
+}
+
+/* Product cards: layered depth, warm inner glow, refined hover */
+.pcard {
+  background:
+    linear-gradient(180deg, #ffffff 0%, #fdfcf9 100%);
+  box-shadow: 0 1px 2px rgba(16,18,22,.04), 0 8px 22px rgba(16,18,22,.045);
+}
+.pcard::after {
+  content: "";
+  position: absolute; inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.9);
+}
+.pcard__media {
+  background:
+    radial-gradient(75% 70% at 50% 42%, rgba(255,255,255,.9), transparent 70%),
+    var(--champagne);
+}
+/* Gold hairline that draws across the card top on hover */
+.pcard__body { position: relative; }
+.pcard__body::before {
+  content: "";
+  position: absolute; top: -1px; left: 0; right: 0; height: 1.5px;
+  background: var(--grad-gold);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .6s var(--ease);
+}
+.pcard:hover .pcard__body::before { transform: scaleX(1); }
+
+/* Why-us cards: warm gradient + inner highlight */
+.why__card {
+  background: linear-gradient(170deg, #ffffff 0%, #fdfbf6 100%);
+  box-shadow: 0 1px 2px rgba(16,18,22,.04), 0 8px 22px rgba(16,18,22,.045);
+}
+.why__icon {
+  background: linear-gradient(150deg, var(--gold-100), var(--champagne-2));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.9), 0 4px 12px rgba(168,128,31,.12);
+}
+
+/* ---------- 3. TYPE REFINEMENTS ---------- */
+
+/* Italic gold accents in headings get slightly more presence */
+h1 em, h2 em, .poster__title em, .hero__title .l2 {
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: -.01em;
+}
+
+/* Drop the harsh pure-black on large display type — deep ink reads richer */
+h1, h2 { color: #101216; }
+.section--dark h1, .section--dark h2, .testi h2, .ctaband h2, .poster__title { color: #fff; }
+.poster--split .poster__title { color: #101216; }
+
+/* Lead paragraph gets a refined left gold rule on the overview block */
+.overview__body .lead {
+  position: relative;
+  padding-left: 1.15rem;
+  border-left: 2px solid var(--gold-400);
+  font-style: normal;
+  color: var(--ink);
+}
+
+/* Numerals everywhere should be lining + tabular for tidy alignment */
+.pcard__price, .hero__stat strong, .poster__stat strong, .why__num, .step__num {
+  font-variant-numeric: lining-nums tabular-nums;
+  font-feature-settings: "lnum" 1, "tnum" 1;
+}
+
+/* ---------- 4. TRUST STRIP — richer treatment ---------- */
+.trust {
+  background:
+    radial-gradient(90% 200% at 50% 50%, rgba(201,162,39,.10), transparent 65%),
+    var(--black-900);
+}
+.trust__item { transition: color var(--t-fast) var(--ease); }
+.trust__item:hover { color: #fff; }
+.trust__item:hover svg { color: var(--gold-300); }
+.trust__item svg { transition: color var(--t-fast) var(--ease); }
+
+/* ---------- 5. HERO POLISH ---------- */
+/* Gold hairline sweep at the very bottom of the hero, tying it to the trust bar */
+.hero::after {
+  content: "";
+  position: absolute; left: 0; right: 0; bottom: 0; height: 1px;
+  z-index: 6;
+  background: linear-gradient(90deg, transparent, rgba(201,162,39,.55) 30%, rgba(230,205,130,.75) 50%, rgba(201,162,39,.55) 70%, transparent);
+}
+.hero__title { text-shadow: 0 2px 40px rgba(0,0,0,.35); }
+.hero__sub { text-shadow: 0 1px 20px rgba(0,0,0,.4); }
+
+/* ---------- 6. POSTER POLISH ---------- */
+/* Inner vignette so the artwork feels printed, not pasted */
+.poster__bg::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: radial-gradient(120% 100% at 70% 50%, transparent 40%, rgba(8,8,10,.55));
+  pointer-events: none;
+}
+.poster__bg { position: absolute; }
+
+.poster--split .poster__panel {
+  box-shadow: 0 20px 60px rgba(16,18,22,.22), 0 2px 6px rgba(16,18,22,.06);
+}
+.poster--split .poster__panel::before {
+  content: "";
+  position: absolute; inset: 14px;
+  border: 1px solid rgba(255,255,255,.22);
+  border-radius: calc(var(--r-lg) - 8px);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* ---------- 7. CEO SECTION POLISH ---------- */
+.ceo {
+  background:
+    radial-gradient(80% 60% at 15% 20%, rgba(255,255,255,.85), transparent 60%),
+    linear-gradient(170deg, var(--ivory) 0%, var(--champagne) 100%);
+}
+.ceo__portrait-inner {
+  box-shadow: 0 26px 70px rgba(16,18,22,.20), 0 3px 8px rgba(16,18,22,.06);
+}
+.ceo__portrait-inner::after {
+  content: "";
+  position: absolute; inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.55);
+  pointer-events: none;
+}
+.ceo__body blockquote {
+  position: relative;
+  padding-left: 1.3rem;
+  border-left: 2px solid var(--gold-400);
+}
+.ceo__signature .sig-name {
+  background: linear-gradient(100deg, #14161a, #4a3c14 60%, #8a6614);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+/* ---------- 8. TESTIMONIAL POLISH ---------- */
+/* Avatar initials were being clipped: force a proper centred flex box */
+.testi__avatar {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  overflow: hidden;
+  text-align: center;
+}
+.testi__person > span:not(.testi__avatar):not(.testi__verified) { min-width: 0; }
+
+.testi__card {
+  background:
+    linear-gradient(160deg, rgba(255,255,255,.075), rgba(255,255,255,.03));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.08);
+  position: relative;
+}
+/* Oversized decorative quote glyph */
+.testi__card::before {
+  content: "\201C";
+  position: absolute;
+  right: clamp(1.4rem, 2vw, 2.6rem);
+  top: clamp(.2rem, 1vw, 1rem);
+  font-family: var(--font-display);
+  font-size: clamp(5rem, 3rem + 6vw, 9rem);
+  line-height: 1;
+  color: rgba(201,162,39,.16);
+  pointer-events: none;
+  user-select: none;
+}
+.slider__slide.is-active .testi__card {
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 18px 50px rgba(0,0,0,.28);
+}
+
+/* ---------- 9. QR / ORDER BAND POLISH ---------- */
+.orderband {
+  background:
+    radial-gradient(60% 80% at 12% 50%, rgba(201,162,39,.09), transparent 62%),
+    var(--bg-alt);
+}
+.qr-card {
+  background: linear-gradient(170deg, #ffffff, #fdfbf6);
+  box-shadow: 0 20px 54px rgba(16,18,22,.13), 0 2px 6px rgba(16,18,22,.05);
+}
+.step__num { box-shadow: 0 6px 18px rgba(16,18,22,.18); }
+
+/* ---------- 10. CTA BAND POLISH ---------- */
+.ctaband::before {
+  content: "";
+  position: absolute; inset: 0; z-index: 1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(201,162,39,.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201,162,39,.055) 1px, transparent 1px);
+  background-size: 68px 68px;
+  mask-image: radial-gradient(70% 70% at 50% 50%, #000, transparent 75%);
+  -webkit-mask-image: radial-gradient(70% 70% at 50% 50%, #000, transparent 75%);
+}
+
+/* ---------- 11. FOOTER POLISH ---------- */
+.footer {
+  background:
+    radial-gradient(70% 90% at 85% 0%, rgba(201,162,39,.10), transparent 60%),
+    var(--grad-dark);
+}
+.footer__qr { background: rgba(255,255,255,.055); }
+
+/* ---------- 12. BUTTON REFINEMENT ---------- */
+.btn--gold {
+  box-shadow: 0 1px 0 rgba(255,255,255,.4) inset, 0 6px 20px rgba(168,128,31,.26);
+}
+.btn--gold:hover { box-shadow: 0 10px 30px rgba(168,128,31,.34); }
+.btn:not(.btn--gold):not(.btn--wa) {
+  box-shadow: 0 4px 14px rgba(16,18,22,.10);
+}
+
+/* ---------- 13. SCROLL CUE / MISC ---------- */
+.float-btn--wa { box-shadow: 0 8px 26px rgba(37,211,102,.34); }
+.float-btn--top { box-shadow: 0 8px 26px rgba(16,18,22,.30); }
+
+/* Selection + focus already themed in base.css */
+
+/* ---------- 14. RESPONSIVE GUARDS ---------- */
+@media (max-width: 940px) {
+  .ceo__body blockquote { padding-left: 1rem; }
+  .overview__body .lead { padding-left: 1rem; }
+}
+@media (max-width: 560px) {
+  .testi__card::before { display: none; }
+  .section .sec-head--center::before { display: none; }
+}

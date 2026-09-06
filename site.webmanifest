@@ -1,0 +1,14 @@
+{
+  "name": "KIARIT PHARMACEUTICALS",
+  "short_name": "KIARIT",
+  "description": "Healthcare-focused pharmaceutical and cosmetic company — dermatology, skincare, nutraceuticals and pharmaceutical formulations.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#fdfbf7",
+  "theme_color": "#08080a",
+  "lang": "en-IN",
+  "icons": [
+    { "src": "/assets/img/logo.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

@@ -147,12 +147,52 @@
   /* ---------- HERO VIDEO: guarantee autoplay / graceful fallback ---------- */
   var vid = document.querySelector('.hero__video');
   if (vid) {
+    var motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+
     vid.muted = true;
     vid.setAttribute('muted', '');
-    var play = vid.play();
-    if (play && play.catch) play.catch(function () { /* poster stays visible */ });
     vid.addEventListener('loadeddata', function () { vid.classList.add('is-loaded'); });
     if (vid.readyState >= 2) vid.classList.add('is-loaded');
+
+    function startVideo() {
+      var play = vid.play();
+      if (play && play.catch) play.catch(function () { /* poster stays visible */ });
+    }
+
+    function applyMotionPreference() {
+      if (motionQuery.matches) {
+        /* Respect prefers-reduced-motion: freeze on the first frame so the
+           hero still reads as a rich image without animating. */
+        vid.pause();
+        vid.removeAttribute('autoplay');
+        try { vid.currentTime = 0; } catch (e) { /* not seekable yet */ }
+      } else {
+        startVideo();
+      }
+    }
+
+    applyMotionPreference();
+    if (motionQuery.addEventListener) {
+      motionQuery.addEventListener('change', applyMotionPreference);
+    } else if (motionQuery.addListener) {
+      motionQuery.addListener(applyMotionPreference);
+    }
+
+    /* Pause while off-screen or on a hidden tab to save battery and data. */
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) vid.pause();
+      else if (!motionQuery.matches) startVideo();
+    });
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (motionQuery.matches) return;
+          if (entry.isIntersecting) startVideo();
+          else vid.pause();
+        });
+      }, { threshold: 0.15 }).observe(vid);
+    }
   }
 
   /* ---------- MAGNETIC BUTTONS (desktop, fine pointer only) ---------- */

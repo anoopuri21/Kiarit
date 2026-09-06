@@ -136,10 +136,20 @@
 .nav {
   position: relative;
   background: rgba(253,251,247,.86);
-  backdrop-filter: saturate(180%) blur(18px);
-  -webkit-backdrop-filter: saturate(180%) blur(18px);
   border-bottom: 1px solid var(--line);
   transition: box-shadow var(--t-med) var(--ease), background-color var(--t-med) var(--ease);
+}
+/* Frosted-glass blur lives on a pseudo-element, NOT on .nav itself.
+   A backdrop-filter on .nav would make it the containing block for the
+   position:fixed mobile menu (.nav__menu), trapping the panel inside the
+   76px-tall bar and rendering it invisible when opened. */
+.nav::before {
+  content: "";
+  position: absolute; inset: 0;
+  z-index: -1;
+  backdrop-filter: saturate(180%) blur(18px);
+  -webkit-backdrop-filter: saturate(180%) blur(18px);
+  pointer-events: none;
 }
 .site-header.is-scrolled .nav { box-shadow: var(--sh-3); background: rgba(253,251,247,.96); }
 
@@ -268,6 +278,8 @@
 @media (max-width: 1024px) {
   .burger { display: block; }
   .nav__cta .btn { display: none; }
+  /* Keep the burger (close "X") clickable above the open panel */
+  .nav__cta { position: relative; z-index: 130; }
   .nav__menu {
     position: fixed;
     top: 0; right: 0; bottom: 0; left: auto;
@@ -318,7 +330,10 @@
   backdrop-filter: blur(3px);
   opacity: 0; visibility: hidden;
   transition: opacity .5s var(--ease), visibility .5s;
-  z-index: 110;
+  /* Must sit BELOW .site-header (z-index 100): the menu panel lives inside the
+     header's stacking context, so an overlay above the header would dim the
+     panel itself instead of just the page behind it. */
+  z-index: 95;
 }
 .nav-overlay.is-open { opacity: 1; visibility: visible; }
 

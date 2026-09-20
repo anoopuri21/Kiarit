@@ -287,20 +287,16 @@ def build_contact():
     </div>
   </section>
 
-  <section class="section section--tight orderband grain" aria-labelledby="qr-h">
+  <section class="section section--tight orderband grain" aria-labelledby="order-band-h">
     <div class="container">
       <div class="orderband__grid">
-        <div class="qr-card" data-reveal="zoom">
-          <img src="assets/img/qr/payment-qr.png" alt="Scan this UPI QR code to pay {SITE['name']}" width="652" height="726" loading="lazy">
-          <div class="qr-card__note">Scan &amp; Pay via UPI</div>
-        </div>
         <div>
           <span class="eyebrow" data-reveal="fade">Ready to Order</span>
-          <h2 id="qr-h" data-reveal="up" data-delay="90">Ordering Is <em class="gold-text serif">Simple</em></h2>
-          <p data-reveal="up" data-delay="160">Message us on WhatsApp with your product and address, scan the QR to pay, and share the screenshot. That is the whole process.</p>
+          <h2 id="order-band-h" data-reveal="up" data-delay="90">Ordering Is <em class="gold-text serif">Simple</em></h2>
+          <p data-reveal="up" data-delay="160">Message us on WhatsApp with your product and address, pay via UPI ID or bank transfer, and share the screenshot. That is the whole process.</p>
           <div class="steps" data-stagger="60">
             <div class="step" data-reveal="up"><span class="step__num">1</span><div><strong>Message Us</strong><span>Share the product name, quantity and delivery address.</span></div></div>
-            <div class="step" data-reveal="up"><span class="step__num">2</span><div><strong>Scan &amp; Pay</strong><span>We confirm the total including shipping, then you pay via any UPI app.</span></div></div>
+            <div class="step" data-reveal="up"><span class="step__num">2</span><div><strong>Pay Securely</strong><span>We confirm the total including shipping, then you pay via UPI ID or bank transfer.</span></div></div>
             <div class="step" data-reveal="up"><span class="step__num">3</span><div><strong>Send Screenshot</strong><span>We dispatch within 24 working hours and share tracking.</span></div></div>
           </div>
           <div class="contact__actions" data-reveal="up" data-delay="440">
@@ -349,7 +345,7 @@ ORDER_FAQ = [
     ("How do I place an order with KIARIT?",
      "Send us a WhatsApp message with the product name, quantity and your full delivery address including PIN code. Our team confirms availability and the final total including shipping, then shares payment details."),
     ("What payment methods do you accept?",
-     "We accept UPI payments through any UPI app by scanning our QR code, and direct bank transfer via NEFT, IMPS or RTGS. We do not process card payments on the website."),
+     "We accept UPI payments to our UPI ID through any UPI app, and direct bank transfer via NEFT, IMPS or RTGS. We do not process card payments on the website."),
     ("Is there a minimum order value?",
      "There is no minimum order value. Shipping is complimentary on orders above ₹999; below that a flat shipping charge of ₹79 applies."),
     ("How long does delivery take?",
@@ -367,7 +363,7 @@ def build_order():
     body = page_hero(
         "Order &amp; Payment",
         'Simple Ordering,<br><em>Secure Payment</em>',
-        "No checkout forms and no card details. Message us, scan the QR code and your order is on its way.",
+        "No checkout forms and no card details. Message us on WhatsApp, pay via UPI ID or bank transfer, and your order is on its way.",
         [("Home", "/"), ("How to Order & Pay", None)],
     )
 
@@ -391,9 +387,9 @@ def build_order():
 
         <article class="bigstep" data-reveal="up">
           <span class="bigstep__num">02</span>
-          <div class="why__icon">{I['qr']}</div>
-          <h3>Scan the QR &amp; Pay</h3>
-          <p>Open any UPI app, scan the QR code below and pay the confirmed amount. You may also transfer directly to our bank account using the details provided.</p>
+          <div class="why__icon">{I['rupee']}</div>
+          <h3>Pay via UPI or Bank</h3>
+          <p>Use our UPI ID in any UPI app, or transfer directly to our bank account. Always confirm the final amount with our team before you pay.</p>
           <a class="link-gold" href="#payment">View Payment Details {I['arrow']}</a>
         </article>
 
@@ -410,50 +406,40 @@ def build_order():
 
   <section class="section section--alt grain" id="payment" aria-labelledby="pay-h">
     <div class="container">
-      <div class="pay__grid">
-        <div class="pay__qrcol" data-reveal="zoom">
-          <div class="qr-card qr-card--lg">
-            <img src="assets/img/qr/payment-qr.png" alt="Scan this UPI QR code to pay {SITE['name']}" width="652" height="726">
-            <div class="qr-card__note">Scan with any UPI app</div>
-          </div>
-          <div class="pay__apps" aria-label="Supported UPI applications">
-            <span>Google&nbsp;Pay</span><span>PhonePe</span><span>Paytm</span><span>BHIM</span><span>Any UPI App</span>
-          </div>
+      <div class="sec-head">
+        <span class="eyebrow" data-reveal="fade">Payment Details</span>
+        <h2 id="pay-h" data-reveal="up" data-delay="90">Pay by <em class="gold-text serif">UPI or Bank Transfer</em></h2>
+        <p data-reveal="up" data-delay="160">Always confirm the final amount with our team on WhatsApp before making a payment.</p>
+      </div>
+
+      <div class="why__grid" data-stagger="60" style="margin-bottom:var(--sp-8)">
+        <div class="paybox" data-reveal="up">
+          <div class="paybox__head">{I['rupee']}<h3>UPI Payment</h3></div>
+          <dl class="paybox__list">
+            <div><dt>UPI ID</dt><dd class="mono">{SITE['upi_id']}</dd></div>
+            <div><dt>Payee Name</dt><dd>{SITE['bank_holder']}</dd></div>
+          </dl>
         </div>
 
-        <div>
-          <span class="eyebrow" data-reveal="fade">Payment Details</span>
-          <h2 id="pay-h" data-reveal="up" data-delay="90">Pay by <em class="gold-text serif">UPI or Bank Transfer</em></h2>
-          <p data-reveal="up" data-delay="160">Always confirm the final amount with our team on WhatsApp before making a payment.</p>
-
-          <div class="paybox" data-reveal="up" data-delay="220">
-            <div class="paybox__head">{I['qr']}<h3>UPI Payment</h3></div>
-            <dl class="paybox__list">
-              <div><dt>UPI ID</dt><dd class="mono">{SITE['upi_id']}</dd></div>
-              <div><dt>Payee Name</dt><dd>{SITE['bank_holder']}</dd></div>
-            </dl>
-          </div>
-
-          <div class="paybox" data-reveal="up" data-delay="290">
-            <div class="paybox__head">{I['rupee']}<h3>Bank Transfer (NEFT / IMPS / RTGS)</h3></div>
-            <dl class="paybox__list">
-              <div><dt>Account Name</dt><dd>{SITE['bank_holder']}</dd></div>
-              <div><dt>Bank</dt><dd>{SITE['bank_name']}</dd></div>
-              <div><dt>Account Number</dt><dd class="mono">{SITE['bank_ac']}</dd></div>
-              <div><dt>IFSC Code</dt><dd class="mono">{SITE['bank_ifsc']}</dd></div>
-            </dl>
-          </div>
-
-          <div class="notice notice--gold" data-reveal="up" data-delay="350">
-            {I['shield']}
-            <p><strong>Payment safety.</strong> KIARIT will never ask for your UPI PIN, OTP or card CVV. Verify the payee name reads <strong>{SITE['bank_holder']}</strong> before you confirm any transaction.</p>
-          </div>
-
-          <div class="contact__actions" data-reveal="up" data-delay="420">
-            <a class="btn btn--wa" href="{wa('Hello KIARIT, I have completed the payment. Please find the screenshot attached.')}" target="_blank" rel="noopener noreferrer">{I['wa']} Send Payment Screenshot</a>
-            <a class="btn btn--outline" href="tel:{SITE['phone_link']}">Call {SITE['phone_display']}</a>
-          </div>
+        <div class="paybox" data-reveal="up" data-delay="80">
+          <div class="paybox__head">{I['rupee']}<h3>Bank Transfer (NEFT / IMPS / RTGS)</h3></div>
+          <dl class="paybox__list">
+            <div><dt>Account Name</dt><dd>{SITE['bank_holder']}</dd></div>
+            <div><dt>Bank</dt><dd>{SITE['bank_name']}</dd></div>
+            <div><dt>Account Number</dt><dd class="mono">{SITE['bank_ac']}</dd></div>
+            <div><dt>IFSC Code</dt><dd class="mono">{SITE['bank_ifsc']}</dd></div>
+          </dl>
         </div>
+      </div>
+
+      <div class="notice notice--gold" data-reveal="up" data-delay="160">
+        {I['shield']}
+        <p><strong>Payment safety.</strong> KIARIT will never ask for your UPI PIN, OTP or card CVV. Verify the payee name reads <strong>{SITE['bank_holder']}</strong> before you confirm any transaction.</p>
+      </div>
+
+      <div class="contact__actions" data-reveal="up" data-delay="220" style="margin-top:var(--sp-6)">
+        <a class="btn btn--wa" href="{wa('Hello KIARIT, I have completed the payment. Please find the screenshot attached.')}" target="_blank" rel="noopener noreferrer">{I['wa']} Send Payment Screenshot</a>
+        <a class="btn btn--outline" href="tel:{SITE['phone_link']}">Call {SITE['phone_display']}</a>
       </div>
     </div>
   </section>
@@ -501,22 +487,22 @@ def build_order():
 
     page = {
         "file": "order.html",
-        "title": "How to Order & Pay | KIARIT PHARMACEUTICALS — UPI QR Payment",
-        "desc": "Order KIARIT products in three steps: message us on WhatsApp, scan our UPI QR to pay, share the screenshot. Free shipping above ₹999, dispatch in 24 hours.",
+        "title": "How to Order & Pay | KIARIT PHARMACEUTICALS — UPI & Bank Transfer",
+        "desc": "Order KIARIT products in three steps: message us on WhatsApp, pay via UPI ID or bank transfer, share the screenshot. Free shipping above ₹999, dispatch in 24 hours.",
         "og_title": "How to Order & Pay — KIARIT PHARMACEUTICALS",
         "schema": [org_schema(),
                    breadcrumb([("Home", ""), ("How to Order & Pay", "/order")]),
                    faq_schema(ORDER_FAQ),
                    {"@context": "https://schema.org", "@type": "HowTo",
                     "name": "How to order from KIARIT PHARMACEUTICALS",
-                    "description": "Order KIARIT products in three steps using WhatsApp and UPI QR payment.",
+                    "description": "Order KIARIT products in three steps using WhatsApp and UPI or bank transfer.",
                     "totalTime": "PT5M",
                     "step": [
                         {"@type": "HowToStep", "position": 1, "name": "Message us on WhatsApp",
                          "text": "Send the product name, quantity and your full delivery address with PIN code.",
                          "url": SITE["url"] + "/order#payment"},
-                        {"@type": "HowToStep", "position": 2, "name": "Scan the QR code and pay",
-                         "text": "Open any UPI app, scan our QR code and pay the confirmed amount.",
+                        {"@type": "HowToStep", "position": 2, "name": "Pay via UPI ID or bank transfer",
+                         "text": "Pay the confirmed amount using our UPI ID or bank account details.",
                          "url": SITE["url"] + "/order#payment"},
                         {"@type": "HowToStep", "position": 3, "name": "Share the payment screenshot",
                          "text": "Send your payment screenshot on WhatsApp. We dispatch within 24 working hours.",

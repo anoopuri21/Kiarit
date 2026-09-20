@@ -158,7 +158,7 @@ def build_terms():
             ul([
                 "All prices are in Indian Rupees and inclusive of applicable taxes unless stated otherwise.",
                 "Prices, offers and product availability may change without prior notice. The price confirmed to you at the time of order is the price that applies.",
-                "Payment is accepted by UPI QR code or bank transfer only. We do not operate a card gateway and we never ask for your UPI PIN, OTP or card CVV.",
+                "Payment is accepted by UPI ID or bank transfer only. We do not operate a card gateway and we never ask for your UPI PIN, OTP or card CVV.",
                 "Orders are dispatched only after payment is credited and verified.",
                 "Always verify that the payee name reads <strong>KIARIT PHARMACEUTICALS</strong> before confirming a transfer. We are not liable for funds sent to an account that is not ours.",
             ]),

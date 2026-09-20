@@ -198,7 +198,7 @@ def build_product(p, idx):
             <a class="btn btn--wa btn--lg" href="{wa('Hello KIARIT, I want to order the ' + p['name'] + ' (' + p['size'] + ') at ' + rupee(p['price']) + '. Please confirm availability.')}" target="_blank" rel="noopener noreferrer">
               {I['wa']} Order on WhatsApp
             </a>
-            <a class="btn btn--outline btn--lg" href="/order">{I['qr']} Pay via QR</a>
+            <a class="btn btn--outline btn--lg" href="/order">{I['arrow']} How to Order</a>
           </div>
 
           <div class="pdp__assure" data-reveal="up" data-delay="320">

@@ -143,7 +143,12 @@ def build_product(p, idx):
     prev_p = PRODUCTS[(idx - 1) % len(PRODUCTS)]
     next_p = PRODUCTS[(idx + 1) % len(PRODUCTS)]
     save = p["mrp"] - p["price"]
-    savepct = round(save / p["mrp"] * 100)
+    savepct = round(save / p["mrp"] * 100) if p["mrp"] else 0
+    price_extras = ""
+    if save > 0:
+        price_extras = f"""
+              <del>{rupee(p['mrp'])}</del>
+              <span class="pdp__save">Save {savepct}%</span>"""
 
     body = f"""
   <section class="pdp">
@@ -179,9 +184,7 @@ def build_product(p, idx):
 
           <div class="pdp__pricebox" data-reveal="up" data-delay="200">
             <div class="pdp__price">
-              <strong>{rupee(p['price'])}</strong>
-              <del>{rupee(p['mrp'])}</del>
-              <span class="pdp__save">Save {savepct}%</span>
+              <strong>{rupee(p['price'])}</strong>{price_extras}
             </div>
             <div class="pdp__meta">
               <span>{p['size']}</span><span aria-hidden="true">·</span>

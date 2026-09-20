@@ -58,7 +58,7 @@ PRODUCTS = [
     {
         "slug": "product-1", "name": "Ritclear AZ Serum", "cat": "Dermatology",
         "tag": "Bestseller", "tag_class": "",
-        "size": "30 ml", "price": 1149, "mrp": 1499, "sku": "KRT-RCAZ-030",
+        "size": "30 ml", "price": 1499, "mrp": 1499, "sku": "KRT-RCAZ-030",
         "short": "A liposomal advance repair serum with 10% azelaic acid and 5% niacinamide that clarifies, brightens and soothes without over-drying.",
         "meta": "Ritclear AZ Serum pairs 10% azelaic acid with 5% niacinamide in a liposomal base to clarify, brighten and soothe. For all skin types, 30 ml.",
         "long": [
@@ -82,7 +82,7 @@ PRODUCTS = [
     {
         "slug": "product-2", "name": "Ritshade Sunscreen", "cat": "Daily Protection",
         "tag": "", "tag_class": "",
-        "size": "50 ml", "price": 449, "mrp": 599, "sku": "KRT-RSH-050",
+        "size": "50 ml", "price": 599, "mrp": 599, "sku": "KRT-RSH-050",
         "short": "A broad-spectrum SPF 50+ PA+++ sunscreen with Tinosorb-M, probiotics and hyaluronic acid \u2014 weightless, fragrance-free and no white cast.",
         "meta": "Ritshade Sunscreen gives SPF 50+ PA+++ very high protection with Tinosorb-M, probiotics and hyaluronic acid. Fragrance-free, no white cast. 50 ml.",
         "long": [
@@ -106,7 +106,7 @@ PRODUCTS = [
     {
         "slug": "product-3", "name": "Ritglow Face Wash", "cat": "Skincare",
         "tag": "Oil-Free", "tag_class": " pcard__tag--sage",
-        "size": "100 ml", "price": 299, "mrp": 399, "sku": "KRT-RGF-100",
+        "size": "100 ml", "price": 399, "mrp": 399, "sku": "KRT-RGF-100",
         "short": "An oil-free daily face wash that lifts away excess sebum, sweat and pollution without stripping the skin or leaving it tight.",
         "meta": "Ritglow Face Wash is an oil-free daily cleanser that removes sebum, sweat and pollution without stripping skin or leaving tightness. 100 ml.",
         "long": [
@@ -130,7 +130,7 @@ PRODUCTS = [
     {
         "slug": "product-4", "name": "Kiamild Foaming Shampoo", "cat": "Hair Care",
         "tag": "", "tag_class": "",
-        "size": "200 ml", "price": 599, "mrp": 799, "sku": "KRT-KMS-200",
+        "size": "200 ml", "price": 799, "mrp": 799, "sku": "KRT-KMS-200",
         "short": "A gentle everyday foaming shampoo that cleanses scalp and lengths thoroughly while staying mild enough for daily washing.",
         "meta": "Kiamild Foaming Shampoo cleanses scalp and hair gently enough for everyday washing, without sulphates or the squeaky-stripped feeling. 200 ml.",
         "long": [
@@ -154,7 +154,7 @@ PRODUCTS = [
     {
         "slug": "product-5", "name": "KiaRestora Shower Oil", "cat": "Body Care",
         "tag": "", "tag_class": "",
-        "size": "250 ml", "price": 749, "mrp": 999, "sku": "KRT-KRS-250",
+        "size": "250 ml", "price": 999, "mrp": 999, "sku": "KRT-KRS-250",
         "short": "A cleansing shower oil for dry and normal skin that turns to a soft milk on water, leaving skin clean, supple and velvety \u2014 never dry or tight.",
         "meta": "KiaRestora Shower Oil transforms into a soft cleansing milk on water, leaving skin nourished and comfortable instead of tight. 250 ml.",
         "long": [
@@ -178,7 +178,7 @@ PRODUCTS = [
     {
         "slug": "product-6", "name": "KiaMoist Body Lotion", "cat": "Body Care",
         "tag": "New Launch", "tag_class": "",
-        "size": "250 ml", "price": 599, "mrp": 799, "sku": "KRT-KMB-250",
+        "size": "250 ml", "price": 799, "mrp": 799, "sku": "KRT-KMB-250",
         "short": "A daily body lotion for dry and normal skin that restores the skin barrier and helps cut down water loss, so skin stays soft through the day.",
         "meta": "KiaMoist Body Lotion restores and balances the skin barrier and helps prevent TEWL. For dry and normal skin. 250 ml.",
         "long": [
@@ -460,7 +460,7 @@ def product_card(p, reveal=True):
             <h3 class="pcard__title"><a href="{url(p['slug'])}">{p['name']}</a></h3>
             <p class="pcard__desc">{p['short']}</p>
             <div class="pcard__foot">
-              <div class="pcard__price">{rupee(p['price'])} <del>{rupee(p['mrp'])}</del><small>{p['size']} · Inclusive of taxes</small></div>
+              <div class="pcard__price">{rupee(p['price'])}{(' <del>' + rupee(p['mrp']) + '</del>') if p['mrp'] > p['price'] else ''}<small>{p['size']} · Inclusive of taxes</small></div>
               <div class="pcard__actions">
                 <a class="pcard__icon-btn" href="{url(p['slug'])}" aria-label="View {p['name']} details" title="View details">{I['eye']}</a>
                 <a class="pcard__icon-btn pcard__icon-btn--wa" href="{wa('Hello KIARIT, I want to order the ' + p['name'] + '.')}" target="_blank" rel="noopener noreferrer" aria-label="Order {p['name']} on WhatsApp" title="Order on WhatsApp">{I['wa']}</a>

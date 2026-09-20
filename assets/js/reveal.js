@@ -36,7 +36,9 @@
           if (e.target.dataset.revealOnce !== 'false') io.unobserve(e.target);
         }
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    // threshold 0: mask/mask-x start at ~0.5% visible (clip-path inset 99.5%),
+    // so a 0.12 threshold never fires and images stay opacity:0 forever.
+    }, { threshold: 0, rootMargin: '0px 0px -8% 0px' });
 
     revealEls.forEach(function (el) { io.observe(el); });
 

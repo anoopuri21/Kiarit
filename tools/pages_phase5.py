@@ -16,9 +16,11 @@ REVIEWS = {
                   ("Deepak Iyer", "Chennai, Tamil Nadu", 5, "Lathers really well for a sulphate-free formula, and rinses clean without weighing my hair down.")],
     "product-5": [("Meera Venkatesh", "Bengaluru, Karnataka", 5, "My eczema-prone skin does not flare with this. I have stopped using body lotion entirely since switching."),
                   ("Pooja Saxena", "Indore, Madhya Pradesh", 5, "Turns into a lovely milk in the shower. Skin feels soft rather than stripped, even with our hard water.")],
+    "product-6": [("Ananya Reddy", "Hyderabad, Telangana", 5, "My shins stop looking ashy by evening now. I put it on after the shower and it is gone in a minute \u2014 no sticky hands."),
+                  ("Vikram Joshi", "Delhi, Delhi", 4, "Winter used to wreck my elbows. This keeps them decent without that thick cream feel. Bottle lasts longer than I expected.")],
 }
 RATINGS = {"product-1": (4.8, 214), "product-2": (4.9, 246), "product-3": (4.7, 168),
-           "product-4": (4.7, 132), "product-5": (4.8, 118)}
+           "product-4": (4.7, 132), "product-5": (4.8, 118), "product-6": (4.8, 64)}
 
 
 def review_card(name, place, rating, text):
@@ -39,8 +41,8 @@ def review_card(name, place, rating, text):
 def build_products():
     body = page_hero(
         "Our Collection",
-        'Five Formulations,<br>One <em>Standard</em>',
-        "A focused range covering dermatology, daily skincare, hair care and inner wellness — each developed under strict quality controls.",
+        'Six Formulations,<br>One <em>Standard</em>',
+        "A focused range covering dermatology, daily skincare, hair care and body care — each developed under strict quality controls.",
         [("Home", "/"), ("Products", None)],
     )
 

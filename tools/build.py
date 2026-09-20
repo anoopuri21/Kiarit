@@ -58,7 +58,7 @@ PRODUCTS = [
     {
         "slug": "product-1", "name": "Ritclear AZ Serum", "cat": "Dermatology",
         "tag": "Bestseller", "tag_class": "",
-        "size": "30 ml", "price": 849, "mrp": 1099, "sku": "KRT-RCAZ-030",
+        "size": "30 ml", "price": 1149, "mrp": 1499, "sku": "KRT-RCAZ-030",
         "short": "A liposomal advance repair serum with 10% azelaic acid and 5% niacinamide that clarifies, brightens and soothes without over-drying.",
         "meta": "Ritclear AZ Serum pairs 10% azelaic acid with 5% niacinamide in a liposomal base to clarify, brighten and soothe. For all skin types, 30 ml.",
         "long": [
@@ -82,7 +82,7 @@ PRODUCTS = [
     {
         "slug": "product-2", "name": "Ritshade Sunscreen", "cat": "Daily Protection",
         "tag": "", "tag_class": "",
-        "size": "50 ml", "price": 749, "mrp": 949, "sku": "KRT-RSH-050",
+        "size": "50 ml", "price": 449, "mrp": 599, "sku": "KRT-RSH-050",
         "short": "A broad-spectrum SPF 50+ PA+++ sunscreen with Tinosorb-M, probiotics and hyaluronic acid \u2014 weightless, fragrance-free and no white cast.",
         "meta": "Ritshade Sunscreen gives SPF 50+ PA+++ very high protection with Tinosorb-M, probiotics and hyaluronic acid. Fragrance-free, no white cast. 50 ml.",
         "long": [
@@ -106,7 +106,7 @@ PRODUCTS = [
     {
         "slug": "product-3", "name": "Ritglow Face Wash", "cat": "Skincare",
         "tag": "Oil-Free", "tag_class": " pcard__tag--sage",
-        "size": "100 ml", "price": 449, "mrp": 599, "sku": "KRT-RGF-100",
+        "size": "100 ml", "price": 299, "mrp": 399, "sku": "KRT-RGF-100",
         "short": "An oil-free daily face wash that lifts away excess sebum, sweat and pollution without stripping the skin or leaving it tight.",
         "meta": "Ritglow Face Wash is an oil-free daily cleanser that removes sebum, sweat and pollution without stripping skin or leaving tightness. 100 ml.",
         "long": [
@@ -153,10 +153,10 @@ PRODUCTS = [
     },
     {
         "slug": "product-5", "name": "KiaRestora Shower Oil", "cat": "Body Care",
-        "tag": "New Launch", "tag_class": "",
-        "size": "250 ml", "price": 699, "mrp": 899, "sku": "KRT-KRS-250",
+        "tag": "", "tag_class": "",
+        "size": "250 ml", "price": 749, "mrp": 999, "sku": "KRT-KRS-250",
         "short": "A cleansing shower oil for dry and normal skin that turns to a soft milk on water, leaving skin clean, supple and velvety \u2014 never dry or tight.",
-        "meta": "KiaRestora Shower Oil transforms into a soft cleansing milk on water, leaving skin nourished and comfortable instead of tight. 200 ml.",
+        "meta": "KiaRestora Shower Oil transforms into a soft cleansing milk on water, leaving skin nourished and comfortable instead of tight. 250 ml.",
         "long": [
             "KiaRestora Shower Oil is a body cleanser for skin that soap leaves tight and itchy. The oil base emulsifies into a light milk the moment it meets water, cleansing gently while leaving a fine layer of nourishing lipids behind.",
             "It suits dry, sensitive and eczema-prone skin, and it is particularly useful in winter or in hard-water areas where conventional body washes strip the skin. Skin feels soft and supple straight out of the shower, often without needing lotion.",
@@ -174,6 +174,30 @@ PRODUCTS = [
         "ingredients": "Helianthus Annuus Seed Oil, PEG-7 Glyceryl Cocoate, Caprylic/Capric Triglyceride, Glycerin, Prunus Amygdalus Dulcis Oil, Tocopherol, Panthenol, Bisabolol, Citric Acid, Phenoxyethanol.",
         "faq": [("Do I still need body lotion?", "Often not. The shower oil leaves enough nourishment behind that most people find lotion unnecessary except in very dry weather."),
                 ("Is it safe for eczema-prone skin?", "It is formulated to be. It is soap-free and fragrance-free, but check with your dermatologist if you are mid-flare.")],
+    },
+    {
+        "slug": "product-6", "name": "KiaMoist Body Lotion", "cat": "Body Care",
+        "tag": "New Launch", "tag_class": "",
+        "size": "250 ml", "price": 599, "mrp": 799, "sku": "KRT-KMB-250",
+        "short": "A daily body lotion for dry and normal skin that restores the skin barrier and helps cut down water loss, so skin stays soft through the day.",
+        "meta": "KiaMoist Body Lotion restores and balances the skin barrier and helps prevent TEWL. For dry and normal skin. 250 ml.",
+        "long": [
+            "KiaMoist is a straightforward body lotion for skin that feels tight by afternoon or looks dull after a hot shower. It works on the barrier first \u2014 the thin outer layer that keeps moisture in \u2014 so the softness lasts instead of fading an hour later.",
+            "Made for dry and normal skin. A thin layer after bathing is usually enough. It sinks in without a heavy film, and it pairs well after KiaRestora if you want cleanser plus lotion in one routine.",
+        ],
+        "benefits": [
+            ("Restores the Barrier", "Helps the outer skin layer hold together so dryness does not bounce back quickly."),
+            ("Limits Water Loss", "Supports the skin against TEWL, the quiet leak that leaves limbs chalky by evening."),
+            ("Dry & Normal Skin", "Light enough for everyday use, rich enough when the air is dry."),
+            ("Everyday Texture", "Spreads easily, absorbs clean, no sticky afterfeel."),
+        ],
+        "how": ["Pat skin dry after a bath or shower, leave it slightly damp.",
+                "Pump a modest amount into your palms.",
+                "Smooth over arms, legs and body until absorbed.",
+                "Use once or twice daily, or whenever skin feels tight."],
+        "ingredients": "Aqua, Glycerin, Caprylic/Capric Triglyceride, Cetearyl Alcohol, Glyceryl Stearate, Shea Butter, Panthenol, Sodium Hyaluronate, Tocopherol, Ceramide NP, Allantoin, Xanthan Gum, Phenoxyethanol.",
+        "faq": [("Will it feel greasy?", "No. It is meant to sink in. If you put on too much, wait a minute before dressing \u2014 that is usually enough."),
+                ("Can I use it on my face?", "It is a body lotion. Stick to face products on the face; use KiaMoist from the neck down.")],
     },
 ]
 

@@ -82,6 +82,16 @@
     </image:image>
   </url>
   <url>
+    <loc>https://www.kiaritpharmaceuticals.com/product-6</loc>
+    <lastmod>2026-09-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.kiaritpharmaceuticals.com/assets/img/products/product-6.jpg</image:loc>
+      <image:title>KiaMoist Body Lotion</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://www.kiaritpharmaceuticals.com/shipping-returns</loc>
     <lastmod>2026-09-06</lastmod>
     <changefreq>yearly</changefreq>

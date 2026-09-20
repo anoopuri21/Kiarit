@@ -36,6 +36,7 @@ FILES = [
     "product-3.html",
     "product-4.html",
     "product-5.html",
+    "product-6.html",
     "contact.html",
     "order.html",
     "privacy-policy.html",

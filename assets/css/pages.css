@@ -203,6 +203,18 @@
 .overview__visual { position: relative; z-index: 1; isolation: isolate; }
 /* Cover images: every framed/aspect-ratio wrapper on the site fills the same
    way, so the geometry lives in one rule and variants only set object-position. */
+.overview__img picture,
+.poster__bg picture,
+.poster--split .poster__panel picture,
+.poster-light__media picture,
+.pcard__media picture,
+.pcard__media > a,
+.ceo__portrait-inner picture,
+.pdp__imgwrap picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
 .overview__img img,
 .poster__bg img,
 .poster--split .poster__panel img,
@@ -1316,7 +1328,9 @@
     aspect-ratio: 4 / 4.6;
     box-shadow: var(--sh-4);
   }
-  .poster--bleed .poster__panel img { width: 100%; height: 100%; object-fit: cover; }
+  .poster--bleed .poster__panel picture,
+  .poster--bleed .poster__panel img { width: 100%; height: 100%; }
+  .poster--bleed .poster__panel img { object-fit: cover; }
   /* Caption sits clear of the overlapping copy card. */
   .poster--bleed .poster__panel-cap {
     left: auto; right: var(--sp-5);

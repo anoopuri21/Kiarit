@@ -3,7 +3,8 @@
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from build import (SITE, PRODUCTS, I, rupee, stars, head, render, write, page_hero, url,
-                   cta_band, wa, org_schema, breadcrumb, faq_schema, product_card)
+                   cta_band, wa, org_schema, breadcrumb, faq_schema, product_card,
+                   SHOW_ORDER_PAY)
 
 
 # ============================================================== ABOUT
@@ -22,7 +23,10 @@ def build_about():
         <div class="overview__visual" data-reveal="mask-x">
           <div class="overview__frame" aria-hidden="true"></div>
           <div class="overview__img">
-            <img src="assets/img/posters/poster-2.jpg" alt="Macro photograph of a golden serum droplet representing KIARIT's scientific formulations" width="800" height="960" loading="lazy">
+            <picture>
+              <source srcset="assets/img/posters/poster-2.webp" type="image/webp">
+              <img src="assets/img/posters/poster-2.jpg" alt="Macro photograph of a golden serum droplet representing KIARIT's scientific formulations" width="800" height="960" loading="lazy">
+            </picture>
           </div>
           <div class="overview__badge" data-reveal="up" data-delay="420">
             {I['award']}
@@ -91,7 +95,10 @@ def build_about():
 
   <section class="poster" data-reveal="fade" aria-labelledby="qual-h">
     <div class="poster__bg" data-parallax="0.16">
-      <img src="assets/img/posters/poster-1.jpg" alt="" width="1920" height="1080" loading="lazy">
+      <picture>
+        <source srcset="assets/img/posters/poster-1.webp" type="image/webp">
+        <img src="assets/img/posters/poster-1.jpg" alt="" width="1920" height="1080" loading="lazy">
+      </picture>
     </div>
     <div class="poster__shimmer" aria-hidden="true"></div>
     <div class="poster__frame" aria-hidden="true"></div>
@@ -124,7 +131,7 @@ def build_about():
         <li class="timeline__item" data-reveal="up"><span class="timeline__year">2023</span>
           <div><strong>Skincare Expansion</strong><p>The daily skincare range launches, extending our dermatology expertise into everyday routines.</p></div></li>
         <li class="timeline__item" data-reveal="up"><span class="timeline__year">2025</span>
-          <div><strong>Body &amp; Hair</strong><p>Kiamild and Kiarestora extend our care philosophy beyond the face, into everyday hair and body routines.</p></div></li>
+          <div><strong>Body &amp; Hair</strong><p>Kiatral-AD and KiaRestora extend our care philosophy beyond the face, into everyday hair and body routines.</p></div></li>
         <li class="timeline__item" data-reveal="up"><span class="timeline__year">2026</span>
           <div><strong>Nationwide Reach</strong><p>Serving customers across India with a focused six-product signature collection.</p></div></li>
       </ol>
@@ -138,7 +145,10 @@ def build_about():
         <div class="ceo__portrait" data-reveal="zoom">
           <div class="ceo__arch" aria-hidden="true"></div>
           <div class="ceo__portrait-inner">
-            <img src="assets/img/ceo.jpg" alt="{SITE['ceo']}, Founder and Chief Executive Officer of {SITE['name']}" width="800" height="940" loading="lazy">
+            <picture>
+              <source srcset="assets/img/ceo.webp" type="image/webp">
+              <img src="assets/img/ceo.jpeg" alt="{SITE['ceo']}, Founder and Chief Executive Officer of {SITE['name']}" width="800" height="940" loading="lazy">
+            </picture>
           </div>
           <div class="ceo__sig-card"><strong>{SITE['ceo']}</strong><span>Founder &amp; CEO</span></div>
         </div>
@@ -262,7 +272,7 @@ def build_contact():
 
           <div class="contact__actions" data-reveal="up" data-delay="440">
             <a class="btn btn--wa" href="{wa('Hello KIARIT, I would like to place an order.')}" target="_blank" rel="noopener noreferrer">{I['wa']} Order on WhatsApp</a>
-            <a class="btn btn--outline" href="/order">How to Order &amp; Pay</a>
+            <a class="btn btn--outline" href="{('/order' if SHOW_ORDER_PAY else '/contact')}">{('How to Order &amp; Pay' if SHOW_ORDER_PAY else 'Contact Us')}</a>
           </div>
         </div>
 
@@ -300,7 +310,7 @@ def build_contact():
             <div class="step" data-reveal="up"><span class="step__num">3</span><div><strong>Send Screenshot</strong><span>We dispatch within 24 working hours and share tracking.</span></div></div>
           </div>
           <div class="contact__actions" data-reveal="up" data-delay="440">
-            <a class="btn btn--gold" href="/order" data-magnetic>Full Payment Details {I['arrow']}</a>
+            <a class="btn btn--gold" href="{('/order' if SHOW_ORDER_PAY else 'https://wa.me/' + SITE['wa'])}" {'target="_blank" rel="noopener noreferrer"' if not SHOW_ORDER_PAY else ''} data-magnetic>{('Full Payment Details' if SHOW_ORDER_PAY else 'Order on WhatsApp')} {I['arrow']}</a>
           </div>
         </div>
       </div>
@@ -490,6 +500,7 @@ def build_order():
         "title": "How to Order & Pay | KIARIT PHARMACEUTICALS — UPI & Bank Transfer",
         "desc": "Order KIARIT products in three steps: message us on WhatsApp, pay via UPI ID or bank transfer, share the screenshot. Free shipping above ₹999, dispatch in 24 hours.",
         "og_title": "How to Order & Pay — KIARIT PHARMACEUTICALS",
+        "robots": "index, follow, max-image-preview:large, max-snippet:-1" if SHOW_ORDER_PAY else "noindex, follow",
         "schema": [org_schema(),
                    breadcrumb([("Home", ""), ("How to Order & Pay", "/order")]),
                    faq_schema(ORDER_FAQ),

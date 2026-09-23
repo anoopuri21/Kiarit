@@ -3,24 +3,25 @@
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from build import (SITE, PRODUCTS, PMAP, I, rupee, stars, render, write, page_hero, url,
-                   cta_band, wa, org_schema, breadcrumb, faq_schema, product_card)
+                   cta_band, wa, org_schema, breadcrumb, faq_schema, product_card,
+                   SHOW_ORDER_PAY)
 
 REVIEWS = {
-    "product-1": [("Priya Kulkarni", "Pune, Maharashtra", 5, "The only thing that has faded my post-acne marks. Breakouts settled in about two weeks and the dark spots have genuinely lightened since."),
+    "ritclear-az-serum": [("Priya Kulkarni", "Pune, Maharashtra", 5, "The only thing that has faded my post-acne marks. Breakouts settled in about two weeks and the dark spots have genuinely lightened since."),
                   ("Ritu Agarwal", "Jaipur, Rajasthan", 5, "Gentle enough for my sensitive skin, which azelaic acid usually is not. No stinging, and it layers fine under sunscreen.")],
-    "product-2": [("Rohit Menon", "Bengaluru, Karnataka", 5, "No white cast at all on my skin tone, and it does not turn greasy by afternoon. Finally a sunscreen I actually reapply."),
+    "ritshade-sunscreen": [("Rohit Menon", "Bengaluru, Karnataka", 5, "No white cast at all on my skin tone, and it does not turn greasy by afternoon. Finally a sunscreen I actually reapply."),
                   ("Neha Bhatt", "Ahmedabad, Gujarat", 5, "Matte finish that lasts, sits beautifully under makeup, and survives a humid commute. Repurchasing.")],
-    "product-3": [("Kavya Nair", "Kochi, Kerala", 5, "Cleans off sunscreen properly without that tight squeaky feeling. My skin feels comfortable straight after washing."),
+    "ritglow-face-wash": [("Kavya Nair", "Kochi, Kerala", 5, "Cleans off sunscreen properly without that tight squeaky feeling. My skin feels comfortable straight after washing."),
                   ("Arjun Malhotra", "Mumbai, Maharashtra", 4, "Great for oily skin in Mumbai weather. I use it twice a day and it has not dried me out once.")],
-    "product-4": [("Shalini Gupta", "Lucknow, Uttar Pradesh", 5, "I wash my hair every day and this is the first shampoo that has not left it dry and frizzy. Scalp itchiness is gone too."),
-                  ("Deepak Iyer", "Chennai, Tamil Nadu", 5, "Lathers really well for a sulphate-free formula, and rinses clean without weighing my hair down.")],
-    "product-5": [("Meera Venkatesh", "Bengaluru, Karnataka", 5, "My eczema-prone skin does not flare with this. I have stopped using body lotion entirely since switching."),
+    "kiatral-ad-anti-dandruff-shampoo": [("Shalini Gupta", "Lucknow, Uttar Pradesh", 5, "The flakes on my shoulders finally stopped showing through dark tops. Scalp itch eased in about ten days and my hair does not feel stripped."),
+                  ("Deepak Iyer", "Chennai, Tamil Nadu", 5, "I have tried stronger anti-dandruff washes that left my scalp tight. This one clears the flakes without that burnt feeling.")],
+    "kiarestora-shower-oil": [("Meera Venkatesh", "Bengaluru, Karnataka", 5, "My eczema-prone skin does not flare with this. I have stopped using body lotion entirely since switching."),
                   ("Pooja Saxena", "Indore, Madhya Pradesh", 5, "Turns into a lovely milk in the shower. Skin feels soft rather than stripped, even with our hard water.")],
-    "product-6": [("Ananya Reddy", "Hyderabad, Telangana", 5, "My shins stop looking ashy by evening now. I put it on after the shower and it is gone in a minute \u2014 no sticky hands."),
+    "kiamoist-body-lotion": [("Ananya Reddy", "Hyderabad, Telangana", 5, "My shins stop looking ashy by evening now. I put it on after the shower and it is gone in a minute \u2014 no sticky hands."),
                   ("Vikram Joshi", "Delhi, Delhi", 4, "Winter used to wreck my elbows. This keeps them decent without that thick cream feel. Bottle lasts longer than I expected.")],
 }
-RATINGS = {"product-1": (4.8, 214), "product-2": (4.9, 246), "product-3": (4.7, 168),
-           "product-4": (4.7, 132), "product-5": (4.8, 118), "product-6": (4.8, 64)}
+RATINGS = {"ritclear-az-serum": (4.8, 214), "ritshade-sunscreen": (4.9, 246), "ritglow-face-wash": (4.7, 168),
+           "kiatral-ad-anti-dandruff-shampoo": (4.7, 132), "kiarestora-shower-oil": (4.8, 118), "kiamoist-body-lotion": (4.8, 64)}
 
 
 def review_card(name, place, rating, text):
@@ -90,21 +91,21 @@ def build_products():
           <div class="why__icon">{I['drop']}</div>
           <h3>Morning Routine</h3>
           <p>Cleanse with Ritglow Face Wash, apply Ritclear AZ Serum, and always finish with Ritshade Sunscreen.</p>
-          <a class="link-gold" href="/product-2">Start with Ritshade {I['arrow']}</a>
+          <a class="link-gold" href="/ritshade-sunscreen">Start with Ritshade {I['arrow']}</a>
         </article>
         <article class="bigstep" data-reveal="up">
           <span class="bigstep__num">PM</span>
           <div class="why__icon">{I['leaf']}</div>
           <h3>Evening Routine</h3>
           <p>Cleanse away the day with Ritglow, then let Ritclear AZ Serum work on breakouts and marks overnight.</p>
-          <a class="link-gold" href="/product-1">Explore Ritclear AZ {I['arrow']}</a>
+          <a class="link-gold" href="/ritclear-az-serum">Explore Ritclear AZ {I['arrow']}</a>
         </article>
         <article class="bigstep" data-reveal="up">
           <span class="bigstep__num">+</span>
           <div class="why__icon">{I['heart']}</div>
           <h3>Hair &amp; Body</h3>
-          <p>Kiamild Shampoo as often as you wash, and Kiarestora Shower Oil in place of soap for comfortable skin.</p>
-          <a class="link-gold" href="/product-5">Discover Kiarestora {I['arrow']}</a>
+          <p>Kiatral-AD for stubborn dandruff, and KiaRestora Shower Oil in place of soap for comfortable skin.</p>
+          <a class="link-gold" href="/kiarestora-shower-oil">Discover Kiarestora {I['arrow']}</a>
         </article>
       </div>
     </div>
@@ -112,7 +113,8 @@ def build_products():
 """
     body += cta_band("Need Help Choosing the Right <em>Product</em>?",
                      "Message our team — we will recommend a routine based on your skin type and concern.",
-                     ("Contact Us", "/contact"), ("How to Order", "/order"))
+                     ("Contact Us", "/contact"),
+                     ("How to Order", "/order") if SHOW_ORDER_PAY else ("Chat on WhatsApp", "https://wa.me/" + SITE["wa"]))
 
     item_list = {
         "@context": "https://schema.org", "@type": "ItemList",
@@ -127,7 +129,7 @@ def build_products():
     page = {
         "file": "products.html",
         "title": "All Products | KIARIT PHARMACEUTICALS — Skincare & Nutraceuticals",
-        "desc": "Browse the KIARIT range — Ritclear AZ Serum, Ritshade Sunscreen, Ritglow Face Wash, Kiamild Shampoo and Kiarestora Shower Oil. GMP certified, 24-hour dispatch.",
+        "desc": "Browse the KIARIT range — Ritclear AZ Serum, Ritshade Sunscreen, Ritglow Face Wash, Kiatral-AD Anti Dandruff Shampoo, KiaRestora Shower Oil and KiaMoist Body Lotion. GMP certified, 24-hour dispatch.",
         "og_title": "All Products — KIARIT PHARMACEUTICALS",
         "schema": [org_schema(), breadcrumb([("Home", ""), ("Products", "/products")]), item_list],
         "head_extra": "",
@@ -150,6 +152,10 @@ def build_product(p, idx):
               <del>{rupee(p['mrp'])}</del>
               <span class="pdp__save">Save {savepct}%</span>"""
 
+    order_btn = ""
+    if SHOW_ORDER_PAY:
+        order_btn = f'            <a class="btn btn--outline btn--lg" href="/order">{I["arrow"]} How to Order</a>\n'
+
     body = f"""
   <section class="pdp">
     <div class="container">
@@ -162,7 +168,10 @@ def build_product(p, idx):
       <div class="pdp__grid">
         <div class="pdp__media" data-reveal="mask-x">
           <div class="pdp__imgwrap">
-            <img src="assets/img/products/{p['slug']}.jpg" alt="{p['name']} — {p['cat'].lower()} product by KIARIT Pharmaceuticals, {p['size']}" width="900" height="900" fetchpriority="high">
+            <picture>
+              <source srcset="assets/img/products/{p['img'].rsplit('.', 1)[0]}.webp" type="image/webp">
+              <img src="assets/img/products/{p['img']}" alt="{p['name']} — {p['cat'].lower()} product by KIARIT Pharmaceuticals, {p['size']}" width="900" height="900" fetchpriority="high">
+            </picture>
           </div>
           <ul class="pdp__badges">
             <li>{I['shield']} GMP Certified</li>
@@ -198,8 +207,7 @@ def build_product(p, idx):
             <a class="btn btn--wa btn--lg" href="{wa('Hello KIARIT, I want to order the ' + p['name'] + ' (' + p['size'] + ') at ' + rupee(p['price']) + '. Please confirm availability.')}" target="_blank" rel="noopener noreferrer">
               {I['wa']} Order on WhatsApp
             </a>
-            <a class="btn btn--outline btn--lg" href="/order">{I['arrow']} How to Order</a>
-          </div>
+{order_btn}          </div>
 
           <div class="pdp__assure" data-reveal="up" data-delay="320">
             <div>{I['phone']}<span>Call {SITE['phone_display']}<br>for order support</span></div>
@@ -340,14 +348,15 @@ def build_product(p, idx):
 """
     body += cta_band(f"Ready to Try <em>{p['name'].replace('Kiarit ', '')}</em>?",
                      "Message us on WhatsApp and our team will confirm your order within minutes.",
-                     ("How to Order", "/order"), ("Contact Us", "/contact"))
+                     ("Order on WhatsApp", wa("Hello KIARIT, I want to order the " + p["name"] + ".")),
+                     ("How to Order", "/order") if SHOW_ORDER_PAY else ("Contact Us", "/contact"))
 
     product_schema = {
         "@context": "https://schema.org", "@type": "Product",
         "@id": f"{SITE['url']}{url(p['slug'])}#product",
         "name": p["name"], "sku": p["sku"], "category": p["cat"],
         "description": p["short"],
-        "image": [f"{SITE['url']}/assets/img/products/{p['slug']}.jpg"],
+        "image": [f"{SITE['url']}/assets/img/products/{p['img']}"],
         "brand": {"@type": "Brand", "name": SITE["short"]},
         "manufacturer": {"@id": SITE["url"] + "/#organization"},
         "size": p["size"],
@@ -383,7 +392,7 @@ def build_product(p, idx):
         "desc": p["meta"],
         "og_title": f"{p['name']} — {rupee(p['price'])} | KIARIT PHARMACEUTICALS",
         "og_type": "product",
-        "og": f"assets/img/products/{p['slug']}.jpg",
+        "og": f"assets/img/products/{p['img']}",
         "schema": [org_schema(),
                    breadcrumb([("Home", ""), ("Products", "/products"), (p["name"], url(p['slug']))]),
                    product_schema,

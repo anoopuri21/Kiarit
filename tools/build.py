@@ -41,7 +41,7 @@ SITE = {
         "linkedin": "https://www.linkedin.com/company/kiaritpharmaceuticals",
         "youtube": "https://www.youtube.com/@kiaritpharmaceuticals",
     },
-    "ceo": "Yogesh Kumar Bharta",
+    "ceo": "Yogesh Kumar Bhatra",
     "overview": ("KIARIT PHARMACEUTICALS is a healthcare-focused pharmaceutical and cosmetic "
                  "company committed to delivering high-quality, innovative, and affordable "
                  "products. We specialize in dermatology, skincare, nutraceuticals, and "
@@ -53,151 +53,166 @@ SITE = {
                  "name in healthcare and personal care solutions."),
 }
 
+# Set True to restore the Order & Pay nav item, footer link, and related CTAs.
+SHOW_ORDER_PAY = False
+
 # ---------------------------------------------------------------- product data
 PRODUCTS = [
     {
-        "slug": "product-1", "name": "Ritclear AZ Serum", "cat": "Dermatology",
+        "slug": "ritclear-az-serum", "img": "product-1.jpg", "legacy": "product-1",
+        "name": "Ritclear AZ Serum", "cat": "Dermatology",
         "tag": "Bestseller", "tag_class": "",
         "size": "30 ml", "price": 1499, "mrp": 1499, "sku": "KRT-RCAZ-030",
-        "short": "A liposomal advance repair serum with 10% azelaic acid and 5% niacinamide that clarifies, brightens and soothes without over-drying.",
-        "meta": "Ritclear AZ Serum pairs 10% azelaic acid with 5% niacinamide in a liposomal base to clarify, brighten and soothe. For all skin types, 30 ml.",
+        "spec_img": "ritclear-AZ-serum.jpg",
+        "short": "A liposomal advance repair serum with azelaic acid 10%, tranexamic acid 3% and niacinamide 5% that brightens, fades dark spots and calms oil and pores.",
+        "meta": "Ritclear AZ Serum is a liposomal advance repair serum with azelaic acid 10%, tranexamic acid 3%, niacinamide 5%, liquorice, salicylic acid and alpha arbutin. For all skin types.",
         "long": [
-            "Ritclear AZ Serum pairs 10% azelaic acid with 5% niacinamide in a liposomal delivery system. Encapsulating the actives lets them release gradually into the skin, which is what makes a 10% strength tolerable for daily use rather than harsh.",
-            "It is formulated for Indian skin and climate, where post-inflammatory hyperpigmentation is often the longer-lasting problem. Gentle enough for daily use on sensitive, acne-prone skin, and light enough to layer under sunscreen without pilling.",
+            "Ritclear AZ Serum is a liposomal advance repair serum for all skin types. Azelaic acid at 10% helps settle acne and blemishes while evening tone. Tranexamic acid at 3% and alpha arbutin at 1% work on dark spots and excess pigment. Niacinamide at 5% refines pores, reins in oil and supports the barrier.",
+            "Liquorice extract at 2% calms redness, and salicylic acid at 1% keeps pores from clogging. The liposomal base lets these strengths sit on skin that still has to wear sunscreen the next morning. Use it when breakouts and leftover marks show up together.",
         ],
         "benefits": [
-            ("Calms Active Breakouts", "Azelaic acid targets the bacteria and inflammation behind spots."),
-            ("Fades Post-Acne Marks", "Interrupts excess pigment so dark marks clear faster."),
-            ("Evens Skin Tone", "Helps soften the look of blotchiness and uneven patches."),
-            ("Gentle Daily Use", "Well tolerated by sensitive skin; no parabens or added fragrance."),
+            ("Brightens Skin", "Niacinamide and liquorice lift dullness without a harsh peel."),
+            ("Reduces Dark Spots", "Tranexamic acid and alpha arbutin interrupt leftover pigment."),
+            ("Oil Control and Pore Care", "Niacinamide and salicylic acid keep pores clearer and less shiny."),
+            ("Soothes and Hydrates", "Liquorice and the liposomal base calm skin while the acids work."),
         ],
         "how": ["Cleanse with Ritglow Face Wash and pat the skin dry.",
-                "Apply 3\u20134 drops to the face, avoiding the eye area.",
-                "Begin once daily at night, building to twice daily as your skin adjusts.",
-                "Always finish with Ritshade Sunscreen during the day."],
-        "ingredients": "Aqua, Azelaic Acid (10%), Niacinamide (5%), Phospholipids (Liposomal Complex), Glycerin, Propanediol, Sodium Hyaluronate, Panthenol, Allantoin, Xanthan Gum, Phenoxyethanol.",
-        "faq": [("How soon will I see results?", "Active breakouts usually settle within 2\u20133 weeks. Post-acne marks fade more gradually, typically over 8\u201312 weeks of consistent use."),
-                ("Can I use it with other actives?", "Yes, but introduce them separately. Keep retinoids or exfoliating acids to alternate nights until you know how your skin responds.")],
+                "Apply a few drops to the face, avoiding the eye area.",
+                "Use once daily at night to start, then morning and night if skin stays calm.",
+                "Finish daytime use with Ritshade Sunscreen."],
+        "ingredients": "Aqua, Azelaic Acid (10%), Tranexamic Acid (3%), Niacinamide (5%), Glycyrrhiza Glabra (Liquorice) Extract (2%), Salicylic Acid (1%), Alpha Arbutin (1%), Phospholipids (Liposomal Complex), Glycerin, Propanediol, Phenoxyethanol.",
+        "faq": [("How soon will I see results?", "Active spots often look calmer in 2\u20133 weeks. Dark marks take longer \u2014 usually 8\u201312 weeks of steady use."),
+                ("Can I use it with other actives?", "Yes, but add them one at a time. Keep strong retinoids or extra acids on alternate nights until you know how your skin responds.")],
     },
     {
-        "slug": "product-2", "name": "Ritshade Sunscreen", "cat": "Daily Protection",
+        "slug": "ritshade-sunscreen", "img": "product-2.jpg", "legacy": "product-2",
+        "name": "Ritshade Sunscreen", "cat": "Daily Protection",
         "tag": "", "tag_class": "",
         "size": "50 ml", "price": 599, "mrp": 599, "sku": "KRT-RSH-050",
-        "short": "A broad-spectrum SPF 50+ PA+++ sunscreen with Tinosorb-M, probiotics and hyaluronic acid \u2014 weightless, fragrance-free and no white cast.",
-        "meta": "Ritshade Sunscreen gives SPF 50+ PA+++ very high protection with Tinosorb-M, probiotics and hyaluronic acid. Fragrance-free, no white cast. 50 ml.",
+        "spec_img": "ritshade-sunscreen.jpg",
+        "short": "A daily SPF 50+ PA+++ sunscreen with Tinosorb M, micronized titanium dioxide and vitamin C \u2014 light, non-comedogenic and no white cast.",
+        "meta": "Ritshade Daily Sunscreen is SPF 50+ PA+++ with Tinosorb M 2%, micronized titanium dioxide 10%, vitamin C 5% and niacinamide. No white cast. 50 ml.",
         "long": [
-            "Ritshade Sunscreen delivers SPF 50+ PA+++ very high protection built on Tinosorb-M at 2%, a modern broad-spectrum filter that covers both UVB burning and the UVA rays behind tanning, pigmentation and premature ageing. Probiotics at 2% support the skin barrier and hyaluronic acid at 2% keeps it hydrated under the filter.",
-            "Most people stop wearing sunscreen because of how it feels, not how it works. This one absorbs in seconds, leaves no white cast on Indian skin tones, and finishes matte enough to wear under makeup or on its own through a humid day.",
+            "Ritshade is a daily sunscreen built to protect, brighten and support repair. Tinosorb M at 2% covers UVA and UVB. Micronized titanium dioxide at 10% adds a physical block. Together they deliver SPF 50+ PA+++ without a chalky film on Indian skin tones.",
+            "Vitamin C at 5% and niacinamide at 2% work on dullness and uneven tone under the filter. Hyaluronic acid, rosehip oil, tea tree oil and a little olive oil keep the texture light and non-comedogenic, so it can sit on oily or acne-prone skin through a humid day.",
         ],
         "benefits": [
-            ("SPF 50+ PA+++", "Very high protection against UVB burning and UVA ageing."),
-            ("No White Cast", "Blends clear on medium and deep skin tones."),
-            ("Weightless Finish", "Absorbs quickly and sits matte, even in humidity."),
-            ("Layers Cleanly", "Works over serums and under makeup without pilling."),
+            ("SPF 50+ PA+++", "Broad-spectrum UVA and UVB protection for everyday sun."),
+            ("No White Cast", "Micronized filters blend in instead of sitting white."),
+            ("Brightens Under SPF", "Vitamin C and niacinamide help tone while you stay protected."),
+            ("Daily, All Skin Types", "Ultra-light, non-comedogenic and made for everyday wear."),
         ],
-        "how": ["Apply as the final step of your morning routine.",
-                "Use two finger-lengths to cover the face and neck properly.",
-                "Allow 15 minutes before sun exposure.",
-                "Reapply every 3\u20134 hours when outdoors."],
-        "ingredients": "Aqua, Bis-Ethylhexyloxyphenol Methoxyphenyl Triazine (Tinosorb-M, 2%), Lactobacillus Ferment (Probiotics, 2%), Sodium Hyaluronate (2%), Glycerin, Niacinamide, Tocopherol, Squalane, Panthenol, Xanthan Gum, Phenoxyethanol.",
-        "faq": [("Is it suitable for oily skin?", "Yes. The finish is matte and non-comedogenic, so it suits oily and combination skin well."),
-                ("Do I need it indoors?", "If you sit near windows, yes. UVA passes through glass and is the main driver of pigmentation and ageing.")],
+        "how": ["Apply as the last step of your morning routine.",
+                "Use two finger-lengths for the face and neck.",
+                "Wait about 15 minutes before strong sun.",
+                "Reapply every 3\u20134 hours when you are outdoors."],
+        "ingredients": "Aqua, Titanium Dioxide (micronized, 10%), Bis-Ethylhexyloxyphenol Methoxyphenyl Triazine (Tinosorb M, 2%), Ascorbic Acid (Vitamin C, 5%), Niacinamide (2%), Sodium Hyaluronate (2%), Rosa Canina Fruit Oil (Rosehip, 2%), Melaleuca Alternifolia Leaf Oil (Tea Tree, 1%), Olea Europaea Fruit Oil (Olive, 0.5%), Glycerin, Phenoxyethanol.",
+        "faq": [("Will it clog pores?", "It is non-comedogenic and light enough for oily and acne-prone skin."),
+                ("Does it leave a white cast?", "No. The micronized titanium dioxide is chosen so it disappears on medium and deep skin tones.")],
     },
     {
-        "slug": "product-3", "name": "Ritglow Face Wash", "cat": "Skincare",
+        "slug": "ritglow-face-wash", "img": "product-3.jpg", "legacy": "product-3",
+        "name": "Ritglow Face Wash", "cat": "Skincare",
         "tag": "Oil-Free", "tag_class": " pcard__tag--sage",
         "size": "100 ml", "price": 399, "mrp": 399, "sku": "KRT-RGF-100",
-        "short": "An oil-free daily face wash that lifts away excess sebum, sweat and pollution without stripping the skin or leaving it tight.",
-        "meta": "Ritglow Face Wash is an oil-free daily cleanser that removes sebum, sweat and pollution without stripping skin or leaving tightness. 100 ml.",
+        "spec_img": "ritglow-face-wash.jpg",
+        "short": "An oil-free daily face wash with vitamin C, kojic acid dipalmitate, niacinamide and glycolic acid that brightens while it cleans.",
+        "meta": "Ritglow Oil-Free Daily Face Wash uses vitamin C 3%, kojic acid dipalmitate 2%, niacinamide, glycolic acid and salicylic acid. Use morning and night. 100 ml.",
         "long": [
-            "Ritglow Face Wash pairs a mild amino-acid surfactant base with vitamin C, hyaluronic acid and glycolic acid. The surfactants clear the day\u2019s oil, sweat, sunscreen and pollution; the actives brighten, hydrate and gently resurface while they do it.",
-            "The oil-free formula suits oily, combination and acne-prone skin, and it is gentle enough to use twice daily. Skin should feel clean and comfortable afterwards \u2014 never tight, squeaky or stripped.",
+            "Ritglow is an oil-free daily face wash for skin that looks dull by evening and still needs a proper clean. Sodium ascorbyl phosphate (vitamin C) at 3% and kojic acid dipalmitate at 2% target dark spots. Niacinamide at 1% helps pores and oil. Glycolic acid at 2% and salicylic acid at 1% lift dead cells and clear blackheads.",
+            "Hyaluronic acid, aloe at 2.5%, D-panthenol, liquorice and tocopheryl acetate keep the wash from leaving skin tight. Glutathione is in the blend for extra brightness. Use it morning and night on a wet face.",
         ],
         "benefits": [
-            ("Oil-Free Formula", "Clears excess sebum without adding any back."),
-            ("Brightens as It Cleans", "Vitamin C and glycolic acid lift dullness with every wash."),
-            ("Removes Sunscreen", "Lifts away SPF, sweat and pollution in a single wash."),
-            ("Twice-Daily Safe", "Mild enough for morning and evening use."),
+            ("Brightens as It Washes", "Vitamin C and kojic acid dipalmitate fade dullness and dark spots."),
+            ("Clears Pores", "Salicylic acid and glycolic acid help with blackheads and rough texture."),
+            ("Oil-Free Daily Clean", "Lifts sebum and sunscreen without putting oil back on the skin."),
+            ("Comfort After Rinsing", "Aloe, panthenol and hyaluronic acid limit that tight, dry feeling."),
         ],
-        "how": ["Wet the face with lukewarm water.",
-                "Massage a coin-sized amount over damp skin for 30 seconds.",
-                "Rinse thoroughly and pat dry \u2014 do not rub.",
-                "Follow with Ritclear AZ Serum and your moisturiser."],
-        "ingredients": "Aqua, Sodium Cocoyl Glycinate, Cocamidopropyl Betaine, Glycerin, Ethyl Ascorbic Acid (Vitamin C), Sodium Hyaluronate, Glycolic Acid, Panthenol, Allantoin, Aloe Barbadensis Leaf Juice, Citric Acid, Phenoxyethanol.",
-        "faq": [("Will it dry out my skin?", "No. The surfactant system is chosen specifically to clean without stripping, so skin stays comfortable after rinsing."),
-                ("Can I use it with the AZ serum?", "Yes \u2014 they are designed to work together. Cleanse first, then apply the serum to dry skin.")],
+        "how": ["Use morning and night on clean, wet skin.",
+                "Massage a small amount over the face for about 30 seconds.",
+                "Rinse thoroughly and pat dry.",
+                "Follow with Ritclear AZ Serum at night and Ritshade in the morning."],
+        "ingredients": "Aqua, Glutathione, Sodium Ascorbyl Phosphate (Vitamin C, 3%), Kojic Acid Dipalmitate (2%), Sodium Hyaluronate, Niacinamide (1%), Glycolic Acid (2%), Salicylic Acid (1%), Panthenol (0.5%), Tocopheryl Acetate (0.4%), Aloe Barbadensis Leaf Extract (2.5%), Glycyrrhiza Glabra (Licorice) Extract (1%), Phenoxyethanol.",
+        "faq": [("Will it dry my skin?", "It is oil-free, but aloe, panthenol and hyaluronic acid are there so skin should not feel stripped after you rinse."),
+                ("Can I use it twice a day?", "Yes. The sheet is written for morning and night use on wet skin.")],
     },
     {
-        "slug": "product-4", "name": "Kiamild Foaming Shampoo", "cat": "Hair Care",
+        "slug": "kiatral-ad-anti-dandruff-shampoo", "img": "product-4.jpg", "legacy": "product-4",
+        "name": "Kiatral-AD Anti Dandruff Shampoo", "cat": "Hair Care",
         "tag": "", "tag_class": "",
-        "size": "200 ml", "price": 799, "mrp": 799, "sku": "KRT-KMS-200",
-        "short": "A gentle everyday foaming shampoo that cleanses scalp and lengths thoroughly while staying mild enough for daily washing.",
-        "meta": "Kiamild Foaming Shampoo cleanses scalp and hair gently enough for everyday washing, without sulphates or the squeaky-stripped feeling. 200 ml.",
+        "size": "250 ml", "price": 799, "mrp": 799, "sku": "KRT-KAD-250",
+        "spec_img": "kiarit-AD-anti-dandruff-shapoo.jpg",
+        "short": "An anti-dandruff shampoo with piroctone olamine and climbazole that clears flakes while ceramides, avocado and hyaluronic acid keep the scalp comfortable.",
+        "meta": "Kiatral-AD Anti Dandruff Shampoo uses piroctone olamine, climbazole, ceramide, avocado and hyaluronic acid to control dandruff without stripping the scalp. 250 ml.",
         "long": [
-            "Kiamild is a mild, sulphate-free foaming shampoo made for people who wash their hair often. It lathers generously and rinses clean, lifting oil, sweat and product build-up from the scalp without stripping the lengths.",
-            "Daily washing is only a problem when the shampoo is too harsh for it. This formula keeps the scalp comfortable and the hair soft, so frequent washing does not leave you with dryness, frizz or an itchy scalp.",
+            "Kiatral-AD is built for scalp that sheds white flakes and itches after every wash. Piroctone olamine and climbazole target the yeast that drives dandruff, so flakes settle instead of bouncing back in a day or two.",
+            "Ceramide, avocado oil and hyaluronic acid support the scalp barrier while you cleanse, so hair does not feel squeaky-dry afterwards. Suited to dry and normal scalp. Use two to three times a week at first, then ease into a routine that keeps flakes away.",
         ],
         "benefits": [
-            ("Everyday Gentle", "Mild enough to use daily without drying the lengths."),
-            ("Sulphate-Free Lather", "Generous foam from gentle surfactants, not harsh sulphates."),
-            ("Scalp Comfort", "Helps relieve itchiness and build-up at the roots."),
-            ("Rinses Clean", "No residue, no weighing hair down."),
+            ("Fights Dandruff", "Piroctone olamine and climbazole reduce flakes, itch and the fungus behind them."),
+            ("Soothes an Itchy Scalp", "Climbazole and ceramides calm irritation instead of leaving the scalp raw."),
+            ("Moisturises While It Cleans", "Ceramide, avocado and hyaluronic acid lock moisture into the scalp."),
+            ("Safe for Daily Use", "Strong enough for flakes, mild enough to wash with regularly."),
         ],
         "how": ["Wet hair thoroughly with lukewarm water.",
-                "Work a coin-sized amount into the scalp, not the lengths.",
-                "Massage for 60 seconds, then rinse well.",
-                "Repeat only if hair is heavily soiled."],
-        "ingredients": "Aqua, Sodium Cocoyl Isethionate, Cocamidopropyl Betaine, Coco-Glucoside, Glycerin, Panthenol, Niacinamide, Guar Hydroxypropyltrimonium Chloride, Citric Acid, Sodium Benzoate, Phenoxyethanol.",
-        "faq": [("Is it safe for coloured hair?", "Yes. The sulphate-free base is gentle on colour and helps it last longer than a conventional shampoo."),
-                ("Can I use it every day?", "Yes \u2014 that is what it is formulated for. Focus the lather on the scalp and let the rinse clean the lengths.")],
+                "Work a coin-sized amount into the scalp and massage for 60\u201390 seconds.",
+                "Leave on for 2\u20133 minutes so the actives can work, then rinse well.",
+                "Use 2\u20133 times a week, or as advised for stubborn dandruff."],
+        "ingredients": "Aqua, Piroctone Olamine, Climbazole, Ceramide NP, Persea Gratissima (Avocado) Oil, Sodium Hyaluronate, Sodium Cocoyl Isethionate, Cocamidopropyl Betaine, Glycerin, Panthenol, Citric Acid, Sodium Benzoate, Phenoxyethanol.",
+        "faq": [("How soon will flakes reduce?", "Most people notice less itch and fewer flakes within 1\u20132 weeks of regular use. Stick with it for a full month before judging the result."),
+                ("Can I use it every day?", "Start with 2\u20133 washes a week. If your scalp stays comfortable, you can wash more often, but daily use is not required for most people.")],
     },
     {
-        "slug": "product-5", "name": "KiaRestora Shower Oil", "cat": "Body Care",
+        "slug": "kiarestora-shower-oil", "img": "product-5.jpg", "legacy": "product-5",
+        "name": "KiaRestora Shower Oil", "cat": "Body Care",
         "tag": "", "tag_class": "",
         "size": "250 ml", "price": 999, "mrp": 999, "sku": "KRT-KRS-250",
-        "short": "A cleansing shower oil for dry and normal skin that turns to a soft milk on water, leaving skin clean, supple and velvety \u2014 never dry or tight.",
-        "meta": "KiaRestora Shower Oil transforms into a soft cleansing milk on water, leaving skin nourished and comfortable instead of tight. 250 ml.",
+        "spec_img": "kiaRestora-Shower-oil.jpg",
+        "short": "An oil-to-milk shower oil with avocado oil, lecithin and lactic acid that cleans dry to normal skin without stripping the barrier.",
+        "meta": "KiaRestora Shower Oil is a soap-free, fragrance-free, paraben-free oil-to-milk cleanser with avocado oil, lecithin and lactic acid. For dry to normal skin. 250 ml.",
         "long": [
-            "KiaRestora Shower Oil is a body cleanser for skin that soap leaves tight and itchy. The oil base emulsifies into a light milk the moment it meets water, cleansing gently while leaving a fine layer of nourishing lipids behind.",
-            "It suits dry, sensitive and eczema-prone skin, and it is particularly useful in winter or in hard-water areas where conventional body washes strip the skin. Skin feels soft and supple straight out of the shower, often without needing lotion.",
+            "KiaRestora is a nourishing oil-to-milk cleanser for dry to normal skin. On wet skin it turns milky, lifts the day\u2019s grime, and still leaves lipids behind so the barrier does not collapse. Avocado oil nourishes. Lecithin supports the barrier. Lactic acid gives a light smooth without a scrub.",
+            "It is soap-free, fragrance-free, paraben-free and dermatologically tested, for external use. Useful when dryness, weather or everyday irritants leave skin tight after a normal body wash. Skin should feel soft and velvety once you rinse.",
         ],
         "benefits": [
-            ("Cleanses Without Stripping", "Oil-to-milk base lifts grime while preserving skin lipids."),
-            ("Comfort After Showering", "No tightness or itch, even in hard water."),
-            ("Nourishing Finish", "Leaves skin soft enough to often skip body lotion."),
-            ("Sensitive-Skin Friendly", "Free from soap, sulphates and added synthetic fragrance."),
+            ("Oil-to-Milk Cleanse", "Melts impurities without stripping the moisture the skin already has."),
+            ("Barrier Support", "Lecithin and avocado oil help the skin hold together after washing."),
+            ("Gentle Smooth", "Lactic acid lightly refines texture without a harsh scrub."),
+            ("Daily, Sensitive-Friendly", "Soap-free, fragrance-free and paraben-free for dry to normal skin."),
         ],
-        "how": ["Apply to damp skin in the shower.",
-                "Massage gently \u2014 the oil will turn into a soft milk.",
+        "how": ["Apply on wet skin in the shower.",
+                "Massage gently until the oil turns milky.",
                 "Rinse thoroughly with lukewarm water.",
-                "Pat dry, leaving the skin slightly damp."],
-        "ingredients": "Helianthus Annuus Seed Oil, PEG-7 Glyceryl Cocoate, Caprylic/Capric Triglyceride, Glycerin, Prunus Amygdalus Dulcis Oil, Tocopherol, Panthenol, Bisabolol, Citric Acid, Phenoxyethanol.",
-        "faq": [("Do I still need body lotion?", "Often not. The shower oil leaves enough nourishment behind that most people find lotion unnecessary except in very dry weather."),
-                ("Is it safe for eczema-prone skin?", "It is formulated to be. It is soap-free and fragrance-free, but check with your dermatologist if you are mid-flare.")],
+                "Pat dry. Follow with KiaMoist if skin still feels dry."],
+        "ingredients": "Glycine Soja Oil, Lecithin, Laureth-4, Cocamide DEA, Poloxamer 101, Persea Gratissima (Avocado) Oil, Lactic Acid, Aqua, Caprylic/Capric Triglyceride, Ascorbyl Palmitate, Citric Acid.",
+        "faq": [("Do I still need body lotion?", "Often the oil is enough. On very dry days, follow with KiaMoist Body Lotion."),
+                ("Is it soap-free?", "Yes. It is also fragrance-free and paraben-free, and marked for external use only.")],
     },
     {
-        "slug": "product-6", "name": "KiaMoist Body Lotion", "cat": "Body Care",
+        "slug": "kiamoist-body-lotion", "img": "product-6.jpg", "legacy": "product-6",
+        "name": "KiaMoist Body Lotion", "cat": "Body Care",
         "tag": "New Launch", "tag_class": "",
         "size": "250 ml", "price": 799, "mrp": 799, "sku": "KRT-KMB-250",
-        "short": "A daily body lotion for dry and normal skin that restores the skin barrier and helps cut down water loss, so skin stays soft through the day.",
-        "meta": "KiaMoist Body Lotion restores and balances the skin barrier and helps prevent TEWL. For dry and normal skin. 250 ml.",
+        "spec_img": "kiamoist-body-lotion.jpg",
+        "short": "A daily body lotion with shea, mango and cocoa butters that deeply moisturises dry to normal skin and helps limit water loss.",
+        "meta": "KiaMoist Body Lotion deeply moisturises, supports the skin barrier and helps prevent TEWL. Shea, mango, cocoa butter and aloe. Dry to normal skin. 250 ml.",
         "long": [
-            "KiaMoist is a straightforward body lotion for skin that feels tight by afternoon or looks dull after a hot shower. It works on the barrier first \u2014 the thin outer layer that keeps moisture in \u2014 so the softness lasts instead of fading an hour later.",
-            "Made for dry and normal skin. A thin layer after bathing is usually enough. It sinks in without a heavy film, and it pairs well after KiaRestora if you want cleanser plus lotion in one routine.",
+            "KiaMoist is a daily full-body lotion for dry to normal skin that wants moisture without a greasy coat. Glycerin and propylene glycol pull water in. Shea butter, mango seed butter and cocoa butter soften rough patches on hands, feet, elbows and knees. Coconut oil conditions dry skin.",
+            "Caprylic/capric triglyceride and isoamyl laurate keep the feel light. Dimethicone forms a thin layer that slows moisture loss (TEWL). Aloe soothes skin that feels stressed after a hot shower. Use it once the skin is still slightly damp.",
         ],
         "benefits": [
-            ("Restores the Barrier", "Helps the outer skin layer hold together so dryness does not bounce back quickly."),
-            ("Limits Water Loss", "Supports the skin against TEWL, the quiet leak that leaves limbs chalky by evening."),
-            ("Dry & Normal Skin", "Light enough for everyday use, rich enough when the air is dry."),
-            ("Everyday Texture", "Spreads easily, absorbs clean, no sticky afterfeel."),
+            ("Intensive Moisture", "Glycerin, propylene glycol and butters hold water on dry skin."),
+            ("Barrier Care", "Shea butter and dimethicone support the barrier and slow water loss."),
+            ("Softens Rough Spots", "Mango, cocoa and coconut oils help elbows, knees, hands and feet."),
+            ("Smooth, Non-Greasy Feel", "Lightweight emollients sink in instead of sitting on the skin."),
         ],
-        "how": ["Pat skin dry after a bath or shower, leave it slightly damp.",
-                "Pump a modest amount into your palms.",
-                "Smooth over arms, legs and body until absorbed.",
-                "Use once or twice daily, or whenever skin feels tight."],
-        "ingredients": "Aqua, Glycerin, Caprylic/Capric Triglyceride, Cetearyl Alcohol, Glyceryl Stearate, Shea Butter, Panthenol, Sodium Hyaluronate, Tocopherol, Ceramide NP, Allantoin, Xanthan Gum, Phenoxyethanol.",
-        "faq": [("Will it feel greasy?", "No. It is meant to sink in. If you put on too much, wait a minute before dressing \u2014 that is usually enough."),
-                ("Can I use it on my face?", "It is a body lotion. Stick to face products on the face; use KiaMoist from the neck down.")],
+        "how": ["After a bath or shower, pat skin until it is slightly damp.",
+                "Warm a small amount between your palms.",
+                "Smooth over the body, including hands, feet, elbows and knees.",
+                "Use daily. A second pass is fine on very dry areas."],
+        "ingredients": "Aqua, Glycerin, Propylene Glycol, Butyrospermum Parkii (Shea) Butter, Mangifera Indica (Mango) Seed Butter, Theobroma Cacao (Cocoa) Butter, Cocos Nucifera (Coconut) Oil, Caprylic/Capric Triglyceride, Isoamyl Laurate, Dimethicone, Aloe Barbadensis Leaf Extract, Phenoxyethanol.",
+        "faq": [("Will it feel greasy?", "The lightweight oils and dimethicone are there for a smooth, non-greasy finish. Use less if you dress immediately."),
+                ("Who is it for?", "Dry to normal skin, for daily full-body moisturising \u2014 not as a face cream.")],
     },
 ]
 
@@ -262,8 +277,15 @@ def _expand_partial(tpl):
     links = "\n".join(
         f'          <a href="{url(p["slug"])}">{p["name"]}</a>'
         for p in PRODUCTS)
+    order_nav = ""
+    order_footer = ""
+    if SHOW_ORDER_PAY:
+        order_nav = '        <div class="nav__item"><a class="nav__link" href="/order">Order &amp; Pay</a></div>\n'
+        order_footer = '          <a href="/order">How to Order &amp; Pay</a>\n'
     return (tpl.replace("{{PRODUCT_MENU}}", menu)
                .replace("{{PRODUCT_LINKS}}", links)
+               .replace("{{ORDER_NAV}}", order_nav)
+               .replace("{{ORDER_FOOTER}}", order_footer)
                .replace("{{WA_ORDER}}", wa("Hello KIARIT, I would like to place an order."))
                .replace("{{WA_ASK}}", wa("Hello KIARIT, I have a question."))
                .replace("{{WA_PLAIN}}", "https://wa.me/" + SITE["wa"])
@@ -339,7 +361,7 @@ def head(page):
 <link rel="stylesheet" href="assets/css/base.css">
 <link rel="stylesheet" href="assets/css/components.css">
 <link rel="stylesheet" href="assets/css/pages.css">
-<link rel="stylesheet" href="assets/css/inner.css">
+{'' if page.get('file') == 'index.html' else '<link rel="stylesheet" href="assets/css/inner.css">'}
 <link rel="stylesheet" href="assets/css/luxe.css">
 
 {schema}
@@ -452,7 +474,10 @@ def product_card(p, reveal=True):
           <div class="pcard__media">
             {tag}
             <a href="{url(p['slug'])}" aria-label="View {p['name']} details">
-              <img src="assets/img/products/{p['slug']}.jpg" alt="{p['name']} — {p['cat'].lower()} product by KIARIT Pharmaceuticals" width="900" height="900" loading="lazy">
+              <picture>
+                <source srcset="assets/img/products/{p['img'].rsplit('.', 1)[0]}.webp" type="image/webp">
+                <img src="assets/img/products/{p['img']}" alt="{p['name']} — {p['cat'].lower()} product by KIARIT Pharmaceuticals" width="900" height="900" loading="lazy">
+              </picture>
             </a>
           </div>
           <div class="pcard__body">

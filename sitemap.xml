@@ -20,19 +20,13 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.kiaritpharmaceuticals.com/order</loc>
-    <lastmod>2026-09-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://www.kiaritpharmaceuticals.com/contact</loc>
     <lastmod>2026-09-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.kiaritpharmaceuticals.com/product-1</loc>
+    <loc>https://www.kiaritpharmaceuticals.com/ritclear-az-serum</loc>
     <lastmod>2026-09-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -42,7 +36,7 @@
     </image:image>
   </url>
   <url>
-    <loc>https://www.kiaritpharmaceuticals.com/product-2</loc>
+    <loc>https://www.kiaritpharmaceuticals.com/ritshade-sunscreen</loc>
     <lastmod>2026-09-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -52,7 +46,7 @@
     </image:image>
   </url>
   <url>
-    <loc>https://www.kiaritpharmaceuticals.com/product-3</loc>
+    <loc>https://www.kiaritpharmaceuticals.com/ritglow-face-wash</loc>
     <lastmod>2026-09-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -62,17 +56,17 @@
     </image:image>
   </url>
   <url>
-    <loc>https://www.kiaritpharmaceuticals.com/product-4</loc>
+    <loc>https://www.kiaritpharmaceuticals.com/kiatral-ad-anti-dandruff-shampoo</loc>
     <lastmod>2026-09-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
       <image:loc>https://www.kiaritpharmaceuticals.com/assets/img/products/product-4.jpg</image:loc>
-      <image:title>Kiamild Foaming Shampoo</image:title>
+      <image:title>Kiatral-AD Anti Dandruff Shampoo</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://www.kiaritpharmaceuticals.com/product-5</loc>
+    <loc>https://www.kiaritpharmaceuticals.com/kiarestora-shower-oil</loc>
     <lastmod>2026-09-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -82,7 +76,7 @@
     </image:image>
   </url>
   <url>
-    <loc>https://www.kiaritpharmaceuticals.com/product-6</loc>
+    <loc>https://www.kiaritpharmaceuticals.com/kiamoist-body-lotion</loc>
     <lastmod>2026-09-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>

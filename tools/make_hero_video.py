@@ -25,7 +25,7 @@ save them into tools/hero_src/ under the filenames listed in SHOTS below:
   grp-1.jpg  Ritclear, Ritshade and Ritglow cartons standing on pale
              marble, warm golden light raking from the right, deep warm
              brown near-black background.
-  grp-2.jpg  Kiamild and KiaRestora bottles, same set and lighting.
+  grp-2.jpg  Kiatral-AD and KiaRestora bottles, same set and lighting.
   grp-3.jpg  Ritclear carton against flowing liquid-gold silk on near
              black, with suspended gold particles.
   grp-4.jpg  All five products in a staggered lineup on the marble set.

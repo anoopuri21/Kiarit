@@ -3,7 +3,7 @@
 import sys, os, datetime
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from build import (SITE, PRODUCTS, I, render, write, page_hero, cta_band, wa, url,
-                   org_schema, breadcrumb, ROOT)
+                   org_schema, breadcrumb, ROOT, SHOW_ORDER_PAY)
 
 UPDATED = "6 September 2026"
 
@@ -332,7 +332,7 @@ def build_404():
           <nav aria-label="Popular pages">
             <a href="/about">About Us</a>
             <a href="/products">All Products</a>
-            <a href="/order">Order &amp; Pay</a>
+            {('<a href="/order">Order &amp; Pay</a>' if SHOW_ORDER_PAY else '')}
             <a href="/contact">Contact</a>
             <a href="/shipping-returns">Shipping &amp; Returns</a>
           </nav>
@@ -373,8 +373,10 @@ def build_sitemap():
     # Slugs, not filenames: the site is served with clean URLs, and a sitemap
     # entry that redirects is a wasted crawl and a canonical mismatch.
     entries = [("", "1.0", "weekly"), ("products", "0.9", "weekly"),
-               ("about", "0.8", "monthly"), ("order", "0.8", "monthly"),
-               ("contact", "0.8", "monthly")]
+               ("about", "0.8", "monthly")]
+    if SHOW_ORDER_PAY:
+        entries.append(("order", "0.8", "monthly"))
+    entries.append(("contact", "0.8", "monthly"))
     entries += [(p['slug'], "0.9", "weekly") for p in PRODUCTS]
     entries += [("shipping-returns", "0.5", "yearly"), ("privacy-policy", "0.3", "yearly"),
                 ("terms", "0.3", "yearly"), ("disclaimer", "0.3", "yearly")]
@@ -392,7 +394,7 @@ def build_sitemap():
         prod = next((p for p in PRODUCTS if p['slug'] == loc), None)
         if prod:
             x.append("    <image:image>")
-            x.append(f"      <image:loc>{SITE['url']}/assets/img/products/{prod['slug']}.jpg</image:loc>")
+            x.append(f"      <image:loc>{SITE['url']}/assets/img/products/{prod['img']}</image:loc>")
             x.append(f"      <image:title>{prod['name']}</image:title>")
             x.append("    </image:image>")
         x.append("  </url>")
@@ -420,6 +422,10 @@ Sitemap: {SITE['url']}/sitemap.xml
 
 
 def build_htaccess():
+    legacy = "\n".join(
+        "  RewriteRule ^%s(\\.html)?$ /%s [R=301,L]" % (p["legacy"], p["slug"])
+        for p in PRODUCTS if p.get("legacy")
+    )
     txt = f"""# ==========================================================================
 # {SITE['name']} — Apache configuration
 # ==========================================================================
@@ -480,6 +486,9 @@ ErrorDocument 404 /404.html
   # Force www
   RewriteCond %{{HTTP_HOST}} !^www\\. [NC]
   RewriteRule ^(.*)$ https://www.%{{HTTP_HOST}}/$1 [R=301,L]
+
+  # Old numbered product URLs
+{legacy}
 
   # Allow extensionless URLs (/about -> /about.html)
   RewriteCond %{{REQUEST_FILENAME}} !-d

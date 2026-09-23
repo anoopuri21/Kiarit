@@ -29,7 +29,7 @@ PRODUCTS = [
     ("KIARIT",  "RITCLEAR AZ",   "Azelaic Acid Serum",    (234, 239, 231), (99, 118, 95)),
     ("KIARIT",  "RITSHADE",      "SPF 50+ PA+++",         (253, 241, 216), (201, 162, 39)),
     ("KIARIT",  "RITGLOW",       "Oil-Free Face Wash",    (244, 230, 224), (176, 118, 96)),
-    ("KIARIT",  "KIAMILD",       "Foaming Shampoo",       (231, 237, 228), (95, 118, 96)),
+    ("KIARIT",  "KIATRAL-AD",    "Anti Dandruff Shampoo", (180, 220, 220), (20, 80, 90)),
     ("KIARIT",  "KIARESTORA",    "Cleansing Shower Oil",  (238, 240, 242), (110, 130, 145)),
 ]
 

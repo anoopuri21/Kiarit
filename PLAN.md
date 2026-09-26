@@ -149,7 +149,7 @@ Bottom bar: © 2026 KIARIT PHARMACEUTICALS · Privacy · Terms · Disclaimer
 | 4 | **POSTER SECTION #1 — "The Gold Standard of Skincare"** | Full-width custom-designed editorial poster (custom artwork, not stock): black canvas, gold foil typography, product silhouette, hairline gold frame, offset headline block | Layered parallax (3 depths) + gold shimmer sweep on scroll-in |
 | 5 | **Our Products (6)** | 3×2 grid of luxury cards: soft ivory card, product image on champagne circle backdrop, name (serif), 2-line description, price in gold, "View Details" + "Order on WhatsApp" | Staggered card rise (80ms delay each), hover: lift + gold border draw + image zoom |
 | 6 | **POSTER SECTION #2 — "Formulated by Science, Perfected by Nature"** | Split diagonal poster: left ivory with big serif claim + 3 icon pillars (Research · Purity · Results); right black panel with gold macro texture | Diagonal wipe reveal, counter numbers animate |
-| 7 | **CEO's Message** | Ivory bg, large gold quote mark, portrait in gold arch frame with subtle grain, generic message paragraph, signature line: **Yogesh Bhatra — Founder & CEO** | Portrait scale-in, quote text word-by-word fade |
+| 7 | **CEO's Message** | Ivory bg, large gold quote mark, portrait in gold arch frame with subtle grain, generic message paragraph, signature line: **Yogesh Batra — Founder & CEO** | Portrait scale-in, quote text word-by-word fade |
 | 8 | **Why Choose Us** | 4 icon cards (Quality Assurance, Innovation, Affordability, Patient-Centric) | Icon draw-in + card stagger |
 | 9 | **Testimonials Slider** | Dark charcoal band, custom-built vanilla JS slider: 1 card desktop-centered / peek of next, 5-star gold, avatar initials in gold circle, autoplay + dots + arrows + swipe, pause on hover | Card cross-fade + slide, dots morph |
 | 10 | **Order & Pay Teaser** | Compact band: QR code card + 3-step how-to-order + "Full Payment Details" link | Fade-up |
@@ -201,7 +201,7 @@ Bottom bar: © 2026 KIARIT PHARMACEUTICALS · Privacy · Terms · Disclaimer
 |---|---|
 | 6 product images | ⏳ You'll share in next chat |
 | Logo (PNG/SVG, transparent) | ⏳ Pending |
-| CEO photo — Yogesh Bhatra | ⏳ Pending |
+| CEO photo — Yogesh Batra | ⏳ Pending |
 | Payment QR code image (UPI) | ⏳ Pending — placeholder till then |
 | Product names, descriptions, prices (6) | ⏳ Pending |
 | Phone, WhatsApp number, email, office address | ⏳ Pending |

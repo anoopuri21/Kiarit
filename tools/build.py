@@ -41,7 +41,7 @@ SITE = {
         "linkedin": "https://www.linkedin.com/company/kiaritpharmaceuticals",
         "youtube": "https://www.youtube.com/@kiaritpharmaceuticals",
     },
-    "ceo": "Yogesh Bhatra",
+    "ceo": "Yogesh Batra",
     "overview": ("KIARIT PHARMACEUTICALS is a healthcare-focused pharmaceutical and cosmetic "
                  "company committed to delivering high-quality, innovative, and affordable "
                  "products. We specialize in dermatology, skincare, nutraceuticals, and "

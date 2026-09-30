@@ -1,7 +1,7 @@
 """
 KIARIT PHARMACEUTICALS — Hero background video generator.
 
-Builds an 18-second cinematic loop from the product still plates in
+Builds a 24-second cinematic loop from the product still plates in
 tools/hero_src/. Each plate gets a slow Ken Burns move (a scale and pan
 that never reverses direction mid-shot), and shots cross-dissolve into
 one another. The last shot dissolves back into the first, so the file
@@ -19,16 +19,21 @@ tools/hero_src/ is gitignored. The rendered output (assets/video/hero.mp4,
 hero.webm, hero-poster.jpg) is committed, so nothing here is needed to
 build or serve the site — only to re-render the video.
 
-To re-create the plates, produce four 16:9 images at roughly 1376x768 and
+To re-create the plates, produce six 16:9 images at roughly 1376x768 and
 save them into tools/hero_src/ under the filenames listed in SHOTS below:
 
-  grp-1.jpg  Ritclear, Ritshade and Ritglow cartons standing on pale
-             marble, warm golden light raking from the right, deep warm
-             brown near-black background.
-  grp-2.jpg  Kiatral-AD and KiaRestora bottles, same set and lighting.
-  grp-3.jpg  Ritclear carton against flowing liquid-gold silk on near
-             black, with suspended gold particles.
-  grp-4.jpg  All five products in a staggered lineup on the marble set.
+  shot-1-serum.jpg      Latina model applying golden serum with a dropper,
+                        Ritclear AZ Serum carton, liquid-gold silk.
+  shot-2-sunscreen.jpg  Latina model applying sunscreen to her cheek,
+                        Ritshade carton, warm sun glow.
+  shot-3-facewash.jpg   Latina model, water splash and foam, Ritglow
+                        carton, dark spa backdrop.
+  shot-4-shampoo.jpg    Latina model under cascading water, Kiatral-AD
+                        bottle, avocado and leaves.
+  shot-5-body.jpg       Golden shower-oil macro swirl, KiaRestora and
+                        KiaMoist bottles, jasmine and candle glow.
+  shot-6-lineup.jpg     All six products staggered on pale marble, gold
+                        particles in the air.
 
 Composition matters: keep the product mass toward the right of frame and
 leave the left roughly empty. The hero headline sits over the left side,
@@ -53,8 +58,8 @@ os.makedirs(OUT, exist_ok=True)
 
 W, H = 1600, 900           # output resolution — a backdrop, not a feature film
 FPS = 25
-SHOT = 5.8                 # seconds each shot holds
-FADE = 1.3                 # seconds of cross-dissolve between shots
+SHOT = 5.2                 # seconds each shot holds
+FADE = 1.2                 # seconds of cross-dissolve between shots
 
 # Each shot: (file, start_zoom, end_zoom, start_centre, end_centre)
 # Centres are fractions of the image; 0.5 is the middle. Moves are gentle —
@@ -67,10 +72,12 @@ FADE = 1.3                 # seconds of cross-dissolve between shots
 #
 # (file, zoom0, zoom1, centre0, centre1, target_x)
 SHOTS = [
-    ("grp-1.jpg", 1.08, 1.16, (0.50, 0.56), (0.50, 0.53), 0.70),   # three cartons
-    ("grp-3.jpg", 1.16, 1.06, (0.62, 0.50), (0.58, 0.52), 0.72),   # serum in gold
-    ("grp-4.jpg", 1.18, 1.08, (0.50, 0.56), (0.50, 0.52), 0.68),   # full lineup
-    ("grp-2.jpg", 1.06, 1.14, (0.50, 0.56), (0.50, 0.53), 0.70),   # two bottles
+    ("shot-1-serum.jpg", 1.08, 1.16, (0.52, 0.56), (0.50, 0.53), 0.70),  # serum application, push in
+    ("shot-2-sunscreen.jpg", 1.16, 1.07, (0.60, 0.50), (0.57, 0.52), 0.70),  # sunscreen, pull out
+    ("shot-3-facewash.jpg", 1.07, 1.15, (0.50, 0.56), (0.50, 0.53), 0.70),  # face wash, push in
+    ("shot-4-shampoo.jpg", 1.17, 1.08, (0.55, 0.52), (0.52, 0.52), 0.68),  # shampoo, pull out
+    ("shot-5-body.jpg", 1.06, 1.14, (0.55, 0.56), (0.53, 0.53), 0.70),  # body ritual, push in
+    ("shot-6-lineup.jpg", 1.06, 1.02, (0.50, 0.55), (0.50, 0.53), 0.585),  # full lineup finale, pull out
 ]
 
 N_SHOTS = len(SHOTS)
@@ -177,6 +184,7 @@ def main():
     r = np.sqrt(nx * nx * 0.85 + ny * ny)
     vignette = np.clip(1.0 - 0.42 * np.clip(r - 0.35, 0, None) ** 1.6, 0.35, 1.0)
     vignette = vignette[:, :, None]
+    rng = np.random.default_rng(7)
 
     cmd = [
         exe, "-y",
@@ -211,7 +219,8 @@ def main():
             k = ease(tail / FADE)
             a = a * (1.0 - k) + b * k
 
-        out = np.clip(a * vignette, 0, 255).astype(np.uint8)
+        grain = rng.normal(0, 1.8, (H, W, 1)).astype(np.float32)
+        out = np.clip(a * vignette + grain, 0, 255).astype(np.uint8)
         proc.stdin.write(out.tobytes())
 
         if i % 25 == 0:
@@ -232,7 +241,8 @@ def main():
 
     # Poster: the first frame, so the still the user sees before playback
     # matches the video's opening exactly.
-    first = np.clip(frame_for(0, 0.0) * vignette, 0, 255).astype(np.uint8)
+    pgrain = np.random.default_rng(11).normal(0, 1.8, (H, W, 1))
+    first = np.clip(frame_for(0, 0.0) * vignette + pgrain, 0, 255).astype(np.uint8)
     Image.fromarray(first).save(os.path.join(OUT, "hero-poster.jpg"),
                                 quality=82, optimize=True, progressive=True)
     print("  wrote hero-poster.jpg")

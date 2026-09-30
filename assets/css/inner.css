@@ -161,6 +161,9 @@
   overflow-wrap: anywhere;
 }
 .contact__card .link-gold { margin-top: auto; }
+.contact__card .contact__mail { margin-bottom: .35rem; transition: color var(--t-fast) var(--ease); }
+.contact__card .contact__mail + .contact__mail { margin-bottom: var(--sp-4); }
+.contact__card a.contact__mail:hover { color: var(--gold-700); }
 .contact__card--wa .why__icon {
   background: linear-gradient(150deg, #e6f8ec, #cdf0d9);
   border-color: rgba(31,170,83,.28);

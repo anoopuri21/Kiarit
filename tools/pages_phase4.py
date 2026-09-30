@@ -228,13 +228,14 @@ def build_contact():
           <span class="link-gold">Start Chat {I['arrow']}</span>
         </a>
 
-        <a class="contact__card" href="mailto:{SITE['email']}" data-reveal="up">
+        <div class="contact__card" data-reveal="up">
           <div class="why__icon">{I['mail']}</div>
           <h3>Email Us</h3>
           <p>For detailed enquiries, distribution partnerships or documentation requests.</p>
-          <span class="contact__value">{SITE['email']}</span>
-          <span class="link-gold">Send Email {I['arrow']}</span>
-        </a>
+          <a class="contact__value contact__mail" href="mailto:{SITE['email']}">{SITE['email']}</a>
+          <a class="contact__value contact__mail" href="mailto:{SITE['email2']}">{SITE['email2']}</a>
+          <a class="link-gold" href="mailto:{SITE['email']}">Send Email {I['arrow']}</a>
+        </div>
       </div>
     </div>
   </section>
@@ -266,7 +267,7 @@ def build_contact():
             <div class="infolist__row" data-reveal="up">
               {I['users']}
               <div><strong>Bulk &amp; Distribution</strong>
-                <span>Retail, clinic and distribution enquiries welcome<br>Write to {SITE['email']}</span></div>
+                <span>Retail, clinic and distribution enquiries welcome<br>Write to {SITE['email']} or {SITE['email2']}</span></div>
             </div>
           </div>
 
@@ -332,7 +333,7 @@ def build_contact():
                     "@id": SITE["url"] + "/#localbusiness",
                     "name": SITE["name"], "url": SITE["url"] + "/contact",
                     "image": SITE["url"] + "/assets/img/og/og-default.jpg",
-                    "telephone": "+" + SITE["wa"], "email": SITE["email"],
+                    "telephone": "+" + SITE["wa"], "email": [SITE["email"], SITE["email2"]],
                     "priceRange": "₹₹",
                     "address": {"@type": "PostalAddress", "streetAddress": SITE["street"],
                                 "addressLocality": SITE["city"], "addressRegion": SITE["region"],
@@ -365,7 +366,7 @@ ORDER_FAQ = [
     ("Do you offer cash on delivery?",
      "Cash on delivery is available on selected PIN codes. Please confirm availability with our team on WhatsApp before placing your order."),
     ("Can I order in bulk or for my clinic?",
-     f"Yes. For bulk, retail or clinic orders, please write to {SITE['email']} or message us on WhatsApp and our team will share institutional pricing."),
+     f"Yes. For bulk, retail or clinic orders, please write to {SITE['email']} or {SITE['email2']}, or message us on WhatsApp and our team will share institutional pricing."),
 ]
 
 

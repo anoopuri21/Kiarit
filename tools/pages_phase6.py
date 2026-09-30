@@ -23,7 +23,8 @@ def legal(file, nav_title, eyebrow, h1, sub, title, desc, blocks, schema_type="W
       <div class="notice notice--gold" style="margin-top:var(--sp-7)">
         {I['mail']}
         <p><strong>Questions about this policy?</strong> Write to us at
-          <a href="mailto:{SITE['email']}">{SITE['email']}</a> or call
+          <a href="mailto:{SITE['email']}">{SITE['email']}</a> or
+          <a href="mailto:{SITE['email2']}">{SITE['email2']}</a>, or call
           <a href="tel:{SITE['phone_link']}">{SITE['phone_display']}</a>. We respond within one working day.</p>
       </div>
     </div>
@@ -116,7 +117,7 @@ def build_privacy():
                 "Delete your data, where we are not legally required to retain it.",
                 "Stop contacting you, other than for an order already in progress.",
             ]),
-            p(f"Send any such request to <a href='mailto:{SITE['email']}'>{SITE['email']}</a> from the email address or phone number associated with your order. We respond within thirty days."),
+            p(f"Send any such request to <a href='mailto:{SITE['email']}'>{SITE['email']}</a> or <a href='mailto:{SITE['email2']}'>{SITE['email2']}</a> from the email address or phone number associated with your order. We respond within thirty days."),
 
             h("Children"),
             p("Our products and this website are intended for adults. We do not knowingly collect personal information from anyone under eighteen. If you believe a minor has shared data with us, contact us and we will delete it."),

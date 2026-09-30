@@ -22,6 +22,7 @@ SITE = {
     "phone_link": "+918587875749",
     "wa": "918587875749",
     "email": "kiaritpharma@gmail.com",
+    "email2": "support@kiaritpharma.com",
     "addr_line1": "1st Floor, 1st Main, Ganga Nagar, Gramatana,",
     "addr_line2": "HMT Layout, CBI Main Rd, Bengaluru, Karnataka 560032",
     "street": "1st Floor, 1st Main, Ganga Nagar, Gramatana, HMT Layout, CBI Main Rd",
@@ -292,6 +293,7 @@ def _expand_partial(tpl):
                .replace("{{PHONE_LINK}}", SITE["phone_link"])
                .replace("{{PHONE_DISPLAY}}", SITE["phone_display"])
                .replace("{{EMAIL}}", SITE["email"])
+               .replace("{{EMAIL2}}", SITE["email2"])
                .replace("{{ADDR1}}", SITE["addr_line1"])
                .replace("{{ADDR2}}", SITE["addr_line2"]))
 
@@ -384,7 +386,7 @@ def org_schema():
                     "addressLocality": SITE["city"], "addressRegion": SITE["region"],
                     "postalCode": SITE["zip"], "addressCountry": "IN"},
         "contactPoint": [{"@type": "ContactPoint", "telephone": "+" + SITE["wa"],
-                          "contactType": "customer service", "email": SITE["email"],
+                          "contactType": "customer service", "email": [SITE["email"], SITE["email2"]],
                           "areaServed": "IN", "availableLanguage": ["en", "hi"]}],
         "sameAs": list(SITE["social"].values()),
     }
@@ -434,6 +436,7 @@ def cta_band(title, text, b1=("About Us", "about"), b2=("Contact Us", "contact")
       <div class="ctaband__contact" data-reveal="up" data-delay="330">
         <a href="tel:{SITE['phone_link']}">{I['phone']} {SITE['phone_display']}</a>
         <a href="mailto:{SITE['email']}">{I['mail']} {SITE['email']}</a>
+        <a href="mailto:{SITE['email2']}">{I['mail']} {SITE['email2']}</a>
         <a href="https://wa.me/{SITE['wa']}" target="_blank" rel="noopener noreferrer">{I['wa']} Chat on WhatsApp</a>
       </div>
     </div>
